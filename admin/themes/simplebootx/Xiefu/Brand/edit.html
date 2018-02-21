@@ -1,0 +1,119 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<div class="common-form">
+			<form method="post" class="form-horizontal js-ajax-form" action="{:U('brand/edit_post')}">
+				<fieldset>
+					<div class="control-group">
+						<label class="control-label">类目名称</label>
+						<div class="controls">
+							<input type="text" name="name" value="{$info.name}"><span class="form-required">*</span>
+						</div>
+					</div>
+					<!--  
+					<div class="control-group">
+						<label class="control-label">类目</label>
+						<div class="controls">
+							<input type="text" name="category_name"  id="category_name" value="{$info.category_name}" style="width: 400px">
+							<input type="hidden" name="category_id" value="{$info.category_id}" id="category_id" style="width: 400px">
+							<a class='btnGrayS vm bigbtn' onclick="addGoods('category_id',{$info.id})" class="a_choose">选择</a>
+						</div>
+					</div>
+					
+					<div class="control-group">
+						<label class="control-label">类型</label>
+						<div class="controls">
+							<select name="type">
+								<option value="0">选择</option>
+								<option value="1" <if condition="$info.type eq 1">selected</if>>自主品牌</option>
+								<option value="2" <if condition="$info.type eq 2">selected</if>>非自主品牌</option>
+							</select>
+						</div>
+					</div>-->
+					<div class="control-group" style="">
+					<label class="control-label" style="margin-right: 30px;">Logo</label>
+					<input type="hidden" name="logo" id="thumb" value="{$info.logo|default=''}">
+					<a href="javascript:void(0);" onclick="flashupload('thumb_images', '附件上传','thumb',thumb_images,'1,jpg|jpeg|gif|png|bmp,1,,,1','','','');return false;">
+						<if condition="empty($info.logo)">
+							<img src="__TMPL__Public/assets/images/default-thumbnail.png" id="thumb_preview" width="135" style="cursor: hand"/>
+						<else />
+							<img src="{$info.logo}" id="thumb_preview" width="135" style="cursor: hand"/>
+						</if>
+					</a>
+					<input type="button" class="btn btn-small" onclick="$('#thumb_preview').attr('src','__TMPL__Public/assets/images/default-thumbnail.png');$('#thumb').val('');return false;" value="取消图片">
+				</div>
+				<div class="control-group">
+					<label class="control-label">图片链接地址</label>
+					<div class="controls">
+						<input type="text" name="url" value="{$info.url}">
+					</div>
+				</div>
+				</fieldset>
+				<div class="form-actions">
+					<input type="hidden" name="id" value="{$id}">
+					<button type="submit" class="btn btn-primary js-ajax-submit">{:L('SAVE')}</button>
+					<a class="btn" href="{:U('brand/index')}">{:L('BACK')}</a>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script src="__PUBLIC__/js/artDialog/jquery.artDialog.js?skin=default"></script>
+	<script src="__PUBLIC__/js/artDialog/plugins/iframeTools.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/content_addtop.js"></script>
+	<script>
+		$(function() {
+			$("#navcid_select").change(function() {
+				if(location.search.indexOf("?")>=0){
+					location.href = location.href + "&cid=" + $(this).val();
+				}else{
+					location.href = location.href + "?cid=" + $(this).val();
+				}
+			});
+
+			$("#selecthref").click(function() {
+				checkChange(2);
+			});
+			$("input[name='href']").click(function() {
+				checkChange(1);
+			});
+
+			var opt = $("#selecthref option[value='" + '{$hrefold}' + "']");
+			if (opt.length > 0) {
+				opt.attr('selected', 'selected');
+				checkChange(2);
+			} else {
+				checkChange(1);
+				$('#outlink_input').val('{$hrefold}');
+			}
+
+			function checkChange(i) {
+				if (i == 1) {
+					//自动输入url
+					$('#outlink_input').attr('name', 'href');
+					$('#selecthref').removeAttr('name');
+					$('#outlink').attr({
+						'checked' : 'checked',
+						'name' : 'nav'
+					});
+				} else {
+					//选择链接url
+					$('#selecthref').attr('name', 'href');
+					$('#outlink_input').removeAttr('name');
+					$('#selecturl').attr({
+						'checked' : 'checked',
+						'name' : 'nav'
+					});
+				}
+			}
+		});
+	</script>
+	<script type="text/javascript">
+	function addGoods(domid,keyword){
+			art.dialog.data('domid', domid);
+			art.dialog.open('?g=Xiefu&m=brand&a=category&id='+keyword,{lock:true,title:'选择类目',width:900,height:500,yesText:'关闭',background: '#000',opacity: 0.45});
+		}
+	
+	</script>
+</body>
+</html>

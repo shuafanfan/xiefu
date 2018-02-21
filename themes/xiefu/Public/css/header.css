@@ -1,0 +1,32 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    font-family: "宋体";
+}
+p{
+    color: #737373;
+}
+
+
+#main_erweima{
+    position: fixed;
+    top: 42%;
+    left: 0;
+    border: 1px solid #d6d6d6;
+    padding: 3px;
+}
+
+#main_erweima p{
+    font-weight: 600;
+    padding: 4px 0 8px;
+}
+
+
+
+
+
+
+

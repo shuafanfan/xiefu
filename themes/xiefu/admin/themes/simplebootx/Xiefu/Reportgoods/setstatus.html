@@ -1,0 +1,33 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:U('Reportgoods/index')}">最新报货审核管理</a></li>
+			<li class="active"><a href="#">报货<if condition="$status eq 0">恢复<elseif condition="$status eq 1"/>通过<elseif condition="$status eq 2"/>拒绝</if></a></li>
+		</ul>
+		<form method="post" class="form-horizontal js-ajax-form" action="{:U('Reportgoods/dosetstatus')}">
+			<div class="row-fluid">
+				<div class="span9">
+					<table class="table table-bordered">
+						<tr>
+							<th>审核备注</th>
+							<td><textarea name="sh_memo" rows="5" cols="57" style="width: 400px;"></textarea>
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+			</div>
+			<div class="form-actions">
+				<input type="hidden" name="status" value="{$status}" >
+				<input type="hidden" name="id" value="{$id}" >
+				<button type="submit" class="btn btn-primary js-ajax-submit">保存</button>
+				<a class="btn" href="{:U('Reportgoods/index')}">{:L('BACK')}</a>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

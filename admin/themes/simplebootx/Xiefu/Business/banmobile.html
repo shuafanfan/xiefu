@@ -1,0 +1,81 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:U('Business/index')}">商家列表</a></li>
+			<li class="active"><a href="#">绑定</a></li>
+		</ul>
+		<form method="post" class="form-horizontal js-ajax-form" action="{:U('Business/dobanmobile')}">
+			<div class="row-fluid">
+				<div class="span9">
+					<table class="table table-bordered">
+						<tr >
+							<th width="100px">手机号</th>
+							<td><input type="text" id="mobile" name="mobile" value="{$mobile}" style="width: 200px;" autocomplete="off">
+							<span class="form-required"></span>
+								 <label for="loginname" class="input_yuo">
+				                    <a >获取验证码</a>
+				                </label>
+							</td>
+						</tr>
+						<tr>
+							<th width="100px">验证码</th>
+							<td><input type="text"  name="code" value="" style="width: 200px;" autocomplete="off">
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+			</div>
+			<div class="form-actions">
+				<input type="hidden" name="bid" value="{$bid}" >
+				<button type="submit" class="btn btn-primary js-ajax-submit">保存</button>
+				<a class="btn" href="{:U('Business/index')}">{:L('BACK')}</a>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+	<script>
+    $(function () {
+        var code="";
+        var info="";
+        $(".input_yuo").click(function () {
+                    var mobile=$('#mobile').val();
+                    //console.log(mobile);
+                    $.ajax({
+                    //                cache: true,
+                    type: "POST",
+                    url: '{:U("xiefu/business/sendmsg")}',
+                    data:  {'mobile':mobile},
+                   
+                    success: function(data) {
+                       code=data['code'];
+                    },
+                    error:function(){
+                        console.log("发送失败");
+                    }
+                });
+            var intDiff = parseInt(60);//倒计时总秒数量
+            var i;
+            function timer() {    //显示时间
+
+                $(".input_yuo").html('<a>'+intDiff+'s'+'</a>');
+                intDiff--;
+
+
+                if(intDiff<0){
+                    $(".input_yuo").html('<a>'+'点击重新发送'+'</a>');
+                    clearInterval(i);
+
+                }
+            }
+
+            i=setInterval(timer, 1000);
+
+        });
+    });
+        </script>
+</body>
+</html>

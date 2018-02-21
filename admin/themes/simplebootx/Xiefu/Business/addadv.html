@@ -1,0 +1,104 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:U('business/index')}">商家用户</a></li>
+			<li class="active"><a href="{:U('business/addadv')}">设置广告</a></li>
+		</ul>
+		<empty name="info">
+			<form method="post" class="form-horizontal js-ajax-form" action="{:U('business/doaddadv')}">
+				<div class="row-fluid">
+					<div class="span6">
+						<table class="table table-bordered">
+							<tr>
+							<th>品牌</th>
+							<td>
+								<select name="category_id" id="category_id">
+									<option value="0">请选择</option>
+									<foreach name="category" item="vo">
+											<option value="{$vo.id}">{$vo.label}</option>
+									</foreach>
+									
+								</select>
+							</td>
+						    </tr>
+							<tr>
+								<th width='80px'>广告图</th>
+								<td>
+									<div style="text-align: center;">
+										<div id="photos" ></div>
+										<a href="javascript:;"style="margin:50px;float:left;"onclick="javascript:flashupload('change_images','图片上传','photos',change_images,'10,gif|jpg|jpeg|png|bmp,0','','&max_count=0','')"class="btn">
+												图片上传
+										</a>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th>地址</th>
+								<td><input type="text" name="url"  style="width: 400px" value="http://"></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			<else/>
+			
+				<form method="post" class="form-horizontal js-ajax-form" action="{:U('business/doeditadv')}">
+				<div class="row-fluid">
+					<div class="span6">
+						<table class="table table-bordered">
+						<tr>
+							<th>品牌</th>
+							<td>
+								<select name="category_id" id="category_id">
+									<option value="0">请选择</option>
+									<foreach name="category" item="vo">
+											<option value="{$vo.id}" <if condition="$vo.id eq $info['category_id']">selected</if>>{$vo.label}</option>
+									</foreach>
+									
+								</select>
+							</td>
+						    </tr>
+						<tr>
+							
+						<tr>
+							<th>广告图</th>
+							<td>
+							
+								 	<div class="pop_nav">
+								   	  <ul class="js-tabs-nav unstyled" id="photos">
+            							<volist name="blogs" id="vo" key="k" >
+												<li id="{$key}">
+												   <input title="双击查看" type="text" name="photos_url[]" value="{$vo}" style="width:180px;" ondblclick="image_priview(this.value);" class="input image-url-input">
+												   <a href="javascript:flashupload('replace_albums_images', '图片替换','{$key}',replace_image,'10,gif|jpg|jpeg|png|bmp,0','','','')">替换</a> 
+												   <a href="javascript:remove_div('{$key}')">移除</a> 
+												</li>
+										</volist>
+							          </ul>
+							        </div>
+								<a href="javascript:;"style="margin:50px;float:left;"onclick="javascript:flashupload('change_images','图片上传','photos',change_images,'10,gif|jpg|jpeg|png|bmp,0','','&max_count=0','')"class="btn">
+											图片上传
+									</a>
+							</td>
+						</tr>
+							<tr>
+								<th>地址</th>
+								<td><input type="text" name="url"  style="width: 400px" value="{$info.url}"></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<input type="hidden" name="id" value="{$info.id}" >
+			</empty>
+			
+			<div class="form-actions">
+				<input type="hidden" name="bid" value="{$bid}" >
+				<button type="submit" class="btn btn-primary js-ajax-submit">保存</button>
+				<a class="btn" href="{:U('business/index')}">{:L('BACK')}</a>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/content_addtop.js"></script>
+</body>
+</html>

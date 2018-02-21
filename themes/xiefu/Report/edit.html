@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改报货</title>
+    <link rel="stylesheet" href="__TMPL__Public/css/gerenzhongxin_header_left.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/base.css">
+    <!--更改用户头像-->
+    <link href="__TMPL__Public/css/bootstrap-3.3.4.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__TMPL__Public/css/font-awesome.4.6.0.css">
+    <link href="__TMPL__Public/css/touxiang.css" rel="stylesheet">
+    <!--更改用户头像-->
+</head>
+<body>
+<div class="all">
+<tc_include file="Public:header2" />
+    <div class="huowu_all">
+        <div class="container">
+    <tc_include file="Public:accountleft" /
+        <div class="huowu_you">
+            <div class="fabuqingcang">
+            <div class="zhanghuguanli_liebiao">
+                <h1>修改报货</h1>
+            </div>
+                <div class="shangjia_fabu">
+                    <div style="height:30px ">
+                        <div class="cuowu_tishi">
+                            <img src="__TMPL__Public/images/jinggao.png"><span> 请输入用户名和密码</span>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>
+    
+                        <div for="" class="shangjia_fabu_left_title">
+                            发布:
+                        </div>
+
+                            <select  name="type" id="type">
+        
+                                    <option value="1" <?php echo $info['type']==1?"selected='selected'":"" ?>>
+                                        个人发布
+                                    </option>
+                                   
+                                    <option value="2" <?php echo $info['type']==2?"selected='selected'":"" ?>>
+                                        商家发布
+                                    </option>
+                                    
+                            </select>
+
+                        </li>
+    
+                        <li>
+
+                        <div for="" class="shangjia_fabu_left_title">
+                            品牌:  
+                        </div>
+
+                            <select  name="brand" id="brand">
+                               
+                                <volist name="brand" id="vo">
+                                    <option value="{$vo.name}" <?php echo ($vo['name']==$info['brand'])?'selected="selected"':'' ?>>
+                                        {$vo.name} 
+                                    </option>
+                                </volist>
+                              
+
+                            </select>
+
+                        </li>
+
+                        <li>
+
+                            <div for="" class="shangjia_fabu_left_title">
+                                标题:
+                            </div>
+
+                            <input id="title" type="text" class="" name="title" tabindex="" maxlength=""
+                                   autocomplete="" placeholder="请选择输入您的标题" value="{$info.title}">
+
+                        </li>
+
+                        <li>
+
+                            <div for="" class="shangjia_fabu_left_title">
+                                尺码:
+                            </div>
+
+                            <input id="size" type="text" class="" name="size" tabindex="" maxlength=""
+                                   autocomplete="" placeholder="请选择输入您的尺码" value="{$info.size}">
+
+
+                        </li>
+
+                        <li>
+
+                            <div for="" class="shangjia_fabu_left_title">
+                                数量:
+                            </div>
+
+                            <input id="num" type="text" class="" name="num" tabindex="" maxlength=""
+                                   autocomplete="" placeholder="请输入您的数量" value="{$info.num}">
+
+                        </li>
+
+                        <li>
+
+                            <div for="" class="shangjia_fabu_left_title">
+                                手机:
+                            </div>
+
+                            <input id="phone" type="text" class="" name="mobile" tabindex="" maxlength=""
+                                   autocomplete="" placeholder="" value="{$info.mobile}">
+
+                        </li>
+
+                        <li>
+
+                            <div for="" class="shangjia_fabu_left_title">
+                                QQ:
+                            </div>
+
+                            <input id="qq" type="text" class="" name="qq" tabindex="" maxlength=""
+                                   autocomplete="" placeholder="" value="{$info.qq}">
+
+                        </li>
+
+                        <li>
+
+                            <div for="" class="shangjia_fabu_left_title">
+                                微信号:
+                            </div>
+
+                            <input id="weixin" type="text" class="" name="weixin" tabindex="" maxlength=""
+                                   autocomplete="" placeholder="" value="{$info.weixin}">
+
+                        </li>
+
+                        <li>
+
+                            <div for="" class="shangjia_fabu_left_title">
+                                地址:
+                            </div>
+
+                        <div class="dizhi">
+                            <select class="ProvinceSelect" name="province" id="province">
+                                <option value='0'>省份</option>                       
+                                {:_Options($region_p,$selectid=$info['province'],id,name,$nofield=0);}
+                            </select>
+                           <select class="CitySelect " name="city" id="city">
+                                <?php if(!empty($info['city'])) {
+                                           $option=_Options($region_c,$selectid=$info['city'],id,name,$nofield=0);
+                                           echo $option;
+                                        }else{
+                                            echo "<option value='0'>城市</option>";
+                                        }
+                               ?>
+                            </select>
+
+ 
+                         
+                        </div>
+
+                        </li>
+
+                        <li>
+                            <div for="" class="shangjia_fabu_left_title">
+                                照片:
+                            </div>
+
+                            <div class="shangchuan_photo_all">
+
+                            <div class="shangchuan_photo upload_pic">
+                                <img src="{$info.photos}">
+
+
+                                <div class="fabu_zhaopian ">
+                                    <button type="button" class="btn btn-primary genggaitouxiang_btn fabu_zhaopian_btn"  data-toggle="modal" data-target="#avatar-modal" style="margin: 10px;">
+                                        上传照片
+                                    </button>
+                                    <!--      <div class="user_pic" style="margin: 10px;">
+                                              <img src="__TMPL__Public/"/>
+                                          </div>-->
+
+                                    <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <!--<form class="avatar-form" action="upload-logo.php" enctype="multipart/form-data" method="post">-->
+                                                <form class="avatar-form">
+                                                    <div class="modal-header">
+                                                        <button class="close" data-dismiss="modal" type="button">&times;</button>
+                                                        <h4 class="modal-title" id="avatar-modal-label">上传图片</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="avatar-body">
+                                                            <div class="avatar-upload">
+                                                                <input class="avatar-src" name="avatar_src" type="hidden">
+                                                                <input class="avatar-data" name="avatar_data" type="hidden">
+                                                                <label for="avatarInput" style="line-height: 35px;">图片上传</label>
+                                                                <button class="btn btn-danger"  type="button" style="height: 35px;" onclick="$('input[id=avatarInput]').click();">请选择图片</button>
+                                                                <span id="avatar-name"></span>
+                                                                <input class="avatar-input hide" id="avatarInput" name="avatar_file" type="file"></div>
+                                                            <div class="row">
+                                                                <div class="col-md-9">
+                                                                    <div class="avatar-wrapper"></div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="avatar-preview preview-lg" id="imageHead">
+
+                                                                    </div>
+                                                                    <!--<div class="avatar-preview preview-md"></div>
+                                                            <div class="avatar-preview preview-sm"></div>-->
+                                                                </div>
+                                                            </div>
+                                                            <div class="row avatar-btns">
+                                                                <div class="col-md-4">
+                                                                    <div class="btn-group">
+                                                                        <button class="btn btn-danger fa fa-undo" data-method="rotate" data-option="-90" type="button" title="Rotate -90 degrees"> 向左旋转</button>
+                                                                    </div>
+                                                                    <div class="btn-group">
+                                                                        <button class="btn  btn-danger fa fa-repeat" data-method="rotate" data-option="90" type="button" title="Rotate 90 degrees"> 向右旋转</button>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-5" style="text-align: right;">
+                                                                    <button class="btn btn-danger fa fa-arrows" data-method="setDragMode" data-option="move" type="button" title="移动">
+                                        <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;setDragMode&quot;, &quot;move&quot;)">
+                                        </span>
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-danger fa fa-search-plus" data-method="zoom" data-option="0.1" title="放大图片">
+                                        <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;zoom&quot;, 0.1)">
+                                          <!--<span class="fa fa-search-plus"></span>-->
+                                        </span>
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-danger fa fa-search-minus" data-method="zoom" data-option="-0.1" title="缩小图片">
+                                        <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;zoom&quot;, -0.1)">
+                                          <!--<span class="fa fa-search-minus"></span>-->
+                                        </span>
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-danger fa fa-refresh" data-method="reset" title="重置图片">
+                                            <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;reset&quot;)" aria-describedby="tooltip866214">
+                                                                    </button>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <button class="btn btn-danger btn-block avatar-save fa fa-save" type="button" data-dismiss="modal"> 保存修改</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
+
+                                </div>
+
+
+                            </div>
+
+                                <p>照片格式GIF、JPEG、PNG、最适合尺寸500*500像素</p>
+
+                            </div>
+
+
+                        </li>
+
+
+                        <li>
+                            <div for="" class="shangjia_fabu_left_title">
+
+                            </div>
+
+
+                            <div class="shangjia_fabu_btn">
+                                <a id="submit">确认并提交报货</a>
+                            </div>
+
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<tc_include file="Public:footer" />
+
+<!--地区开始-->
+<script>
+    $(function () {
+        /*页面加载完成，利用省ajax请求省的数据：*/
+        /*当省数据选择时，将选择的省的id传送给市的ajax:*/
+// 选择-出现市
+        $('.ProvinceSelect').change(function(){
+            $(".CitySelect").empty();
+            var sheng_id = $(this).val();
+            $.ajax({
+                type:"get",
+                url: '{:U("report/reportgoods/region")}',
+                data:  {'pid':sheng_id},
+                dataType:"json",
+                success:function(data){
+                    var length=data.length;
+                    for(var i=0;i<length;i++){
+                        var city_option = "<option id='origin_city_id_op"+data[i].id+"'value='"+data[i].id+"' >"+data[i].name+"</option>";
+                        $(".CitySelect").append(city_option);
+                    }
+                }
+            })
+        });
+    });
+</script>
+<!--地区结束-->
+<!--更改头像js 开始-->
+<script type="text/javascript">
+    var data = {};
+    /*    更改按钮显示隐藏开始*/
+    $(".genggaitouxiang_btn") .css({"border":"none"});
+
+    $(".touxiang").mouseover(function () {
+        $(".genggaitouxiang_btn") .css({"opacity":"1","transition":"all 0.4s"})
+    });
+    $(".touxiang").mouseout(function () {
+        $(".genggaitouxiang_btn").css({"opacity":"0","transition":"all 0.2s"})
+    });
+    /*    更改按钮显示隐藏开始借宿*/
+    //头像图片简易的验证  大小 格式
+    $('#avatarInput').on('change', function(e) {
+        var filemaxsize = 1024 * 8;//5M
+        var target = $(e.target);
+        var Size = target[0].files[0].size / 1024;
+        if(Size > filemaxsize) {
+            alert('图片过大，请重新选择!');
+            $(".avatar-wrapper").childre().remove;
+            return false;
+        }
+        if(!this.files[0].type.match(/image.*/)) {
+            alert('请选择正确的图片!')
+        } else {
+            var filename = document.querySelector("#avatar-name");
+            var texts = document.querySelector("#avatarInput").value;
+            var teststr = texts; //你这里的路径写错了
+            testend = teststr.match(/[^\\]+\.[^\(]+/i); //直接完整文件名的
+            filename.innerHTML = testend;
+        }
+    });
+    /*  保存图片onclicl事件开始*/
+    $(".avatar-save").on("click", function() {
+        var img_lg = document.getElementById('imageHead');
+        // 截图小的显示框内的内容
+        html2canvas(img_lg, {
+            allowTaint: true,
+            taintTest: false,
+            onrendered: function(canvas) {
+                canvas.id = "mycanvas";
+                //生成base64图片数据
+                var dataUrl = canvas.toDataURL("image/jpeg");
+                var newImg = document.createElement("img");
+                newImg.src = dataUrl;
+                imagesAjax(dataUrl)
+            }
+        });
+        
+             var a=$("#imageHead img").attr("src");
+        $(".upload_pic img").attr("src",a)
+    });
+
+    function imagesAjax(src) {
+        data.img = src;
+        data.jid = $('#jid').val();
+    }
+    /*  保存图片onclick事件结束*/
+</script>
+<!--更改头像js 结束-->
+
+<!--提交-->
+<script>
+    $("#submit").click(function(){
+
+        var brand=$('#brand').val();
+        var title=$('#title').val();
+        var size=$('#size').val();
+        var num=$('#num').val();
+        var mobile=$('#phone').val();
+        var qq=$('#qq').val();
+        var weixin=$('#weixin').val();
+        var province=$('#province').val();
+        var city=$('#city').val();
+        var xian=$('#xian').val();
+        var street=$('#street').val();
+        var id=<?php echo $info['id'] ?>;
+        var type=$('#type').val();
+        $.ajax({
+            type: "POST",
+            url: "{:U('report/reportgoods/editreport')}",
+            data:  {'brand':brand,'qq':qq,'weixin':weixin,'mobile':mobile,'title':title,'size':size,'num':num,'province':province,'city':city,'photos':data['img'],'id':id,'type':type},
+            async: false,
+            success: function(data) {
+
+
+                if(data['status']=='1'){
+                    layer.alert("修改成功,等待审核",function(){
+                        window.location.href="{:U('report/reportgoods/reportlist')}";
+                    });
+                }
+                if(data['status']=='0'){
+                    layer.alert("未做修改");
+
+                }
+                if(data['status']=='2'){
+                    layer.alert(data['msg']);
+
+                }
+
+            },
+            error:function(){
+                layer.alert("修改失败");
+            }
+        });
+    })
+</script>
+</body>
+</html>

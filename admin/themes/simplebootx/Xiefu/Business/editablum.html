@@ -1,0 +1,60 @@
+<admintpl file="header"/>
+</head>
+<body>
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a>编辑商家相册</a></li>
+		
+		</ul>
+		<form action="{:U('Business/doeditablum')}" method="post" class="form-horizontal js-ajax-forms" enctype="multipart/form-data">
+			<div class="row-fluid">
+				<div class="span9">
+					<table class="table table-bordered">
+						<tr>
+							<th width="80">产品描述</th>
+							<td><textarea type="text" name="title"  style="width: 400px;height:200px">{$info.title}</textarea>
+						</tr>
+					
+						<tr>
+							<th width="80">链接地址：</th>
+							<td><input type="text" name="link_href" value="{$info.link_href}" style="width: 400px"></td>
+						</tr>
+					
+						
+					</table>
+				</div>
+				<div class="span3">
+					<table class="table table-bordered">
+						<tr>
+							<td><b>图片</b></td>
+						</tr>
+						<tr>
+							<td>
+								<div style="text-align: center;">
+									<input type="hidden" name="img_path" id="thumb" value="{$info.img_path}">
+											 <a href="javascript:void(0);" onclick="flashupload('thumb_images', '附件上传','thumb',thumb_images,'1,jpg|jpeg|gif|png|bmp,1,,,1','','','');return false;">
+										<if condition="empty($info.img_path)">
+											<img src="__TMPL__Public/assets/images/default-thumbnail.png" id="thumb_preview" width="135" style="cursor: hand"/>
+										<else />
+											<img src="{$info.img_path}" id="thumb_preview" width="135" style="cursor: hand; height: 113px;"/>
+										</if>
+									</a>
+									<input type="button" class="btn btn-small" onclick="$('#thumb_preview').attr('src','__TMPL__Public/assets/images/default-thumbnail.png');$('#thumb').val('');return false;" value="取消图片">
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="form-actions">
+				<input type="hidden" name="id" value="{$info.id}" >
+				<button class="btn btn-primary js-ajax-submit" type="submit">提交</button>
+				<a class="btn" href="{:U('business/ablum',array('bid'=>$info['bid']))}">返回</a>
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/content_addtop.js"></script>
+	
+</body>
+</html>

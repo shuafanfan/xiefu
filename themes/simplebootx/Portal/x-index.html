@@ -1,0 +1,310 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>沈阳嘉田干冰</title>
+		<meta name="keywords" content="{$site_seo_keywords}" />
+		<meta name="description" content="{$site_seo_description}">
+		<tc_include file="Public:head" />
+	</head>
+	<body>
+		<tc_include file="Public:nav" />
+		<!--广告-->
+		<div class="banner">
+			<div class="banner_img">
+				<ul>
+					<php>
+						$home_slides = sp_getslide('index_banner');
+					</php>
+					<foreach name="home_slides" item="vo">
+						<li>
+							<a href="{$vo.slide_url}" title="{$vo.slide_name}">
+								<img src="{:sp_get_asset_upload_path($vo['slide_pic'])}"/>
+							</a>
+						</li>
+					</foreach>
+				</ul>
+			</div>
+			<div class="banner_btn hd">
+				<ul>
+					<foreach name="home_slides" item="vo">
+						<li <if condition="$key eq 0">class="on"</if> ></li>
+					</foreach>
+				</ul>
+			</div>
+		</div>
+		<!--服务-->
+		<div class="wrap service">
+			<ul>
+				<li>
+					<a href="{:leuu('Portal/Page/index',array('id'=>2))}">
+						<h4>{$page_2.post_title}</h4>
+						<b></b>
+						<p class="tit_p">{$page_2.post_content|msubstr=0,108,'utf-8',false}</p>
+						<span><i class="iconfont">&#xe600;</i>查看更多</span>
+					</a>
+				</li>
+				<li class="on">
+					<a href="{:leuu('Portal/Page/index',array('id'=>3))}">
+						<php>
+							$smeta3 = json_decode($page_3['smeta'],true);/* 把smeta转化成数组 */ 
+						</php>
+						<img src="{:sp_get_asset_upload_path($smeta3['thumb'])}"/>
+						<h3>{$page_3.post_title}</h3>
+						<p>{$page_3.post_excerpt|msubstr=0,27,'utf-8',false}</p>
+					</a>
+				</li>
+				<li>
+					<a href="{:leuu('Portal/Page/index',array('id'=>4))}">
+						<php>
+							$smeta4 = json_decode($page_4['smeta'],true);/* 把smeta转化成数组 */ 
+						</php>
+						<img src="{:sp_get_asset_upload_path($smeta4['thumb'])}"/>
+						<h3>{$page_4.post_title}</h3>
+						<p>{$page_4.post_excerpt|msubstr=0,27,'utf-8',false}</p>
+					</a>
+				</li>
+				<li class="on">
+					<a href="{:leuu('Portal/Page/index',array('id'=>5))}">
+						<php>
+							$smeta5 = json_decode($page_5['smeta'],true);/* 把smeta转化成数组 */ 
+						</php>
+						<img src="{:sp_get_asset_upload_path($smeta5['thumb'])}"/>
+						<h3>{$page_5.post_title}</h3>
+						<p>{$page_5.post_excerpt|msubstr=0,27,'utf-8',false}</p>
+					</a>
+				</li>
+			</ul>
+		</div>
+		
+			
+		<!--我们的产品-->
+		<div class="clearfix"></div>
+		
+		<div class="wrap products">
+			<div class="tit_box">
+				<h2>我们的产品</h2>
+				<p>{:sp_getad('首页_我们的产品简介')}</p>
+			</div>
+			<div class="bd">
+				<ul>
+					<foreach name="products" item="vo">
+						<php>
+							$smeta = json_decode($vo['smeta'],true);/* 把smeta转化成数组 */
+						</php>
+						<li>
+							<a href="{:leuu('Portal/List/index',array('id'=>$vo['product_id']))}">
+								<div class="pro_img">
+									<img src="{:sp_get_asset_upload_path($smeta['thumb'])}" width="299px" height="300px"/>
+								</div>
+								<p>{$vo['post_title']}</p>
+								<span>{$vo['post_excerpt']|msubstr=0,20,'utf-8',false}</span>
+							</a>
+						</li>
+					</foreach>
+				</ul>
+			</div>
+			<div class="hd">
+				<i class="iconfont prev">&#xe606;</i>
+				<i class="iconfont next">&#xe605;</i>
+			</div>
+			
+		</div>
+		<!--优势-->
+		<div class="clearfix"></div>
+		<div class="strengths">
+			<div class="streng_tit">
+				<h3>选择我们的四大优势</h3>
+				<p>至高的服务，完美的质量让大家都选择嘉田干冰</p>
+			</div>
+			<div class="streng_btm">
+				<div class="streng_1">
+					<h4>嘉田干冰</h4>
+					<p>拥有规模化的经营模式，先进的生产设备</p>
+					<ul>
+						<li>专业生产销售干冰的公司</li>
+						<li>从事干冰行业的领路者</li>
+						<div class="clearfix"></div>
+						<li>先进的干冰生产设备</li>
+						<li>专业生产销售干冰的公司</li>
+					</ul>
+				</div>
+				<div class="streng_1 streng_2">
+					<h4>集研、产、销于一体</h4>
+					<p>最早在辽宁地区从事干冰行业的领路者</p>
+				</div>
+				<div class="streng_1 streng_3">
+					<h4>19年行业经验</h4>
+					<p>长期与电视台航空食品保持良好合作关系！</p>
+				</div>
+				<div class="streng_1 streng_4">
+					<h4>选择嘉田，用的放心</h4>
+					<p>让您无后顾之忧</p>
+					<ul>
+						<li>◆ 舞台特效设计、制作一站式解决，跳过中间环节，省心又省钱；</li>
+						<li>◆ 公司备有多辆送货车，市区(20公斤)以上 免费送货上门。</li>
+						<li>◆ 产品100%实物拍摄，所见即所得，让您用的放心</li>
+						<li>◆  干冰用保温箱包装送达. 干冰由进口机器制作</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!--客户案例-->
+		<div class="wrap example">
+			<div class="tit_box">
+				<h2>客户案例</h2>
+				<p>千万客户见证嘉田成长，明天会是你吗？！</p>
+			</div>
+			<!--客户图片为正方形-->
+			<foreach name="posts_al" item="vo">
+				<php>
+					$smeta = json_decode($vo['smeta'],true);
+				</php>
+				<div class="exm_box <if condition="$key eq 0"> fr <elseif condition="$key eq 1"/> fl <else /> fl exm_center</if> ">
+					<div class="exm_img">
+						<img src="{:sp_get_asset_upload_path($smeta['thumb'])}"/>
+					</div>
+					<h5>{$vo.post_title}</h5>
+					<p>{$vo.post_content|msubstr=0,65,'utf-8',false}</p>
+				</div>
+			</foreach>
+			<a href="{:leuu('Portal/List/index',array('id'=>2))}">+</a>
+		</div>
+		<div class="clearfix">
+			
+		</div>
+		<!--关于我们-->
+		<div class="about_us">
+			<div class="wrap">
+				<div class="ab_left">
+					<div class="abt_tit">
+						关于我们
+					</div>
+					<p>{:sp_getad('首页_关于我们')}</p>
+					<a href="{:leuu('Portal/Page/index',array('id'=>6))}">查看更多</a>
+				</div>
+				
+			</div>
+		</div>
+		<!--新闻中心-->
+		<div class="wrap news_wrap">
+			<div class="tit_box">
+				<h2>新闻中心</h2>
+				<p>让您掌握第一公司资讯，为您添加更多干冰知识</p>
+			</div>
+			<div class="news_list">
+				<div class="news_tit">
+					<a href="{:leuu('Portal/List/index',array('id'=>$term4['term_id']))}">更多 &gt;&gt;</a>
+					<i class="iconfont">&#xe601;</i>&nbsp;&nbsp;{$term4.name}
+				</div>
+				<ul>
+					<foreach name="posts_hy" item="vo">
+						<li>
+							<a href="{:leuu('Portal/Article/index',array('id'=>$vo['tid']))}">
+								<span>{$vo.post_modified|msubstr=0,10,'utf-8',false}</span>
+								<p>●  {$vo.post_title|msubstr=0,16,'utf-8',false}</p>
+							</a>
+						</li>
+					</foreach>	
+				</ul>
+			</div>
+			<div class="news_list">
+				<div class="news_tit">
+					<a href="{:leuu('Portal/List/index',array('id'=>$term5['term_id']))}">更多 &gt;&gt;</a>
+					<i class="iconfont" style="color: #69edca;">&#xe603;</i>&nbsp;&nbsp;{$term5.name}
+				</div>
+				<ul>
+					<foreach name="posts_gs" item="vo">
+						<li>
+							<a href="{:leuu('Portal/Article/index',array('id'=>$vo['tid']))}">
+								<span>{$vo.post_modified|msubstr=0,10,'utf-8',false}</span>
+								<p>●  {$vo.post_title|msubstr=0,16,'utf-8',false}</p>
+							</a>
+						</li>
+					</foreach>	
+				</ul>
+			</div>
+			<div class="news_list mr_none">
+				<div class="news_tit">
+					<a href="{:leuu('Portal/List/index',array('id'=>$term6['term_id']))}">更多 &gt;&gt;</a>
+					<i class="iconfont" style="color: #22c5e8;">&#xe602;</i>&nbsp;&nbsp;{$term6.name}
+				</div>
+				<ul>
+					<foreach name="posts_kp" item="vo">
+						<li>
+							<a href="{:leuu('Portal/Article/index',array('id'=>$vo['tid']))}">
+								<span>{$vo.post_modified|msubstr=0,10,'utf-8',false}</span>
+								<p>●  {$vo.post_title|msubstr=0,16,'utf-8',false}</p>
+							</a>
+						</li>
+					</foreach>	
+				</ul>
+			</div>
+		</div>
+		<!--小banner-->
+		<div class="clearfix"></div>
+		<div class="sm_banner"></div>
+		<!--公司信息-->
+		<div class="wrap comp_box">
+			<!--友情链接-->
+			<div class="frid_link">
+				<div class="cpm_tit">
+					<b></b>&nbsp;&nbsp;友情链接<span>&nbsp;&nbsp;friendly link</span>
+				</div>
+				<ul class="clearfix">
+					<php>
+						$links=sp_getlinks();
+					</php>
+					<foreach name="links" item="vo">
+						<li><a href="{$vo.link_url}" target="_blank">{$vo.link_name}</a></li>
+					</foreach>
+				</ul>
+			</div>
+			<!--配送范围-->
+			<div class="distrib">
+				<div class="cpm_tit">
+					<b></b>&nbsp;&nbsp;配送范围<span>&nbsp;&nbsp;Distribution range</span>
+				</div>
+				<p><span>免费送货上门：</span>公司备有多辆送货车，市区(20公斤)以上。</p>
+				<ul>
+					<li><a href="#">沈阳市区</a></li>
+					<li><a href="#">大连市</a></li>
+					<li><a href="#">鞍山市</a></li>
+					<li><a href="#">抚顺市</a></li>
+					<li><a href="#">本溪市</a></li>
+					<li><a href="#">丹东市</a></li>
+					<li><a href="#">锦州市</a></li>
+					<li><a href="#">营口市</a></li>
+					<li><a href="#">阜新市</a></li>
+					<li><a href="#">辽阳市</a></li>
+					<li><a href="#">盘锦市</a></li>
+					<li><a href="#">铁岭市</a></li>
+					<li><a href="#">朝阳市</a></li>
+					<li><a href="#" style="width: 100%;">葫芦岛市地区等.其它地方代办托运</a></li>
+				</ul>
+			</div>
+			<!--联系我们-->
+			<div class="contant_us">
+				<div class="cpm_tit">
+					<b></b>&nbsp;&nbsp;联系我们<span>&nbsp;&nbsp;contact US</span>
+				</div>
+				<ul>
+					<li>电　话：{:sp_getad('联系电话')}</li>
+					<li>联系人：{:sp_getad('联系手机')}</li>
+					<li>E-mail：	{:sp_getad('联系邮箱')}</li>
+					<li>地址：{:sp_getad('联系地址')}</li>
+				</ul>
+			</div>
+		</div>
+		
+		<tc_include file="Public:footer" />
+		
+		<script src="__TMPL__Public/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__TMPL__Public/js/jquery.SuperSlide.2.1.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+				jQuery(".banner").slide({mainCell:".banner_img ul",autoPlay:true});
+				jQuery(".products").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,vis:3,trigger:"click"});
+		</script>
+		
+	</body>
+</html>

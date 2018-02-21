@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="__TMPL__Public/css/base.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/denglu.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/header.css">
+</head>
+<body>
+<div class="all">
+
+<tc_include file="Public:header" />
+
+<div class="zhongbu" style="margin-bottom:50px">
+    <div class="denglu_all">
+
+        <form>
+            <h3>欢迎回来</h3>
+
+
+            <div class="cuowu_tishi">
+                <img src="__TMPL__Public/images/jinggao.png"><span> 请输入用户名和密码</span>
+            </div>
+
+            <div class="input_kuang">
+                <label for="mobile" class="zhanghao_tubiao">
+                    <img src="__TMPL__Public/images/yonghu.png">
+                </label>
+
+                <input id="mobile" type="text" class="" name="mobile" tabindex="1"
+                       autocomplete="off" placeholder="账号">
+
+            </div>
+
+            <div class="input_kuang">
+                <label for="password" class="mima_tubiao">
+                    <img src="__TMPL__Public/images/mima.png">
+                </label>
+
+                <input id="password" type="password" class="" name="password" tabindex="1"
+                       autocomplete="off" placeholder="密码">
+
+            </div>
+
+            <div class="wangjimima">
+                <a href="{:U("user/user/forgetpass")}" class="">
+                    忘记密码?
+                </a>
+            </div>
+
+            <div class="denglu_btn">
+                <a >登录</a>
+            </div>
+
+
+
+        </form>
+        <div class="denglu_footer">
+            <div class="footer_container">
+
+            <span class="qq_tubiao">
+              <a href="{:U('api/oauth/login?type=qq')}">  <img src="__TMPL__Public/images/qq.png"></a>
+            </span>
+
+            <span class="qq_tubiao">
+                <a href="{:U('api/oauth/login?type=weixin')}"><img src="__TMPL__Public/images/weixin.png"></a>
+            </span>
+            <span class="mashangzhuce">
+                <a href='{:U("user/user/register")}'>
+                    马上注册>
+                </a>
+            </span>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+</div>
+
+<!-- <iframe src="__TMPL__Public/footer.html" scrolling="no" width="100%" height="135" frameborder="no"
+        style="float: left;"></iframe> -->
+<tc_include file="Public:footer" />
+</body>
+</html>
+
+
+<script src="__TMPL__Public/js/jquery-3.1.1.min.js"></script>
+
+<script>
+    $(function () {
+        $(".fenye ul li a").mouseover(function () {
+
+            $(this).children(".fenye_zuosanjiao").hide();
+            $(this).children(".fenye_zuosanjiao2").show();
+
+            $(this).children(".fenye_yousanjiao").hide();
+            $(this).children(".fenye_yousanjiao2").show()
+        });
+        $(".fenye ul li a").mouseout(function () {
+
+            $(this).children(".fenye_zuosanjiao").show();
+            $(this).children(".fenye_zuosanjiao2").hide();
+
+            $(this).children(".fenye_yousanjiao").show();
+            $(this).children(".fenye_yousanjiao2").hide()
+        });
+
+        $('.denglu_btn').click(function () {
+            
+                var mobile=$('#mobile').val();
+                var password=$('#password').val();             
+                $.ajax({
+                       
+                        type: "POST",
+                        url: '{:U("user/user/dologin")}',
+                        data:  {'mobile':mobile,'password':password},
+                        async: false,
+                        success: function(data) {
+ 
+                            if(data['msg']=='登录验证成功！'){
+                                layer.alert("登录成功",function(){
+                                    window.location.href='{:U("user/account/index")}';
+                                });
+                                
+                            }
+                            
+                       
+                        },
+                        error:function(){
+                               
+                                layer.alert("登录失败",function(){
+                                    window.location.href='{:U("user/user/login")}';
+                                });
+                                
+                            }
+                         
+                    });
+                
+                
+                
+                
+        });
+
+    })
+</script>
+
+<!--导航条滑块-->
+<script src="__TMPL__Public/js/jquery.min.js" type="text/javascript"></script>
+<script src="__TMPL__Public/js/xq_navbar.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function(){
+
+        $("#bar4").xq_navbar({"type":"overline","liwidth":"120","bgcolor":"#000"});
+    });
+</script>
+<!--滑块-->
+<!--菜单的三级联动-->
+<script src="__TMPL__Public/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+$(function () {
+
+    /*      var     $ul = $("#fenlei_liebiao"),
+            $lis = $ul.find("li");
+
+  $lis.hover(function(){
+        if(!$(this).hasClass('nochild')){
+            $(this).addClass("prosahover");
+            $(this).find(".erji").removeClass('hide');
+        }
+    },function(){
+        if(!$(this).hasClass('nochild')){
+            if($(this).hasClass("prosahover")){
+                $(this).removeClass("prosahover");
+            }
+            $(this).find(".erji").addClass('hide');
+        }
+    });*/
+
+    $(".huidingbu_tu2").click(function () {
+
+        $('html,body').animate({ scrollTop: 0 }, 380);
+    });
+
+
+    $(".huidingbu_tu2").mouseover(function () {
+       $(this).children("img").attr("src","__TMPL__Public/images/top_bai.png")
+
+    });
+    $(".huidingbu_tu2").mouseout(function () {
+        $(this).children("img").attr("src","__TMPL__Public/images/top_hui.png")
+
+    });
+
+     $(".fenlei_liebiao ul li").on("mouseover",function () {
+
+        /*$(".sanji").hide();*/
+
+   /*     $(this).find(".erji").show();*/
+
+       /* $(this).find(".sanji").show();*/
+
+        if(!$(this).hasClass('nochild')){
+            $(this).addClass("prosahover");
+            $(this).find(".erji").removeClass('hide');
+        }
+    });
+
+    $(".fenlei_liebiao ul li").on("mouseout",function () {
+        
+        if(!$(this).hasClass('nochild')){
+            $(this).removeClass("prosahover");
+         $(this).find(".erji").addClass('hide');
+        }
+    });
+
+    $('.erji li').on("mouseover", function(){
+
+        $('.erji li ').css({
+            "color": "#333333",
+            "background": "#f7f7f7"
+        });
+        $(this).css({
+            "color": "#c9151e",
+            "background": "#ffffff"
+        });
+
+        $(".sanji").hide();
+        $(this).children(".sanji").show();
+
+    });
+    $('.erji').on("mouseout", function(){
+        $(".sanji").hide()
+    });
+
+    $(".chanpin_all ul li ").mouseover(function () {
+/*           $(this).css("border","1px solid #c9151e").find(".chanpin_zi_h2").css('color','#c9151e')*/
+            $(this).find(".chanpin_zi_h2").css('color','#c9151e')
+        });
+
+        $(".chanpin_all ul li ").mouseout(function () {
+  /*          $(this).css("border","1px solid #eeeeee").find(".chanpin_zi_h2").css('color','#959ca8')*/
+            $(this).find(".chanpin_zi_h2").css('color','#959ca8')
+        });
+
+
+        $(".fenye ul li a").mouseover(function () {
+
+            $(this).children(".fenye_zuosanjiao").hide();
+            $(this).children(".fenye_zuosanjiao2").show();
+
+            $(this).children(".fenye_yousanjiao").hide();
+            $(this).children(".fenye_yousanjiao2").show()
+        });
+        $(".fenye ul li a").mouseout(function () {
+
+            $(this).children(".fenye_zuosanjiao").show();
+            $(this).children(".fenye_zuosanjiao2").hide();
+
+            $(this).children(".fenye_yousanjiao").show();
+            $(this).children(".fenye_yousanjiao2").hide()
+        });
+
+
+
+   
+})
+</script>
+<!--菜单的三级联动-->

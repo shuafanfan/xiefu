@@ -1,0 +1,93 @@
+        <div class="huowu_zuo">
+            <ul>
+                <li >
+                    <a class="reportlist">报货中心 
+                        <span class="accountleft_arrow icon-arrow-right iconfont "></span>
+                    </a>
+                     <div class="huowu_zuo_erji">
+                        <ul>
+                            <li>
+                                <a href="{:U('report/reportgoods/reportlist')}">
+                                    报货列表
+                                    <span class="accountleft_arrow icon-arrow-right iconfont"></span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{:U('report/reportgoods/newreport')}">
+                                    发布新的报货
+                                    <span class="accountleft_arrow icon-arrow-right iconfont"></span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a class="zazamarket">
+                        杂杂市场管理
+                        <span class="accountleft_arrow icon-arrow-right iconfont"></span>
+                    </a>
+                    <div class="huowu_zuo_erji">
+                        <ul>
+                            <li>
+                                <a href="{:U('zaza/zazamarket/zazalist')}">
+                                    杂杂列表
+                                    <span class="accountleft_arrow icon-arrow-right iconfont"></span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="{:U('zaza/zazamarket/newzaza')}">
+                                    发布杂杂
+                                    <span class="accountleft_arrow icon-arrow-right iconfont"></span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <a href="{:U('user/favorite/index')}">
+                        收藏管理
+                        <span class="accountleft_arrow icon-arrow-right iconfont"></span>
+                    </a>
+                </li>
+      
+                <li>
+                        <a class="businessagent">商家管理<span class="accountleft_arrow icon-arrow-right iconfont"></span> </a>
+                     
+                    <div class="huowu_zuo_erji " data="{$user.user_type}" >
+                        <ul>
+                            <li>
+                                <a href="{:U('business/businessdo/apply')}">
+                                    商家申请
+                                </a>
+                            </li>
+                            <li>
+                            <?php if($user['user_type']==3){ ?>
+                                <a href="{:U('report/reportgoods/newstyle')}">
+                            <?php }else{ ?>
+                                <a onclick="layer.alert('非常抱歉，您非本站商家无法使用，请先开通商家功能。')">
+                            <?php } ?>
+                                    发布最新款
+                                </a>
+                            </li>
+                            <li>
+                            <?php if($user['user_type']==3){ ?>
+                                <a href="{:U('report/reportgoods/newrecord')}">
+                             <?php }else{ ?>
+                                <a onclick="layer.alert('非常抱歉，您非本站商家无法使用，请先开通商家功能。')">
+                            <?php } ?>
+                                    新款记录
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                   
+                </li>
+                <li><a href="{:U('user/account/index')}">账户管理 <span class="accountleft_arrow icon-arrow-right iconfont"></span></a></li>
+                <li><a href="{:U('user/message/index')}">信息管理 <span class="accountleft_arrow icon-arrow-right iconfont"></span></a></li>
+            </ul>
+        </div>

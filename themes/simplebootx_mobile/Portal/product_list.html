@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8">
+		<title>{$name}-{$site_name}</title>
+		<tc_include file="Public:head" />
+		
+		<style>
+			.p_news_list li:hover,
+			.p_news_list li:active,
+			.p_news_list li:focus {__TMPL__Public/
+				background: #000000;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--侧滑菜单容器-->
+		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable">
+			<!--侧滑菜单部分start-->
+			<tc_include file="Public:slide" />
+			<!--侧滑菜单部分end-->
+			<div class="mui-inner-wrap">
+
+				<div id="offCanvasContentScroll" class="mui-content mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<!--24小时咨询热线start-->
+						<tc_include file="Public:idx_head" />
+						<!--24小时咨询热线end-->
+						<div class="mui-bar list_head" style="position: initial !important;">
+							<a class="mui-action-back mui-icon mui-icon-back mui-pull-left"></a>
+							<a id="offCanvasBtn" href="#offCanvasSide" class="mui-icon mui-action-menu mui-icon-bars mui-pull-right"></a>
+							<h1 class="mui-title">{$termname['name']}</h1>
+						</div>
+						<div class="p_news_list">
+							<ul>
+								<!--图片宽高为235*110-->
+								<foreach name="products['product']" item="vo">
+									<li>
+										<a href="{:leuu('portal/product/index',array('id'=>$vo['tid']))}">
+											<div class="p_list_pic">
+												<php>
+													$smeta=json_decode($vo['smeta'],true);
+												</php>
+												<if condition="$smeta['thumb'] eq null">
+													<img src="__TMPL__Public/images/no_pic.jpg"/>
+													<else />
+													<img src="{:sp_get_asset_upload_path($smeta['thumb'])}">
+												</if>
+											</div>
+											<div class="p_list_rg">
+												<h1>{$vo.post_title}</h1>
+												<p>{$vo.post_excerpt}</p>
+											</div>
+										</a>
+									</li>
+								</foreach>
+							</ul>
+							<div class="mui-content-padded fy_page">
+								<!--分页的功能-->
+								<ul class="mui-pagination">
+									<li class="mui-previous mui-disabled">
+										<span class="sr-only">{$products['page']}</span>
+									</li>
+								</ul>
+							</div>
+
+						<!-- 	<div class="mui-content-padded fy_page">
+							<ul class="mui-pagination">
+								<li class="mui-previous mui-disabled">
+									<a href="#">
+										&laquo;
+									</a>
+								</li>
+								<li class="mui-active">
+									<a href="#">
+										1
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										2
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										3
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										4
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										5
+									</a>
+								</li>
+								<li class="mui-next">
+									<a href="#">
+										&raquo;
+									</a>
+								</li>
+							</ul>
+						</div> -->
+						</div>
+
+						<!--尾部声明-->
+						<tc_include file="Public:b_footer" />
+
+					</div>
+					<!--底部导航-->
+					<tc_include file="Public:footer" />
+				</div>
+
+				<!-- off-canvas backdrop -->
+				<div class="mui-off-canvas-backdrop"></div>
+			</div>
+
+		</div>
+		
+		<script type="text/javascript" src="__TMPL__Public/js/jquery.min.js"></script>
+		<script src="__TMPL__Public/js/mui.min.js"></script>
+
+	</body>
+
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>{$post_title}</title>
+		<tc_include file="Public:head" />
+		<style>
+		
+			.dis{  display: block;}
+			.nodis{ display: none;}
+		.product-div ul{display: none;}
+		</style>
+	</head>
+
+	<body>
+		<!--侧滑菜单容器-->
+		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable">
+			<!--菜单部分-->
+			<tc_include file="Public:slide" />
+			
+			<div class="mui-inner-wrap">
+
+				<div id="offCanvasContentScroll" class="mui-content mui-scroll-wrapper">
+					<div class="mui-scroll">
+					<!--24小时咨询热线-->
+						<tc_include file="Public:idx_head" />
+						
+						<div class="mui-bar list_head" style="position: initial !important;">
+							<a class="mui-action-back mui-icon mui-icon-back mui-pull-left"></a>
+							<a id="offCanvasBtn" href="#offCanvasSide" class="mui-icon mui-action-menu mui-icon-bars mui-pull-right"></a>
+							<h1 class="mui-title"><!-- {$termname['name']} -->{$post_title}</h1>
+						</div>
+						<div class="news_btm">
+							<div class="news_top">
+								<!-- <h1>{$post_title}</h1> -->
+								<p>发布时间：{:date('Y-m-d',strtotime($post_modified))}</p>
+							</div>
+							<div class="news_cet">
+								<p>{$post_content}</p>
+							</div>
+							<!-- -------------------------------- -->
+								
+							<div class="pc_news_list">
+								<php>
+								
+									/* 获取该分类下的子分类*/
+									
+									$id       = intval($_GET['id']);
+									$pro_term = M('term_relationships') -> where('tid = '.$id) -> field('term_id') -> find();
+
+									$term_id  = $pro_term['term_id'];		
+										
+									$child_terms = sp_get_child_terms($term_id);
+
+								</php>
+								
+									<if condition="count($child_terms) gt 1">
+									<div class="pc_list_rg clearfix">
+										<!--图片宽高为235*110-->
+										<ul class="mui-content">
+										<foreach name="child_terms" item="vo">
+										
+											<li href="#item{$vo.term_id}" onclick="function_1()">
+												{$vo.name}
+											</li>
+										
+										</foreach>
+										</ul>
+									</div>
+
+										<php>
+											echo '<div class="product-div">';
+											foreach($child_terms as $k=>$t){
+												echo '<ul id="item'.$t[term_id].'" class="mui-control-content product_ul_list nodis">';
+												$tag   = "cid:".$t['term_id'].";field:post_title,post_excerpt,smeta,tid;order:istop desc,recommended desc,listorder asc;";
+
+												$product_list = sp_sql_product($tag);
+
+												if(is_array($product_list)){
+													
+													foreach($product_list as $pr){
+														
+														$url   = leuu('portal/product/index',array('id'=>$pr['tid']));
+														$smeta = json_decode($pr['smeta'],true);/* 把smeta转化成数组 */
+														$thumb = sp_get_asset_upload_path($smeta['thumb']);
+										</php>
+														
+														<li class="clearfix">
+															<a href="{$url}">
+																<div class="pc_list_pic">
+																	<img src="{$thumb}" alt="{$pr['post_title']}"/>
+																	<h1>{$pr["post_title"]} </h1>
+																</div>
+															</a>
+															
+														</li>
+										<php>
+													}										
+												}
+												echo '</ul>';
+											}
+											echo '</div>';
+										</php>
+									<else/>
+									    <ul class="product_ul_list">
+										<php>
+											$tag   = "cid:".$term_id.";field:post_title,post_excerpt,smeta,tid;order:istop desc,recommended desc,listorder asc;";
+											$w['tid'] = array('neq',$id);
+
+											$product_list = sp_sql_product($tag,$w);
+											
+											if(is_array($product_list)){
+												
+												foreach($product_list as $pr){
+													
+													$url   = leuu('portal/product/index',array('id'=>$pr['tid']));
+													$smeta = json_decode($pr['smeta'],true);/* 把smeta转化成数组 */
+													$thumb = sp_get_asset_upload_path($smeta['thumb']);
+										</php>			
+													
+													<li>
+														<a href="{$url}">
+															<div class="pc_list_pic">
+																<img src="{$thumb}" alt="{$pr['post_title']}"/>
+																<h1>{$pr["post_title"]}</h1>
+															</div>
+														</a>
+														
+													</li>
+													
+										<php>
+												}										
+											}
+										</php>
+										</ul>
+									</if>
+							    <div class="clearfix"></div>
+								
+							</div>
+							<!-- ----------------------------- -->
+							
+						</div>
+						<!--尾部声明-->
+						<tc_include file="Public:b_footer" />
+
+					</div>
+						<!--底部导航-->
+					<tc_include file="Public:footer" />
+				</div>
+
+				<!-- off-canvas backdrop -->
+				<div class="mui-off-canvas-backdrop"></div>
+			</div>
+
+		</div>
+		
+		
+		<script src="__TMPL__/Public/js/mui.min.js"></script>
+		<script type="text/javascript" src="__TMPL__/Public/js/jquery.min.js"></script>
+		<script>
+		mui(".ft_bg").on('tap','#scrollToTop',function(){
+			  //获取id
+		 mui('.mui-scroll-wrapper').scroll().scrollTo(0,0,100);//100毫秒滚动到顶
+		}) 
+		</script>
+
+		<script type="text/javascript">
+		$(".pc_list_rg").on('tap', 'li', function (event) {
+			this.click();
+		});
+						
+			 $(".pc_list_rg li:eq(0)").addClass('mui-active');
+			 
+			 $(".product-div ul:eq(0)").show();
+			 
+			 $(".pc_list_rg li").click(function(){
+			  	var index = $(this).index();
+			  	$(".product-div ul").hide();
+			  	$(".pc_list_rg li").removeClass('mui-active');
+			  	$(".product-div ul:eq("+index+")").show();
+			  	$(".pc_list_rg li:eq("+index+")").addClass('mui-active');	  
+			 });
+			
+		</script>
+	</body>
+
+</html>

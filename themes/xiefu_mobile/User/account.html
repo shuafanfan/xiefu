@@ -1,0 +1,209 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>账号管理</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="__TMPL__Public//favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="__TMPL__Public/css/light7.min.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/light7-swiper.min.css">
+
+    <link rel="stylesheet" href="__TMPL__Public/css/style.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/common.css">
+
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_376445_16uubysyioogvi.css">
+
+
+</head>
+
+<body>
+
+<!-- page 容器 -->
+<div class="page page-current">
+
+    <!-- 这里是标题栏栏 -->
+    <header class="bar bar-nav">
+        <button class="button button-link button-nav pull-left">
+            <span class="icon icon-zuo"></span>
+        </button>
+        <button class="button button-link button-nav pull-right">
+
+        </button>
+
+        <h1 class="title">
+          账号管理
+        </h1>
+
+    </header>
+    <!-- 这里是标题栏end -->
+
+    <!-- 底部工具栏 -->
+    <tc_include file="Public:bottom" />
+    <!-- 底部工具栏 end-->
+
+    <!-- 这里是页面内容区 -->
+    <div class="content ">
+    <?php $user=sp_get_current_user(); ?>
+        <div class="content-block  account_management">
+            <div class="list-block media-list ">
+                <ul>
+                    <li>
+                        <a href="__TMPL__Public/#" class="item-link item-content">
+                            <div class="item-media">
+                                <img src="{$user.avatar}" >
+                            </div>
+                            <div class="item-inner">
+                                <div class="item-title-row">
+                                    <div class="item-title">{$user.user_nicename}
+                                        <!-- <span class="icon icon-v bg_cheng"></span> -->
+                                    </div>
+                                    <div class="item-after"></div>
+                                </div>
+                                <div class="item-subtitle">{$user.mobile}</div>
+
+                            </div>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+
+        </div>
+
+        <div class="form_all">
+            <div class="list-block form_fabu" style="margin-top: 0!important;">
+                <ul>
+                    <!-- Text inputs -->
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">QQ号</div>
+                                <div class="item-input">
+                                    <input type="text" placeholder="" value="{$user.qq}">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">微信号</div>
+                                <div class="item-input">
+                                    <input type="text" placeholder="" value="{$user.weixin}">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">地址</div>
+                                <div class="item-input">
+                                    <select class="ProvinceSelect" name="province" id="province">
+                                        <option value='0'>省份</option>                       
+                                        {:_Options($region_p,$selectid=$userinfo['province'],id,name,$nofield=0);}
+                                    </select>
+                                   <select class="CitySelect " name="city" id="city">
+                                        <?php if(!empty($userinfo['city'])) {
+                                                   $option=_Options($region_c,$selectid=$userinfo['city'],id,name,$nofield=0);
+                                                   echo $option;
+                                                }else{
+                                                    echo "<option value='0'>城市</option>";
+                                                }
+                                       ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="list-block form_fabu">
+                <ul>
+                    <a href='{:U("user/user/mobile_forgetpass")}'>
+                    <li class="item-content item-link" >
+                        <div class="item-inner">
+                            <div class="item-title">修改登录密码</div>
+                            <div class="item-after"></div>
+                        </div>
+                    </li>
+                    </a>
+                    <li class="item-content item-link">
+                        <div class="item-inner">
+                            <div class="item-title">绑定QQ号码</div>
+                            <if condition="!empty($oauths['qq'])">
+                                <a href="javascript:if(confirm('确实要解绑吗?'))location='{:U('user/account/cancelbang',array('type'=>'qq'))}'">解绑</a>
+                            <else/>
+                                <a  href="{:U('api/oauth/bang',array('type'=>'qq'))}"><div class="item-after">未绑定</div>
+</a>
+                            </if> 
+                            
+                        </div>
+                    </li>
+                    <li class="item-content item-link">
+                        <div class="item-inner">
+                            <div class="item-title">绑定微信</div>
+                            <if condition="!empty($oauths['weixin'])">
+                                <a href="javascript:if(layer.confirm('确实要解绑吗?'))location='{:U('user/account/cancelbang',array('type'=>'weixin'))}'">解绑</a>
+                            <else/>
+                                <a  href="{:U('api/oauth/bang',array('type'=>'weixin'))}"><div class="item-after">未绑定</div>
+</a>
+                            </if>
+                                                    </div>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="list-block form_fabu">
+                <a id="doout" class="exit_btn">退出登录</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script type="text/javascript" src="__TMPL__Public/js/jquery.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="__TMPL__Public/js/light7.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="__TMPL__Public/js/light7-swiper.min.js"></script>
+<script>
+ $(document).ready(function(){
+    $('#doout').click(function () {
+          $.confirm('确实要退出吗?', '', function () {
+              location.href="/user/user/doout";
+          });
+    });
+
+     $('.ProvinceSelect').change(function(){
+            $(".CitySelect").empty();
+
+            var sheng_id = $(this).val();
+
+            $.ajax({
+                type:"get",
+                url: '{:U("user/account/region")}',
+                data:  {'pid':sheng_id},
+                dataType:"json",
+                success:function(data){
+                    var length=data.length;
+
+                    for(var i=0;i<length;i++){
+                        var city_option = "<option id='origin_city_id_op"+data[i].id+"'value='"+data[i].id+"' >"+data[i].name+"</option>";
+                        $(".CitySelect").append(city_option);
+
+                    }
+                }
+            })
+
+        });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+/*可以在这里添加你自己的css*/
+.mb_zhaopin{border-collapse: collapse;border:0;width:100%; }
+.mb_zhaopin th,.mb_zhaopin td{ border:solid #ccc 1px ; padding:8px 5px}
+.mb_zhaopin th{ min-width:100px; font-size:18px}
+.mb_zhaopin td{ line-height:24px;font-size:14px;color:#666}

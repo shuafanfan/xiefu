@@ -1,0 +1,278 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>修改报货</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="__TMPL__Public//favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="__TMPL__Public/css/light7.min.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/light7-swiper.min.css">
+
+    <link rel="stylesheet" href="__TMPL__Public/css/style.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/common.css">
+
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_376445_4l9rsah7c63qsemi.css">
+
+
+</head>
+
+<body>
+
+<!-- page 容器 -->
+<div class="page page-current">
+    <!-- 这里是标题栏栏 -->
+    <header class="bar bar-nav">
+        <button class="button button-link button-nav pull-left">
+            <span class="icon icon-zuo"></span>
+        </button>
+        <button class="button button-link button-nav pull-right" id="submit">
+            <a  class="color_white" id="submit">保存</a>
+        </button>
+
+        <h1 class="title">
+            修改报货
+        </h1>
+
+    </header>
+    <!-- 这里是标题栏end -->
+
+    <!-- 底部工具栏 -->
+    <tc_include file="Public:bottom" />
+    <!-- 底部工具栏 end-->
+
+    <!-- 这里是页面内容区 -->
+    <div class="content ">
+        <!--   这里是 搜索面板-->
+        <div class="content-block reportgoods">
+
+            <div class="xingzhi" id="xingzhi">
+                <span >
+                  全部
+                </span>
+                <ul class="">
+                    <li><a>个人</a></li>
+                    <li><a >商家</a></li>
+
+                </ul>
+            </div>
+
+            <div class="xingzhi" id="reportgood_toggle" style="border: none">
+              <span>
+                 全部
+              </span>
+                <ul>               
+                    <volist name="brand" id="vo">
+                             <li ><a>{$vo.name}</a></li>    
+                    </volist>
+                </ul>
+
+                <span class="zhankai">
+                       <span class="zhankai_zi">展开</span>
+                    <div class="yousanjiao " id="sanjiao">
+
+                     </div>
+
+                    <div class="shangsanjiao" id="">
+
+                     </div>
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class=" form_all">
+
+        <div class="list-block form_fabu">
+            <ul>
+                <!-- Text inputs -->
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">标题</div>
+                            <div class="item-input">
+                                <input id="title" type="text" placeholder="选填" value="{$info.title}">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">尺码</div>
+                            <div class="item-input">
+                                <input id="size" type="text" placeholder="选填" value="{$info.size}">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">数量</div>
+                            <div class="item-input">
+
+                                <div class="reportgood_num">
+                                    <input id="min" name="" type="button" value="-" >
+                                    <input id="text_box" name="" type="text" value="{$info.num}" >
+                                    <input id="add" name="" type="button" value="+" >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+            <div class="list-block form_fabu">
+                <ul>
+                    <!-- Text inputs -->
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">手机号</div>
+                                <div class="item-input">
+                                    <input id="phone" type="text" placeholder="必填项" value="{$info.mobile}">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">QQ号</div>
+                                <div class="item-input">
+                                    <input  id="qq" type="text" placeholder="" value="{$info.qq}">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">微信号</div>
+                                <div class="item-input">
+                                    <input  id="weixin" type="text" placeholder="" value="{$info.weixin}">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">联系地址</div>
+                                <div class="item-input">
+                                    <select class="ProvinceSelect" name="province" id="province">
+                                        <option value='0'>省份</option>                       
+                                        {:_Options($region_p,$selectid=$info['province'],id,name,$nofield=0);}
+                                    </select>
+                                   <select class="CitySelect " name="city" id="city">
+                                        <?php if(!empty($info['city'])) {
+                                                   $option=_Options($region_c,$selectid=$info['city'],id,name,$nofield=0);
+                                                   echo $option;
+                                                }else{
+                                                    echo "<option value='0'>城市</option>";
+                                                }
+                                       ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+
+
+</div>
+
+
+<script type="text/javascript" src="__TMPL__Public/js/jquery.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="__TMPL__Public/js/light7.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="__TMPL__Public/js/light7-swiper.min.js"></script>
+<script type="text/javascript" src="__TMPL__Public/js/conmon.js"></script>
+<script>
+var Province_option = "";
+
+ 
+
+        $('.ProvinceSelect').change(function(){
+            $(".CitySelect").empty();
+
+            var sheng_id = $(this).val();
+
+            $.ajax({
+                type:"get",
+                url: '{:U("user/account/region")}',
+                data:  {'pid':sheng_id},
+                dataType:"json",
+                success:function(data){
+                    var length=data.length;
+
+                    for(var i=0;i<length;i++){
+                        var city_option = "<option id='origin_city_id_op"+data[i].id+"'value='"+data[i].id+"' >"+data[i].name+"</option>";
+                        $(".CitySelect").append(city_option);
+
+                    }
+                }
+            })
+
+        });
+
+
+</script>
+<script>
+    $("#submit").click(function(){
+                    var type="2";
+                    var brand="乔丹";
+                    var title=$('#title').val();
+                    var size=$('#size').val();
+                    var num=$('#text_box').val();
+                    var mobile=$('#phone').val();
+                    var qq=$('#qq').val();
+                    var weixin=$('#weixin').val();
+                    var province=$('#province').val();
+                    var city=$('#city').val();
+                    var id=<?php echo $info['id'] ?>;
+                    $.ajax({
+                        type: "POST",
+                        url: "{:U('report/reportgoods/editreport')}",
+                        data:  {'brand':brand,'qq':qq,'weixin':weixin,'mobile':mobile,'title':title,'size':size,'num':num,'province':province,'city':city,'id':id,'type':type},
+                        async: false,
+                        success: function(data) {
+                           
+                            
+                            if(data['status']=='1'){
+                                $.alert("修改成功,等待审核",function(){
+                                    location.href="{:U('report/reportgoods/mobile_reportlist')}";
+                                });
+                                
+
+                            }
+                            if(data['status']=='0'){
+                                $.alert("未做修改");
+                               
+                            }
+                            if(data['status']=='2'){
+                                $.alert(data['msg']);
+                            
+                            }
+
+                        },
+                        error:function(){
+                            layer.alert("修改失败");
+                        }
+                    });
+})
+
+</script>
+</body>
+</html>

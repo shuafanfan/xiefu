@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>商品详情</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="__TMPL__Public//favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="__TMPL__Public/css/light7.min.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/light7-swiper.min.css">
+
+    <link rel="stylesheet" href="__TMPL__Public/css/style.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/common.css">
+
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_376445_i13r2momavj6pqfr.css">
+
+
+</head>
+
+<body>
+
+<!-- page 容器 -->
+<div class="page page-current">
+
+    <!-- 这里是标题栏栏 -->
+    <header class="bar bar-nav">
+        <button class="button button-link button-nav pull-left">
+            <span class="icon icon-zuo"></span>
+        </button>
+        <button class="button button-link button-nav pull-right">
+
+        </button>
+
+        <h1 class="title">
+            商品详情
+        </h1>
+
+    </header>
+    <!-- 这里是标题栏end -->
+
+    <!-- 底部工具栏 -->
+     <tc_include file="Public:bottom" />
+    <!-- 底部工具栏 end-->
+
+
+    <!-- 这里是页面内容区 -->
+    <div class="content ">
+        <!-- 这里是banner -->
+        <div class="swiper-container" data-space-between='10' data-pagination='.swiper-pagination' data-autoplay="1000" style="padding-bottom: 0">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="{$market[0].photos}" alt=""></div>
+                <!-- <div class="swiper-slide"><img src="__TMPL__Public///gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i4/TB10rkPGVXXXXXGapXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="__TMPL__Public///gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1kQI3HpXXXXbSXFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt=""></div> -->
+            </div>
+        </div>
+        <!-- 这里是banner end-->
+
+        <div class="content-block product_details ">
+            <div class="list-block media-list details_list">
+                <ul>
+                    <li>
+                        <a href="__TMPL__Public/#" class=" item-content">
+                            <div class="item-inner">
+                                <div class="item-title-row detail_title">
+                                    {$market[0].title}
+                                </div>
+                                <div class="item-title-row">
+                                    <div class="item-title ">
+
+                                        <span class="color-danger detail_price_left">￥{$market[0].price}</span>
+                                    </div>
+                                    <div class="item-after">
+                                        <span class=" detail_price_right">个人</span>
+                                    </div>
+                                </div>
+                                <div class="item-title-row">
+                                    <div class="item-title ">
+
+                                        <span class="">发布时间:{$market[0].sh_time}</span>
+                                    </div>
+                                    <div class="item-after">
+                                        <span class="">已有120人浏览</span>
+                                    </div>
+                                </div>
+                                <div class="item-title-row detail_content">
+                                    {$market[0].comment}
+                                </div>
+                            </div>
+
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="content-block product_details ">
+            <div class="card-content">
+                <div class="list-block media-list details_list" style="margin: 0">
+                    <ul>
+                        <li class="item-content">
+                            <div class="item-media header_img">
+                                <img src="{$market[0].avatar}" width="44">
+                            </div>
+                            <div class="item-inner">
+                                <div class="item-title-row " style="margin: 0.2rem 0">
+                                    <div class="item-title">
+                                        <span style="font-weight: bolder;color: #1a1a1a">{$market[0].user_nicename}</span>
+                                        <span class="icon icon-v bg_cheng"></span>
+                                    </div>
+                                </div>
+                                <?php if($market[0]['type']==2){ ?>
+                                <div class="item-subtitle">商家ID&nbsp;{$market[0].bid}&nbsp;&nbsp;发布:33次</div>
+                                <?php } ?>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card_footer">
+                <i class="icon icon-unie600"></i>&nbsp;{$market[0].city}
+            </div>
+        </div>
+
+        <div class="detail_tishi jianju">
+            <span class="">重要提示:请不要接受可以文件或点击不明链接，交易中推荐只用QQ
+            聊天工具，若产生投诉举报或申请陪付，您提交的聊天记录将成为有利证据;
+                <span class="color-danger">与网站个人或未认证商家交易若出现交易纠纷，本网站
+                不负责任赔付
+                </span>
+            </span>
+
+        </div>
+
+        <div class="content-block product_details  pingjia">
+            <div class="pingjia_top jianju " >简单列表</div>
+            <div class="list-block media-list details_list">
+
+                <ul>
+                <volist name="comment" id="vo" key="k">
+                    <li>
+                        <a href="__TMPL__Public/#" class=" item-content">
+
+
+                            <div class="item-media header_img">
+                                <img src="{$vo.avatar}" width="44">
+                            </div>
+                            <div class="item-inner">
+                                <div class="item-title-row " style="margin: 0.2rem 0">
+                                    <div class="item-title">
+                                        <span style="font-weight: bolder;color: #1a1a1a">{$vo.nickname}</span>
+                                        <span class="icon icon-v bg_cheng"></span>
+                                    </div>
+                                    <div class="item-after">
+                                       {$vo.createtime}
+                                    </div>
+                                </div>
+                                <div class="item-subtitle">
+                                    {$vo.comment}
+                                </div>
+                                <div class="item-title-row ">
+                                    <div class="item-title">
+
+                                    </div>
+                                    <div class="item-after">
+                                        <span><i class="icon icon-ic6 "></i>0</span>&nbsp;&nbsp;&nbsp;
+
+                                        <span><i class="icon icon-gaojing "></i>0</span>
+                                    </div>
+                                </div>
+
+                                <div class="detail_reply">
+                                <div class="item-subtitle color-danger ">
+                                    [掌柜回复]:谢谢，欢迎下次光临
+                                </div>
+                                <div class="item-text">
+                                    2017-03-12
+                                </div>
+                                </div>
+                            </div>
+
+
+                        </a>
+                    </li>
+                </volist> 
+                </ul>
+            </div>
+
+        </div>
+
+        <div class=" jianju">
+        <div class="col-75">
+            <input type="text" class="pingjia_input" placeholder="说点什么唄" id="comment">
+        </div>
+        <div class="col-25">
+            <input type="hidden" id="nickname" value="{$user.user_nicename}">
+            <input type="hidden" id="avatar" value="{$market[0].avatar}">
+             <input type="hidden" id="market_id" value="{$_GET['id']}">
+             <?php if(!sp_is_user_login()){ ?>
+            <a class="button button-fill" onclick="$.alert('请先登录')">评价</a>
+             <?php }else{ ?>
+            <a class="button button-fill pingjia_btn">评价</a>
+            <?php } ?>
+        </div>
+    </div>
+
+        <div class="detail_footer jianju">
+            <div class="col-50">
+                <p class="color_blue">{$market[0].user_nicename}</p>
+                <p class="color_blue">{$market[0].mobile}</p>
+           </div>
+            <div class="col-50 detail_footer_icon">
+                <a href="__TMPL__Public/">
+                    <p class="color_green"><span class="icon icon-weixin"></span></p>
+                    <p class="color_green">微信</p>
+                </a>
+                <a href="__TMPL__Public/">
+                    <p class="color_blue"><span class="icon icon-qq"></span></p>
+                    <p class="color_blue">QQ</p>
+                </a>
+                <a href="__TMPL__Public/">
+                    <p class="color-danger"><span class="icon icon-dianhua"></span></p>
+                    <p class="color-danger">手机</p>
+                </a>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+
+
+
+<script type="text/javascript" src="__TMPL__Public/js/jquery.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="__TMPL__Public/js/light7.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="__TMPL__Public/js/light7-swiper.min.js"></script>
+<script>
+    $(".swiper-container").swiper();
+    $('.pingjia_btn').click(function(){
+        var comment=$('#comment').val();
+        var nickname=$('#nickname').val();
+        var avatar=$('#avatar').val();
+        var market_id=$('#market_id').val();
+        $.ajax( {
+            type:"POST",
+            data:  {'comment':comment,'nickname':nickname,'avatar':avatar,'market_id':market_id},
+            url: "{:U('zaza/zazamarket/comment')}",
+            success: function( data, textStatus, jqXHR ){
+                console.log(data);
+                if(data.status==1){
+                    $.alert('评论成功',function(){
+                        window.location.href=window.location.href;
+                    });
+                }else{
+                    $.alert('评论失败');
+                    return false;
+                }
+            }
+        });
+    })
+</script>
+</body>
+</html>

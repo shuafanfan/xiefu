@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>我的</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="__TMPL__Public//favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="__TMPL__Public/css/light7.min.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/light7-swiper.min.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/style.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/common.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_376445_16uubysyioogvi.css">
+</head>
+
+<body>
+
+<!-- page 容器 -->
+<div class="page page-current">
+
+    <!-- 这里是标题栏栏 -->
+    <header class="bar bar-nav">
+        <button class="button button-link button-nav pull-left">
+            <span class="icon icon-zuo"></span>
+        </button>
+        <button class="button button-link button-nav pull-right">
+            <div class="news">
+            <span class="icon icon-xiaoxi2"></span>
+                <span class="news_num">{$notice}</span>
+            </div>
+        </button>
+
+        <h1 class="title">
+          我的鞋服
+        </h1>
+
+    </header>
+    <!-- 这里是标题栏end -->
+
+    <!-- 底部工具栏 -->
+    <tc_include file="Public:bottom" />
+    <!-- 底部工具栏 end-->
+
+    <!-- 这里是页面内容区 -->
+    <div class="content ">
+    <?php $user=sp_get_current_user(); ?>
+        <div class="content-block my">
+            <div class="list-block media-list ">
+                <ul>
+                    <li>
+                        <a href="{:U('user/account/index')}" class="item-link item-content">
+                            <div class="item-media">
+                                <img src="{$user.avatar}" >
+                            </div>
+                            <div class="item-inner">
+                                <div class="item-title-row">
+                                    <div class="item-title">{$user.user_nicename}
+                                        <!-- <span class="icon icon-v bg_cheng"></span> -->
+                                     
+                                    </div>
+                                    <div class="item-after"></div>
+                                </div>
+                                <div class="item-subtitle">{$user.mobile}</div>
+                                <div class="item-text">
+                                    <span class="icon icon-youxiang"></span>
+                                    <span class="icon icon-weixin bg_green"></span>
+                                    <span class="icon icon-qq"></span>
+                                </div>
+
+                            </div>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="my_information row">
+                <div class="col-25">
+                    <a href="{:U('report/reportgoods/mobile_reportlist')}">
+                    <h1>{$find}</h1>
+                    <p>发布中找货</p>
+                    </a>
+                </div>
+                <div class="col-25">
+                    <a href="{:U('zaza/zazamarket/zazalist')}">
+                    <h1>{$zaza}</h1>
+                    <p>发布中杂杂</p>
+                    </a>
+                </div>
+                <div class="col-25">
+                    <a href="{:U('report/reportgoods/newrecord')}">
+                    <h1>{$newstyle}</h1>
+                    <p>发布中新款</p>
+                    </a>
+                </div>
+                <div class="col-25">
+                    <a href="{:U('user/favorite/index')}">
+                    <h1>{$favorite}</h1>
+                    <p>收藏的店铺</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-block my_handle">
+            <ul>
+                <li>
+                    <a href="{:U('user/message/index')}">
+                        <p>
+                            <span class="icon icon-gonggao bg_cheng">
+                            </span>
+                        </p>
+                        <p>
+                            公告
+                        </p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{:U('zaza/zazamarket/newzaza')}">
+                        <p>
+                            <span class="icon icon-fabu bg_blue"></span>
+                        </p>
+                        <p>
+                           发布杂杂
+                        </p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{:U('report/reportgoods/newstyle')}">
+                        <p>
+                            <span class="icon icon-20xinkuan bg_red"></span>
+                        </p>
+                        <p>
+                            发布新款
+                        </p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{:U('report/reportgoods/mobile_recent')}">
+                        <p>
+                            <span class="icon icon-mofang bg_blue">
+                                <div class="my_handle_news">{$all}</div>
+                            </span>
+                        </p>
+                        <p>
+                            报货记录
+                        </p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{:U('report/reportgoods/newrecord')}">
+                        <p>
+                            <span class="icon icon-jilu1-copy bg_blue"></span>
+                        </p>
+                        <p>
+                            新款记录
+                        </p>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{:U('user/message/index')}">
+                        <p>
+                            <span class="icon icon-xiaoxi1 bg_cheng"></span>
+                        </p>
+                        <p>
+                            消息管理
+                        </p>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="__TMPL__Public/">
+                        <p>
+                            <span class="icon icon-hegezhengbiangeng bg_blue"></span>
+                        </p>
+                        <p>
+                            商家申请
+                        </p>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="__TMPL__Public/">
+                        <p>
+                            <span class="icon icon-kefu1 bg_red"></span>
+                        </p>
+                        <p>
+                            联系客服
+                        </p>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="__TMPL__Public/">
+                        <p>
+                            <span class="icon icon-yunxiazai bg_blue"></span>
+                        </p>
+                        <p>
+                            app下载
+                        </p>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+</div>
+
+
+<script type="text/javascript" src="__TMPL__Public/js/jquery.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="__TMPL__Public/js/light7.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="__TMPL__Public/js/light7-swiper.min.js"></script>
+<script>
+
+
+</script>
+</body>
+</html>

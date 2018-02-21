@@ -1,0 +1,54 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:U('ad/index')}">{:L('ADMIN_AD_INDEX')}</a></li>
+			<li><a href="{:U('ad/add')}">{:L('ADMIN_AD_ADD')}</a></li>
+			<li class="active"><a href="javascript:;">{:L('ADMIN_AD_EDIT')}</a></li>
+		</ul>
+		<form method="post" class="form-horizontal js-ajax-form" action="{:U('ad/edit_post')}">
+			<fieldset>
+				<div class="control-group">
+					<label class="control-label">{:L('NAME')}</label>
+					<div class="controls">
+						<input type="text" name="ad_name" value="{$ad_name}" style="width: 400px;"><span class="form-required">*</span>
+						<input type="hidden" name="ad_id" value="{$ad_id}">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">{:L('AD_CONTENT')}</label>
+					<div class="controls">
+						<textarea name="ad_content" rows="5" cols="57" style="width: 400px;">{$ad_content}</textarea>
+					</div>
+				</div>
+				<div class="control-group" style="">
+					<label class="control-label" style="margin-right: 30px;">缩略图</label>
+					<input type="hidden" name="smeta" id="thumb" value="{$ads.smeta|default=''}">
+					<a href="javascript:void(0);" onclick="flashupload('thumb_images', '附件上传','thumb',thumb_images,'1,jpg|jpeg|gif|png|bmp,1,,,1','','','');return false;">
+						<if condition="empty($ads['smeta'])">
+							<img src="__TMPL__Public/assets/images/default-thumbnail.png" id="thumb_preview" width="135" style="cursor: hand"/>
+						<else />
+							<img src="{:sp_get_asset_upload_path($ads['smeta'])}" id="thumb_preview" width="135" style="cursor: hand"/>
+						</if>
+					</a>
+					<input type="button" class="btn btn-small" onclick="$('#thumb_preview').attr('src','__TMPL__Public/assets/images/default-thumbnail.png');$('#thumb').val('');return false;" value="取消图片">
+				</div>
+				<div class="control-group">
+					<label class="control-label">图片链接地址</label>
+					<div class="controls">
+						<input type="text" name="url" value="{$url}">
+					</div>
+				</div>
+				
+			</fieldset>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary js-ajax-submit">{:L('SAVE')}</button>
+				<a class="btn" href="{:U('ad/index')}">{:L('BACK')}</a>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/content_addtop.js"></script>
+</body>
+</html>

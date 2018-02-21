@@ -1,0 +1,395 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>发布新报货</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="css/light7.min.css">
+    <link rel="stylesheet" href="css/light7-swiper.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/common.css">
+ <link rel="stylesheet" href="css/webuploader.css">
+ 
+  <link rel="stylesheet" href="css/Uploader.css">
+ <!--   <link rel="stylesheet" href="//at.alicdn.com/t/font_376445_4l9rsah7c63qsemi.css">
+-->
+
+</head>
+
+<body>
+
+<!-- page 容器 -->
+<div class="page page-current">
+    <!-- 这里是标题栏栏 -->
+    <header class="bar bar-nav">
+        <button class="button button-link button-nav pull-left">
+            <span class="icon icon-zuo"></span>
+        </button>
+        <button class="button button-link button-nav pull-right">
+            <a href="" class="color_white">发布</a>
+        </button>
+
+        <h1 class="title">
+            发布报货
+        </h1>
+
+    </header>
+    <!-- 这里是标题栏end -->
+
+    <!-- 底部工具栏 -->
+    <nav class="bar bar-tab">
+        <a class="tab-item active" href="#">
+            <span class="icon icon-fangzi_house"></span>
+            <span class="tab-label">首页</span>
+        </a>
+        <a class="tab-item" href="#">
+            <span class="icon icon-fenlei-copy"></span>
+            <span class="tab-label">杂杂市场</span>
+        </a>
+        <a class="tab-item" href="#">
+            <span class="icon icon-dianpu"></span>
+            <span class="tab-label">报货频道</span>
+        </a>
+        <a class="tab-item" href="#">
+            <span class="icon icon-20xinkuan"></span>
+            <span class="tab-label">最新款</span>
+        </a>
+        <a class="tab-item" href="#">
+            <span class="icon icon-wode"></span>
+            <span class="tab-label">我的</span>
+        </a>
+    </nav>
+    <!-- 底部工具栏 end-->
+
+    <!-- 这里是页面内容区 -->
+    <div class="content ">
+        <!--   这里是 搜索面板-->
+        <div class="content-block reportgoods">
+
+            <div class="xingzhi" id="xingzhi">
+                <span >
+                  全部
+                </span>
+                <ul>
+                    <li><a href="#" class="on">个人</a></li>
+                    <li><a href="#">商家</a></li>
+
+                </ul>
+            </div>
+
+            <div class="xingzhi" id="reportgood_toggle" style="border: none">
+              <span>
+                 全部
+              </span>
+                <ul>
+                    <li><a href="#" class="on">耐克</a></li>
+                    <li><a href="#">阿迪</a></li>
+                    <li><a href="#">耐克</a></li>
+                    <li><a href="#">阿迪</a></li>
+                    <li><a href="#">耐克</a></li>
+                    <li><a href="#">阿迪</a></li>
+                   <!-- <div class="xingzhi" id="zhankaineirong">
+                          <span></span>
+                        <ul>-->
+                            <li><a href="#">111</a></li>
+                            <li><a href="#">222</a></li>
+                            <li><a href="#">3333</a></li>
+                    <!--    </ul>
+                    </div>-->
+                </ul>
+
+                <span class="zhankai">
+                       <span class="zhankai_zi">展开</span>
+                    <div class="yousanjiao " id="sanjiao">
+
+                     </div>
+
+                    <div class="shangsanjiao" id="">
+
+                     </div>
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class=" form_all">
+
+        <div class="list-block form_fabu">
+            <ul>
+                <!-- Text inputs -->
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">标题</div>
+                            <div class="item-input">
+                                <input type="text" placeholder="选填">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">尺码</div>
+                            <div class="item-input">
+                                <input type="text" placeholder="选填">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-inner">
+                            <div class="item-title label">尺码</div>
+                            <div class="item-input">
+
+                                <div class="reportgood_num">
+                                    <input id="min" name="" type="button" value="-" >
+                                    <input id="text_box" name="" type="text" value="1" >
+                                    <input id="add" name="" type="button" value="+" >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+            <div class="list-block form_fabu">
+                <ul>
+                    <!-- Text inputs -->
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">手机号</div>
+                                <div class="item-input">
+                                    <input type="text" placeholder="必填项">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">QQ号</div>
+                                <div class="item-input">
+                                    <input type="text" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">微信号</div>
+                                <div class="item-input">
+                                    <input type="text" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title label">联系地址</div>
+                                <div class="item-input">
+                                    <input type="text" placeholder="">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+              
+                     
+                </ul>
+            </div>
+	<!--  图片上传 Begin  -->
+				                  <div class="list-block form_fabu">
+					                  <div class="row add-pig">
+						
+						            <div class="col-33 " id="img1" data="">
+							          <span class="iconfont icon-jiahao">+</span>
+						           </div>
+						
+					                </div>
+				                  </div>
+				                       <input type="hidden" value="" name="smeta" id="smeta" />
+				                   <!--  图片上传 End  -->
+        </div>
+    </div>
+
+
+
+</div>
+
+
+<script type="text/javascript" src="js/jquery.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/light7.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/light7-swiper.min.js"></script>
+<script type="text/javascript" src="js/conmon.js"></script>
+
+<script type="text/javascript" src="js/webuploader.js"></script>
+
+<!-- 图片上传 Begin-->
+<script>
+	$(function() {webupload_pic(1);});
+	
+	function webupload_pic(i) {
+			
+			var next_i = Number(i)+1;			
+			var maxfileNum = 9;
+			var maxsize = 5000;		
+			var target_id = '#img' + i;
+			
+			
+				
+			var uploader = WebUploader.create({
+				multiple: false,
+				auto: true,
+				swf: "/static/js/webuploader/Uploader.swf ",
+				server: "/api/index.php/home/Rest/upload",
+				pick: {
+					id: target_id,
+					innerHTML: ''
+				},
+				accept: {
+					title: 'Images',
+					extensions: 'gif,jpg,jpeg,png',
+					mimeTypes: 'image/*'
+				},
+
+				compress: {
+					width: 640,
+					height: 640,
+					// 图片质量，只有type为`image/jpeg`的时候才有效。
+					quality: 95,
+					// 是否允许放大，如果想要生成小图的时候不失真，此选项应该设置为false.
+					allowMagnify: false,
+					// 是否允许裁剪。
+					crop: true,
+					// 是否保留头部meta信息。
+					preserveHeaders: true,
+					// 如果发现压缩后文件大小比原来还大，则使用原来图片
+					// 此属性可能会影响图片自动纠正功能
+					noCompressIfLarger: false,
+					// 单位字节，如果图片大小小于此值，不会采用压缩。
+					compressSize: 0
+				},
+				fileSingleSizeLimit: maxsize * 1024 * 1024,
+				fileNumLimit:1,
+				duplicate: false,
+				formData: {
+					code: 'identity',
+				}
+			});
+			
+			
+			//上传时
+			uploader.on('fileQueued', function(file) {								
+				console.log('  上传时 ');
+				$(target_id).html("<span style='font-size: 0.6rem;'>0 %</span>");
+
+			});
+			//上传中
+			uploader.on('uploadProgress', function(file, percentage) {
+				console.log('  上传中');
+				var percent = parseFloat(percentage * 100);
+				$(target_id).find("span").text(percent + "%");
+			});
+
+			uploader.on('uploadBeforeSend', function(block, data) {
+				data.maxsize = maxsize;
+			});
+
+			//上传成功后
+			uploader.on('uploadSuccess', function(file, response) {
+				console.log('  上传成功后'+next_i);
+				console.log(response);		
+				
+							
+				/* 如果图片上传未超过限制数量 生成上传按钮 */
+				var picnum = $('.add-pig').children('div').length;
+				if( picnum < maxfileNum){					
+					if($("#img"+next_i).length==0){
+						$(".add-pig").append('<div class="col-33 " id="img'+next_i+'" data=""><span class="iconfont icon-jiahao"></span></div>');
+					}						
+					webupload_pic(next_i);
+				}
+								
+				$(target_id).find(".img_common").remove();
+				$(target_id).find(".iconfont").remove();
+				
+				if(response.code == 1) {
+					$(target_id).html("");
+						/* 添加 删除 按钮 begin ………… */
+					$(target_id).prepend("<i class='iconfont icon-close' data='"+response.data['url']+"' xu='"+i+"'></i><img class='img_common ' width='100' height='100' src=" + response.data['url'] + " data-pic=" + response.data['filename'] + "  />");
+					var durl   = $(target_id).attr("data");
+					var oldurl = $("#smeta").val();
+					var newurl = oldurl + "," + response.data['url'];
+					$(target_id).attr("data", response.data['url']);
+					$("#smeta").val(newurl);
+					
+					/* 添加 删除 按钮 End ………… */
+					console.log(' durl = ' + durl);
+					console.log(' oldurl = ' + oldurl);
+					console.log(' newurl = ' + $("#smeta").val());
+					console.log('……………………END ………………');
+
+				} else {
+					$.alert("上传失败！请重试。");
+				}
+
+			});
+
+			uploader.on('uploadError', function(file, reason) {
+				console.log('  上传失败 ………………');
+				$.alert("上传失败！请重试。");
+
+			});
+
+
+	}
+
+	/*   Upload  end */
+
+	$(document).on('click', '.icon-close', function() {
+
+		var durl = $(this).attr("data");
+		var i    = $(this).attr("xu");
+		$.alert('确实要删除这张图片吗？', function () {
+
+			var oldurl = $("#smeta").val();
+			var newurl = oldurl.replace(durl, '');
+			$("#smeta").val(newurl);
+			$("#img" + i).remove();
+			/* 如果图片上传未超过限制数量 生成上传按钮 */
+			var picnum = $('.add-pig').children('div').length;
+			if( picnum < 9){
+				
+				if($("#img"+i).length==0){
+					$(".add-pig").append('<div class="col-33 " id="img'+i+'" data=""><span class="iconfont icon-jiahao"></span></div>');
+				}						
+				webupload_pic(i);
+				
+			}
+				
+			console.log(' durl = ' + durl);
+			console.log(' oldurl = ' + oldurl);
+			console.log(' newurl = ' + $("#smeta").val());
+
+		});
+
+
+	});
+</script>
+
+<!-- 图片上传 End -->
+</body>
+</html>

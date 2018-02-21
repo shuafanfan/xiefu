@@ -1,0 +1,135 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#">自主品牌广告列表</a></li>
+		</ul>
+		<form method="post" class="js-ajax-form">
+			<table class="table table-hover table-bordered">
+				<thead>
+					<tr>
+						<th width="50">{:L('SORT')}</th>
+						<th>品牌</th>
+						<th>商家ID</th>
+						<th>品牌LOGO</th>
+						<th>相册</th>
+						<th>QQ1</th>
+						<th>QQ2</th>
+						<th>微信号</th>
+						<th>二维码</th>
+						<th>主营产品</th>
+						<th>广告图1</th>
+						<th>广告图2</th>
+						<th>广告图3</th>
+						<th>广告图4</th>
+						<th>广告图5</th>
+						<th>广告剩余时间</th>
+						<th>广告投放时间（天）</th>
+						<th align="center">{:L('ACTIONS')}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<foreach name="lists" item="vo">
+					<tr>
+						<td><input name="listorders[{$vo.id}]" class="input input-order" type="text" size="5" value="{$vo.listorders}" title="ID:{$vo.id}"></td>
+						<td>{$vo.label}</td>
+						<td>{$vo.border}</td>
+						<td>
+							<if condition="$vo.logo eq ''">
+								<img src="__TMPL__Public/assets/images/default-thumbnail.png" style="width:30px;height:30px;">
+							<else />
+								<img src="{$vo.logo}" style="width:30px;height:30px;">
+							</if>
+						</td>
+						<td>{$vo.product_url}</td>
+						<td>{$vo.qq1}</td>
+						<td>{$vo.qq2}</td>
+						<td>{$vo.wechart}</td>
+						<td>
+						<a href="javascript:image_preview_dialog('{$vo.code}')"   rel="lightbox">
+							<if condition="$vo.code eq ''">
+								<img src="__TMPL__Public/assets/images/default-thumbnail.png" style="width:30px;height:30px;">
+							<else />
+								<img src="{$vo.code}" style="width:30px;height:30px;">
+							</if>
+						</a>
+						</td>
+						<td>{$vo.descript}</td>
+						<td>
+							<a href="javascript:image_preview_dialog('{$vo.blogs}')"   rel="lightbox">
+								<if condition="$vo['blogos'][0] eq ''">
+									<img src="__TMPL__Public/assets/images/default-thumbnail.png" style="width:30px;height:30px;">
+								<else />
+									<img src="{$vo['blogos'][0]}" style="width:30px;height:30px;">
+								</if>
+							</a>
+						</td>
+						<td>
+							<a href="javascript:image_preview_dialog('{$vo['blogs'][1]}')"   rel="lightbox">
+								<if condition="$vo['blogos'][1] eq ''">
+									<img src="__TMPL__Public/assets/images/default-thumbnail.png" style="width:30px;height:30px;">
+								<else />
+									<img src="{$vo['blogos'][1]}" style="width:30px;height:30px;">
+								</if>
+							</a>
+						</td>
+						<td>
+							<a href="javascript:image_preview_dialog('{$vo['blogs'][2]}')"   rel="lightbox">
+								<if condition="$vo['blogos'][2] eq ''">
+									<img src="__TMPL__Public/assets/images/default-thumbnail.png" style="width:30px;height:30px;">
+								<else />
+									<img src="{$vo['blogos'][2]}" style="width:30px;height:30px;">
+								</if>
+							</a>
+						</td>
+						<td>
+							<a href="javascript:image_preview_dialog('{$vo['blogs'][3]}')"   rel="lightbox">
+								<if condition="$vo['blogos'][3] eq ''">
+									<img src="__TMPL__Public/assets/images/default-thumbnail.png" style="width:30px;height:30px;">
+								<else />
+									<img src="{$vo['blogos'][3]}" style="width:30px;height:30px;">
+								</if>
+							</a>
+						</td>
+						<td>
+							<a href="javascript:image_preview_dialog('{$vo['blogs'][4]}')"   rel="lightbox">
+								<if condition="$vo['blogos'][4] eq ''">
+									<img src="__TMPL__Public/assets/images/default-thumbnail.png" style="width:30px;height:30px;">
+								<else />
+									<img src="{$vo['blogos'][4]}" style="width:30px;height:30px;">
+								</if>
+							</a>
+						</td>
+						<td>
+							<if condition="$vo.left_time_format eq 0">
+								<span class="label label-sm label-warning">已到期</span>
+							<else/>
+								<span class="label label-sm label-warning">剩余{$vo.left_time_format}到期</span>
+							</if>
+						</td>
+						<td>{$vo.gg_day}</td>
+						<td align="center">
+							<a href="{:U('Ownbrand/gg_delete',array('id'=>$vo['id']))}" class="js-ajax-dialog-btn" data-msg="确认删除">删除</a>
+							<if condition="$vo.gg_status eq 1">
+								|<a href="{:U('Ownbrand/ban',array('id'=>$vo['id']))}" class="js-ajax-dialog-btn" data-msg="确认禁用">关闭</a>
+								|<a href="{:U('Xiefu/Ownbrand/setperiod',array('id'=>$vo['id']))}" >广告投放时间</a>
+							<else/>
+								|<a href="{:U('Ownbrand/cancelban',array('id'=>$vo['id']))}" class="js-ajax-dialog-btn" data-msg="确认启用">启用</a>
+							</if>
+							
+						</td>
+					</tr>
+					</foreach>
+				</tbody>
+			</table>
+			<div class="table-actions">
+				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('Ownbrand/listorders')}">{:L('SORT')}</button>
+				<!--  <button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('Ownbrand/ggtime')}">广告投放时间</button>-->
+			</div>
+			<div class="pagination">{$page}</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

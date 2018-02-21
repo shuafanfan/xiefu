@@ -1,0 +1,114 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:U('brand/index')}">品牌管理</a></li>
+			<li ><a href="{:U('brand/add')}">添加品牌</a></li>
+			<li class="active"><a href="{:U('Brand/addlogo')}">添加首页统一Logo</a></li>
+		</ul>
+		<form method="post" class="form-horizontal js-ajax-form" action="{:U('brand/add_postlogo')}">
+			<fieldset>
+<!-- 				<div class="control-group">
+					<label class="control-label">品牌名称</label>
+					<div class="controls">
+						<input type="text" name="name" value=""><span class="form-required">*</span>
+					</div>
+				</div> -->
+				<!--  
+				<div class="control-group">
+					<label class="control-label">类目</label>
+					<div class="controls">
+						<input type="text" name="category_name"  id="category_name" value="{$info.category_name}" style="width: 400px">
+						<input type="hidden" name="category_id" value="{$info.category_id}" id="category_id" style="width: 400px">
+						<a class='btnGrayS vm bigbtn' onclick="addGoods('category_id',0)" class="a_choose">选择</a>
+					</div>
+				</div>
+				
+				<div class="control-group">
+					<label class="control-label">类型</label>
+					<div class="controls">
+						<select name="type">
+							<option value="0">选择</option>
+							<option value="1">自主品牌</option>
+							<option value="2">非自主品牌</option>
+						</select>
+					</div>
+				</div>-->
+				
+				<div class="control-group" style="">
+					<label class="control-label" style="margin-right: 30px;">Logo</label>
+					<input type="hidden" name="logo" id="thumb" value="">
+					<a href="javascript:void(0);" onclick="flashupload('thumb_images', '附件上传','thumb',thumb_images,'1,jpg|jpeg|gif|png|bmp,1,,,1','','','');return false;">
+						<img src="{$logo.logo}" id="thumb_preview" width="135" style="cursor: hand" />
+					</a>
+					<input type="button" class="btn btn-small" onclick="$('#thumb_preview').attr('src','__TMPL__Public/assets/images/default-thumbnail.png');$('#thumb').val('');return false;" value="取消图片">
+				</div>
+<!-- 				<div class="control-group">
+					<label class="control-label">图片链接地址</label>
+					<div class="controls">
+						<input type="text" name="url" value="http://">
+					</div>
+				</div> -->
+				
+				
+			</fieldset>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary js-ajax-submit">{:L('ADD')}</button>
+				<a class="btn" href="{:U('brand/index')}">{:L('BACK')}</a>
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript" src="__PUBLIC__/js/content_addtop.js"></script>
+	<script src="__PUBLIC__/js/artDialog/jquery.artDialog.js?skin=default"></script>
+	<script src="__PUBLIC__/js/artDialog/plugins/iframeTools.js"></script>
+	<script>
+		$(function() {
+			$("#navcid_select").change(function() {
+				if(location.search.indexOf("?")>=0){
+					location.href = location.href + "&cid=" + $(this).val();
+				}else{
+					location.href = location.href + "?cid=" + $(this).val();
+				}
+			});
+
+			$("#selecthref").click(function() {
+				$('#outlink_input').removeAttr('name');
+				$('#selecturl').attr({
+					'checked' : 'checked',
+					'name' : 'href'
+				});
+			});
+			$("input[name='href']").click(function() {
+				$('#selecthref').removeAttr('name');
+				$('#outlink').attr({
+					'checked' : 'checked',
+					'name' : 'href'
+				});
+			});
+			/*
+			Wind.use('ajaxForm','artDialog','iframeTools', function () {
+			 	$("#href_input").click(function(){
+			 		art.dialog.open("{:U('nav/select')}", {
+			            title: "选择链接地址",
+			            close: function () {
+			    			var checked_v = art.dialog.data('checked_v');
+			    			if (checked_v !== undefined) $('#href_input').val(checked_v);
+			    			var checked_u = art.dialog.data('checked_u');
+			    			if (checked_u !== undefined) $('#u_input').val(checked_u);
+			    		}
+			        },false);
+				});
+			});
+			 */
+		});
+	</script>
+	<script type="text/javascript">
+		function addGoods(domid,keyword){
+			art.dialog.data('domid', domid);
+			art.dialog.open('?g=Xiefu&m=brand&a=category',{lock:true,title:'选择类目',width:900,height:500,yesText:'关闭',background: '#000',opacity: 0.45});
+		}
+	
+	</script>
+</body>
+</html>

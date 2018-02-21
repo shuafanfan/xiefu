@@ -1,0 +1,158 @@
+[ 2017-09-30T13:46:10+08:00 ] 121.204.120.196 /index.php?g=report&m=reportgoods&a=have
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000026s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000088s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000160s ]
+SQL: SHOW COLUMNS FROM `ts_report_have` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_report_have` WHERE `uid` = '148' AND `rid` = 250 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ts_business` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_business` WHERE `user_id` = 148 LIMIT 1   [ RunTime:0.0002s ]
+ERR: 1048:Column 'bid' cannot be null
+ [ SQL语句 ] : INSERT INTO `ts_report_have` (`rid`,`uid`,`bid`,`bname`,`is_shouq`,`user_type`,`creat_time`) VALUES ('250','148',NULL,NULL,NULL,'3','2017-09-30 13:46:10')
+ERR: 1048:Column 'bid' cannot be null
+ [ SQL语句 ] : INSERT INTO `ts_report_have` (`rid`,`uid`,`bid`,`bname`,`is_shouq`,`user_type`,`creat_time`) VALUES ('250','148',NULL,NULL,NULL,'3','2017-09-30 13:46:10')
+
+[ 2017-09-30T13:46:12+08:00 ] 121.204.120.196 /index.php?g=report&m=reportgoods&a=have
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000024s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000076s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000150s ]
+SQL: SHOW COLUMNS FROM `ts_report_have` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_report_have` WHERE `uid` = '148' AND `rid` = 250 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `ts_business` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_business` WHERE `user_id` = 148 LIMIT 1   [ RunTime:0.0001s ]
+ERR: 1048:Column 'bid' cannot be null
+ [ SQL语句 ] : INSERT INTO `ts_report_have` (`rid`,`uid`,`bid`,`bname`,`is_shouq`,`user_type`,`creat_time`) VALUES ('250','148',NULL,NULL,NULL,'3','2017-09-30 13:46:12')
+ERR: 1048:Column 'bid' cannot be null
+ [ SQL语句 ] : INSERT INTO `ts_report_have` (`rid`,`uid`,`bid`,`bname`,`is_shouq`,`user_type`,`creat_time`) VALUES ('250','148',NULL,NULL,NULL,'3','2017-09-30 13:46:12')
+
+[ 2017-09-30T13:46:13+08:00 ] 121.204.120.196 /index.php?g=report&m=reportgoods&a=have
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000025s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000077s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000149s ]
+SQL: SHOW COLUMNS FROM `ts_report_have` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_report_have` WHERE `uid` = '148' AND `rid` = 250 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `ts_business` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_business` WHERE `user_id` = 148 LIMIT 1   [ RunTime:0.0001s ]
+ERR: 1048:Column 'bid' cannot be null
+ [ SQL语句 ] : INSERT INTO `ts_report_have` (`rid`,`uid`,`bid`,`bname`,`is_shouq`,`user_type`,`creat_time`) VALUES ('250','148',NULL,NULL,NULL,'3','2017-09-30 13:46:13')
+ERR: 1048:Column 'bid' cannot be null
+ [ SQL语句 ] : INSERT INTO `ts_report_have` (`rid`,`uid`,`bid`,`bname`,`is_shouq`,`user_type`,`creat_time`) VALUES ('250','148',NULL,NULL,NULL,'3','2017-09-30 13:46:13')
+
+[ 2017-09-30T13:46:15+08:00 ] 121.204.120.196 /index.php?g=report&m=reportgoods&a=have
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000026s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000078s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000165s ]
+SQL: SHOW COLUMNS FROM `ts_report_have` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_report_have` WHERE `uid` = '148' AND `rid` = 250 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `ts_business` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_business` WHERE `user_id` = 148 LIMIT 1   [ RunTime:0.0001s ]
+ERR: 1048:Column 'bid' cannot be null
+ [ SQL语句 ] : INSERT INTO `ts_report_have` (`rid`,`uid`,`bid`,`bname`,`is_shouq`,`user_type`,`creat_time`) VALUES ('250','148',NULL,NULL,NULL,'3','2017-09-30 13:46:15')
+ERR: 1048:Column 'bid' cannot be null
+ [ SQL语句 ] : INSERT INTO `ts_report_have` (`rid`,`uid`,`bid`,`bname`,`is_shouq`,`user_type`,`creat_time`) VALUES ('250','148',NULL,NULL,NULL,'3','2017-09-30 13:46:15')
+
+[ 2017-09-30T13:46:16+08:00 ] 121.204.120.196 /index.php?g=report&m=reportgoods&a=have
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000039s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000076s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000164s ]
+SQL: SHOW COLUMNS FROM `ts_report_have` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_report_have` WHERE `uid` = '148' AND `rid` = 250 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `ts_business` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_business` WHERE `user_id` = 148 LIMIT 1   [ RunTime:0.0001s ]
+ERR: 1048:Column 'bid' cannot be null
+ [ SQL语句 ] : INSERT INTO `ts_report_have` (`rid`,`uid`,`bid`,`bname`,`is_shouq`,`user_type`,`creat_time`) VALUES ('250','148',NULL,NULL,NULL,'3','2017-09-30 13:46:16')
+ERR: 1048:Column 'bid' cannot be null
+ [ SQL语句 ] : INSERT INTO `ts_report_have` (`rid`,`uid`,`bid`,`bname`,`is_shouq`,`user_type`,`creat_time`) VALUES ('250','148',NULL,NULL,NULL,'3','2017-09-30 13:46:16')
+
+[ 2017-09-30T14:03:05+08:00 ] 121.204.120.196 /index.php?g=report&m=reportgoods&a=have
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000024s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000076s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000148s ]
+SQL: SHOW COLUMNS FROM `ts_report_have` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_report_have` WHERE `uid` = '148' AND `rid` = 250 LIMIT 1   [ RunTime:0.0001s ]
+SQL: SHOW COLUMNS FROM `ts_business` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_business` WHERE `user_id` = 148 LIMIT 1   [ RunTime:0.0001s ]
+ERR: 1048:Column 'bid' cannot be null
+ [ SQL语句 ] : INSERT INTO `ts_report_have` (`rid`,`uid`,`bid`,`bname`,`is_shouq`,`user_type`,`creat_time`) VALUES ('250','148',NULL,NULL,NULL,'3','2017-09-30 14:03:05')
+ERR: 1048:Column 'bid' cannot be null
+ [ SQL语句 ] : INSERT INTO `ts_report_have` (`rid`,`uid`,`bid`,`bname`,`is_shouq`,`user_type`,`creat_time`) VALUES ('250','148',NULL,NULL,NULL,'3','2017-09-30 14:03:05')
+
+[ 2017-09-30T14:04:41+08:00 ] 121.204.120.196 /index.php?g=report&m=reportgoods&a=have
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000025s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000082s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000172s ]
+SQL: SHOW COLUMNS FROM `ts_report_have` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_report_have` WHERE `uid` = '114' AND `rid` = 250 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `ts_business` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_business` WHERE `user_id` = 114 LIMIT 1   [ RunTime:0.0001s ]
+SQL: INSERT INTO `ts_report_have` (`rid`,`uid`,`bid`,`bname`,`is_shouq`,`user_type`,`creat_time`) VALUES ('250','114','88','米其林','0','3','2017-09-30 14:04:41') [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `ts_report_goods` [ RunTime:0.0005s ]
+SQL: UPDATE `ts_report_goods` SET `sum`=sum+1 WHERE `id` = 250 [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T14:05:06+08:00 ] 121.204.120.196 /index.php?g=report&m=reportgoods&a=have
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000024s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000076s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000146s ]
+SQL: SHOW COLUMNS FROM `ts_report_have` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_report_have` WHERE `uid` = '142' AND `rid` = 250 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ts_business` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_business` WHERE `user_id` = 142 LIMIT 1   [ RunTime:0.0002s ]
+ERR: 1048:Column 'bid' cannot be null
+ [ SQL语句 ] : INSERT INTO `ts_report_have` (`rid`,`uid`,`bid`,`bname`,`is_shouq`,`user_type`,`creat_time`) VALUES ('250','142',NULL,NULL,NULL,'3','2017-09-30 14:05:06')
+ERR: 1048:Column 'bid' cannot be null
+ [ SQL语句 ] : INSERT INTO `ts_report_have` (`rid`,`uid`,`bid`,`bname`,`is_shouq`,`user_type`,`creat_time`) VALUES ('250','142',NULL,NULL,NULL,'3','2017-09-30 14:05:06')
+
+[ 2017-09-30T14:07:08+08:00 ] 121.204.120.196 /index.php?g=report&m=reportgoods&a=newstyle
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000027s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000076s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000159s ]
+SQL: SHOW COLUMNS FROM `ts_brand` [ RunTime:0.0004s ]
+SQL: SELECT * FROM `ts_brand`  [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000201s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000233s ]
+SQL: SHOW COLUMNS FROM `ts_user_notice` [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ts_user_notice` WHERE `is_delete` = 0 AND `is_read` = 0 AND `to_uid` = 114 LIMIT 1   [ RunTime:0.0001s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.017443s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.017470s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000026s ]
+INFO: Run Common\Behavior\TmplStripSpaceBehavior [ RunTime:0.000394s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000453s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000027s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000047s ]
+
+[ 2017-09-30T14:49:07+08:00 ] 58.22.7.108 /index.php?g=report&m=reportgoods&a=newstyle
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000026s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000078s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000153s ]
+SQL: SHOW COLUMNS FROM `ts_brand` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_brand`  [ RunTime:0.0001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000208s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000239s ]
+SQL: SHOW COLUMNS FROM `ts_user_notice` [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `ts_user_notice` WHERE `is_delete` = 0 AND `is_read` = 0 AND `to_uid` = 114 LIMIT 1   [ RunTime:0.0001s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.017398s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.017426s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000028s ]
+INFO: Run Common\Behavior\TmplStripSpaceBehavior [ RunTime:0.000388s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000450s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000026s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000047s ]
+

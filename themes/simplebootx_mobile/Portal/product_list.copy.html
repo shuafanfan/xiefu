@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>产品列表</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="__TMPL__/Public/css/mui.min.css" />
+		<link rel="stylesheet" href="__TMPL__/Public/css/style.css" />
+		<!--App自定义的css-->
+		<link rel="stylesheet" type="text/css" href="__TMPL__/Public/css/app.css" />
+		<style>
+			.news_list li:hover,
+			.news_list li:active,
+			.news_list li:focus {
+				background: #3768BB;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--侧滑菜单容器-->
+		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable">
+			<!--菜单部分-->
+            <tc_include file="Public:slide" />
+			<div class="mui-inner-wrap">
+
+				<div id="offCanvasContentScroll" class="mui-content mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<!--  24小时咨询热线-->
+                        <tc_include file="Public:idx_head" />
+                        
+						<div class="mui-bar list_head" style="position: initial !important;">
+							<a class="mui-action-back mui-icon mui-icon-back mui-pull-left"></a>
+							<a id="offCanvasBtn" href="#offCanvasSide" class="mui-icon mui-action-menu mui-icon-bars mui-pull-right"></a>
+							<h1 class="mui-title">{$termname['name']}</h1>
+						</div>
+						<div class="news_list">
+							<ul>
+								<!--图片宽高为235*110-->
+							<foreach name="product" item="vo">
+								<li>
+									<a href="{:leuu('portal/product/index',array('id'=>$vo['product_id']))}">
+										<div class="list_pic">
+										        <php>
+                                                    $smeta=json_decode($vo['smeta'],true);
+                                                </php>
+                                                <if condition="$smeta['thumb'] eq null">
+                                                    <img src="__TMPL__/Public/images/img666.jpg" />
+                                                    <else />
+                                                    <img src="{:sp_get_asset_upload_path($smeta['thumb'])}">
+                                                </if>
+										 </div>
+										<div class="list_rg">
+											<h1>{$vo.post_title}</h1>
+											<p>{$vo.post_excerpt}</p>
+										</div>
+									</a>
+								</li>
+							</foreach>
+							</ul>
+							
+							<!--分页-->
+                            <nav style="text-align: center;">
+                                分页的功能
+                                <ul class="pagination">
+                                    <li class="active">
+                                        <span class="sr-only">{$data.page}</span></span>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <!--分页-->
+							<div class="mui-content-padded fy_page">
+								<ul class="mui-pagination">
+									<li class="mui-previous mui-disabled">
+										<a href="#">
+											&laquo;
+										</a>
+									</li>
+									<li class="mui-active">
+										<a href="#">
+											1
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											2
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											3
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											4
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											5
+										</a>
+									</li>
+									<li class="mui-next">
+										<a href="#">
+											&raquo;
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+						<!--尾部声明-->
+						<tc_include file="Public:b_footer" />
+
+					</div>
+					<!--底部导航-->
+					<tc_include file="Public:footer" />
+				</div>
+
+				<!-- off-canvas backdrop -->
+				<div class="mui-off-canvas-backdrop"></div>
+			</div>
+
+		</div>
+		
+		<script type="text/javascript" src="__TMPL__/Public/js/jquery.min.js"></script>
+		<script src="__TMPL__/Public/js/mui.min.js"></script>
+
+	</body>
+
+</html>

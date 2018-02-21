@@ -1,0 +1,229 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>报货中心</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="__TMPL__Public//favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="__TMPL__Public/css/light7.min.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/light7-swiper.min.css">
+
+    <link rel="stylesheet" href="__TMPL__Public/css/style.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/common.css">
+
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_376445_kqepy6h9mkne9udi.css">
+
+
+</head>
+
+<body>
+
+<!-- page 容器 -->
+<div class="page page-current">
+    <!-- 这里是标题栏栏 -->
+    <header class="bar bar-nav">
+         <a href="" class="color_white">
+        <button class="button button-link button-nav pull-left">
+            <span class="icon icon-zuo"></span>
+        </button>
+        </a>
+        <a href="{:U('report/reportgoods/newreport')}" class="color_white">
+        <button class="button button-link button-nav pull-right">
+            发布报货
+        </button>
+        </a>
+        <h1 class="title">
+            报货记录
+        </h1>
+
+    </header>
+    <!-- 这里是标题栏end -->
+
+    <!-- 底部工具栏 -->
+ <tc_include file="Public:bottom" />
+    <!-- 底部工具栏 end-->
+
+    <!-- 这里是页面内容区 -->
+    <div class="content ">
+        <!--   这里是 搜索面板-->
+        <div class="content-block reportgoods">
+ 
+            <div class="buttons-tab">
+                <a href="{:U('report/reportgoods/mobile_reportlist')}&type=all" class="active button">全部</a>
+                <a href="{:U('report/reportgoods/mobile_reportlist')}&type=on" class="button">个人发布中</a>
+                <a href="{:U('report/reportgoods/mobile_reportlist')}&type=business" class="button">商家发布中</a>
+                <a href="{:U('report/reportgoods/mobile_reportlist')}&type=back" class="button">被退回</a>
+                <a href="{:U('report/reportgoods/mobile_reportlist')}&type=off" class="button">已下架</a>
+            </div>
+
+                <div class="tabs">
+                    <div id="tab1" class="tab active">
+                        <div class="list-block media-list reportgoods_list reportgood_record reportgood_centre">
+                            <ul>
+                                <div class=" reportgoods_title">
+                                    <div class="col-75">
+                                        &nbsp;
+                                    </div>
+                                    <div class=" col-25">
+                                        <a href="__TMPL__Public/">
+                           <span class="reportgoods_button button button-big button-fill btn_bg_none">
+                           全部删除
+                           </span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <volist name="reportgoods" id="vo">
+                                <li>
+                                    <span href="__TMPL__Public/#" class=" item-content">
+                                        <div class="item-media">
+                                            <img src="{$vo.photos}" >
+                                        </div>
+                                        <div class="item-inner">
+
+                                            <div class="item-subtitle">{$vo.brand}  {$vo.title}</div>
+
+                                            <div class="item-title">数量:{$vo.num}</div>
+
+                                            <div class="item-title-row">
+                                                <div class="item-title">
+                                                {$vo.sum}家商家有货
+                                                </div>
+                                                <div class="item-after">
+                                                    <span class="bg_blue  "><a href="{:U('report/reportgoods/detail')}&id={$vo.id}">[查看联系方式]</a></span>
+                                              </div>
+                                            </div>
+                                            <div class="item-title">{$vo.add_time}</div>
+                                            <div class="item-title bg_red"><?php $a=array('0'=>'审核中','1'=>'发布中','2'=>'退回中 :','3'=>'已下架'); echo $a[$vo['status']]?> {$vo.sh_memo}</div>
+                                            <div class="item-title-row margin_top1">
+                                                <div class="item-title">
+                                                 </div>
+                                                <div class="item-after">
+                                                <?php if($vo['status']==1){ ?>
+                                                    <span class="caozuo_btn button button-big button-fill off" data="{$vo.id}">下架</span>
+                                                <?php }if($vo['status']==2||$vo['status']==0){ ?>
+                                                    <a href="{:U('report/reportgoods/edit')}&id={$vo.id}">
+                                                    <span class="caozuo_btn button button-big button-fill ">修改</span>
+                                                    </a>
+                                                <?php }if($vo['status']==3){ ?>
+                                                    <span class="caozuo_btn button button-big button-fill on" data="{$vo.id}">恢复</span>
+                                                <?php } ?>
+                                                    <span class="caozuo_btn button button-big button-fill btn_bg_none delete" data="{$vo.id}">彻底删除</span>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </a>
+                                </li>
+                                </volist>
+                            </ul>
+                        </div>
+
+                    </div>
+                 
+        
+
+                    </div>
+                </div>
+
+        </div>
+
+        <!--   这里是搜索面板 end-->
+    </div>
+</div>
+
+
+<script type="text/javascript" src="__TMPL__Public/js/jquery.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="__TMPL__Public/js/light7.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="__TMPL__Public/js/light7-swiper.min.js"></script>
+<script type="text/javascript" src="__TMPL__Public/js/conmon.js"></script>
+<script>
+        $('.off').click(function(){
+            id=$(this).attr('data');
+             $.confirm('确定下架吗？', 
+                        function () {
+                            $.ajax({
+                                type:"get",
+                                url: "{:U('report/reportgoods/off')}",
+                                data:  {'id':id},
+                                dataType:"json",
+                                success:function(data){ 
+                                 console.log(data);
+                                    if(data['status']==1){
+                                       $.alert('下架成功');
+                                         location.reload();
+                                    }else{
+                                        $.alert('下架失败');
+                                         location.reload();
+                                    }
+                                }
+                            })
+                        } 
+                     
+                      );
+               
+             
+        });
+        
+        $('.on').click(function(){
+            id=$(this).attr('data');
+             $.confirm('确定恢复吗？', 
+                        function () {
+                            $.ajax({
+                                type:"get",
+                                url: "{:U('report/reportgoods/on')}",
+                                data:  {'id':id},
+                                dataType:"json",
+                                success:function(data){ 
+                                 console.log(data);
+                                    if(data['status']==1){
+                                       $.alert('恢复成功,等待审核');
+                                         location.reload();
+                                    }else{
+                                        $.alert('恢复失败');
+                                         location.reload();
+                                    }
+                                }
+                            })
+                        } 
+                     
+                      );
+               
+             
+        });
+
+        $('.delete').click(function(){
+            id=$(this).attr('data');
+             $.confirm('确定删除吗？', 
+                        function () {
+                            $.ajax({
+                                type:"get",
+                                url: "{:U('report/reportgoods/delete')}",
+                                data:  {'id':id},
+                                dataType:"json",
+                                success:function(data){ 
+                                 console.log(data);
+                                    if(data['status']==1){
+                                       $.alert('删除成功');
+                                         location.reload();
+                                    }else{
+                                        $.alert('删除失败');
+                                         location.reload();
+                                    }
+                                }
+                            })
+                        } 
+                     
+                      );
+               
+             
+        });
+
+</script>
+</body>
+</html>

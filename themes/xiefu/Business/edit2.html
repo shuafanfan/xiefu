@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商家编辑</title>
+    <link rel="stylesheet" href="__TMPL__Public/css/gerenzhongxin_header_left.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/base.css">
+    <!--更改用户头像-->
+    <link href="__TMPL__Public/css/bootstrap-3.3.4.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__TMPL__Public/css/font-awesome.4.6.0.css">
+    <link href="__TMPL__Public/css/touxiang.css" rel="stylesheet">
+    <!--更改用户头像-->
+</head>
+<body>
+<div class="all">
+    <tc_include file="Public:header2" />
+    <div class="huowu_all" >
+        <div class="container">
+            <tc_include file="Public:accountleft" />
+        <div class="huowu_you" style="position: relative">
+            <!--这里是商家logo、二维码-->
+            <div class="merchant_img_all">
+                <div class="merchant_logo_all">
+                    <div class="merchant_logo_div"></div>
+                    <button type="button" class="btn btn-primary merchant_img_btn"  data-toggle="modal" data-target="#avatar-modal" style="margin: 10px;">
+                        商家LOGO
+                    </button>
+                </div>
+
+                <div class="merchant_erweima_all">
+                    <div class="merchant_erweima_div"></div>
+                    <button type="button" class="btn btn-primary merchant_img_btn"  data-toggle="modal" data-target="#avatar-modal" style="margin: 10px;">
+                       微信二维码上传
+                    </button>
+                </div>
+                <p class="hint_p">照片格式GIF、JPEG、PNG、最适合尺寸500*500像素</p>
+            </div>
+            <!--     这里是照片上传-->
+            <div class="fabu_zhaopian ">
+                <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog" tabindex="-1">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <!--<form class="avatar-form" action="upload-logo.php" enctype="multipart/form-data" method="post">-->
+                            <form class="avatar-form">
+                                <div class="modal-header">
+                                    <button class="close" data-dismiss="modal" type="button">&times;</button>
+                                    <h4 class="modal-title" id="avatar-modal-label">上传图片</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="avatar-body">
+                                        <div class="avatar-upload">
+                                            <input class="avatar-src" name="avatar_src" type="hidden">
+                                            <input class="avatar-data" name="avatar_data" type="hidden">
+                                            <label for="avatarInput" style="line-height: 35px;">图片上传</label>
+                                            <button class="btn btn-danger"  type="button" style="height: 35px;" onclick="$('input[id=avatarInput]').click();">请选择图片</button>
+                                            <span id="avatar-name"></span>
+                                            <input class="avatar-input hide" id="avatarInput" name="avatar_file" type="file"></div>
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <div class="avatar-wrapper"></div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="avatar-preview preview-lg" id="imageHead">
+
+                                                </div>
+                                                <!--<div class="avatar-preview preview-md"></div>
+                                        <div class="avatar-preview preview-sm"></div>-->
+                                            </div>
+                                        </div>
+                                        <div class="row avatar-btns">
+                                            <div class="col-md-4">
+                                                <div class="btn-group">
+                                                    <button class="btn btn-danger fa fa-undo" data-method="rotate" data-option="-90" type="button" title="Rotate -90 degrees"> 向左旋转</button>
+                                                </div>
+                                                <div class="btn-group">
+                                                    <button class="btn  btn-danger fa fa-repeat" data-method="rotate" data-option="90" type="button" title="Rotate 90 degrees"> 向右旋转</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5" style="text-align: right;">
+                                                <button class="btn btn-danger fa fa-arrows" data-method="setDragMode" data-option="move" type="button" title="移动">
+							            <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;setDragMode&quot;, &quot;move&quot;)">
+							            </span>
+                                                </button>
+                                                <button type="button" class="btn btn-danger fa fa-search-plus" data-method="zoom" data-option="0.1" title="放大图片">
+							            <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;zoom&quot;, 0.1)">
+							              <!--<span class="fa fa-search-plus"></span>-->
+							            </span>
+                                                </button>
+                                                <button type="button" class="btn btn-danger fa fa-search-minus" data-method="zoom" data-option="-0.1" title="缩小图片">
+							            <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;zoom&quot;, -0.1)">
+							              <!--<span class="fa fa-search-minus"></span>-->
+							            </span>
+                                                </button>
+                                                <button type="button" class="btn btn-danger fa fa-refresh" data-method="reset" title="重置图片">
+								            <span class="docs-tooltip" data-toggle="tooltip" title="" data-original-title="$().cropper(&quot;reset&quot;)" aria-describedby="tooltip866214">
+                                                </button>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <button class="btn btn-danger btn-block avatar-save fa fa-save" type="button" data-dismiss="modal"> 保存修改</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="loading" aria-label="Loading" role="img" tabindex="-1"></div>
+
+            </div>
+            <!--     这里是照片上传end-->
+            <!--这里是商家logo、二维码end-->
+
+            <div class="fabuqingcang">
+                <div class="shangjia_fabu " style="margin-top: -20px">
+
+                    <div>
+                        <div class="cuowu_tishi">
+                            <img src="__TMPL__Public/images/jinggao.png"><span> 请输入用户名和密码</span>
+                        </div>
+                    </div>
+                    <ul>
+
+                        <li>
+
+                            <div for="" class="shangjia_fabu_left_title">
+                                商家主题:
+                            </div>
+
+                            <div class="shop_skin">
+                                <ul>
+                                    <li>
+                                        <div class="skin_color">
+                                            <img src="__TMPL__Public/images/banner1.png">
+                                        </div>
+
+                                        <div class="skin_btn">
+                                            <a >预览</a>
+                                            <a href="" style="float: right">生效</a>
+                                        </div>
+
+
+                                    </li>
+                                    <li>
+                                        <div class="skin_color">
+                                            <img src="__TMPL__Public/images/banner3.png">
+                                        </div>
+
+                                        <div class="skin_btn">
+                                            <a >预览</a>
+                                            <a href="" style="float: right">生效</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="skin_color">
+                                            <img src="__TMPL__Public/images/banner2.png">
+                                        </div>
+
+                                        <div class="skin_btn">
+                                            <a >预览</a>
+                                            <a href="" style="float: right">生效</a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="skin_color">
+                                            <img src="__TMPL__Public/images/banner3.png">
+                                        </div>
+
+                                        <div class="skin_btn">
+                                            <a >预览</a>
+                                            <a href="" style="float: right">生效</a>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </li>
+                        <li>
+                            <div for="" class="shangjia_fabu_left_title">
+                                商家网址:
+                            </div>
+                            <div for="" class="shangjia_fabu_left_title" style="text-align: left">
+                               <input id="site" type="text" class="" name="" tabindex="" maxlength=""
+                                   autocomplete="" placeholder="" value="{$res.site}">&nbsp; &nbsp;xiefu.com
+                            </div>
+
+                        </li>
+                        <li>
+                            <div for="" class="shangjia_fabu_left_title">
+                                <span class="xinghao">*</span>商家名称:
+                            </div>
+
+                            <input id="bname" type="text" class="" name="bname" tabindex="" maxlength=""
+                                   autocomplete="" placeholder="名称只能设置一次，设置后锁定名称" value="{$res.name}">
+                        </li>
+                        <li>
+                            <div for="" class="shangjia_fabu_left_title">
+                                <span class="xinghao">*</span>是否自主品牌:
+                            </div>
+
+                            <div class="shangjia_fabu_radio">
+                            <input id="ownbrand" type="radio" class="ownbrand" name="ownbrand"  placeholder="" value="1" <?php echo $res['ownbrand']==1?'checked':'' ?>>
+                                <span>是</span>
+                            </div>
+                            <div class="shangjia_fabu_radio">
+                            <input id="ownbrand" type="radio" class="ownbrand" name="ownbrand"  placeholder="" value="2" <?php echo $res['ownbrand']!=1?'checked':'' ?>>
+                                <span>否</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div for="" class="shangjia_fabu_left_title">
+                                <span class="xinghao">*</span>非自主商家类目:
+                            </div>
+
+                            <div class="apply_class">
+                                <select class="one">
+                                    <option value="一级类目">
+                                      一级类目
+                                    </option>
+                                    {$onese}
+                                </select>
+                                <select class="two">
+                                      <option value="二级类目">
+                                         二级类目
+                                      </option>
+                                      {$two_option}
+                                </select>
+
+                                <select class="three">
+                                         <option value="三级类目">
+                                            三级类目
+                                         </option>
+                                          {$three_option}
+                                </select>
+
+                            </div>
+                        </li>
+                        <li>
+
+                            <div for="" class="shangjia_fabu_left_title">
+                                <span class="xinghao">*</span>产品相册地址:
+                            </div>
+
+                            <input id="product_url" type="text" class="" name="" tabindex="" maxlength=""
+                                   autocomplete="" placeholder="" value="{$res.product_url}">
+                        </li>
+                        <li>
+
+                            <div for="" class="shangjia_fabu_left_title">
+                                <span class="xinghao">*</span>第一展示QQ:
+                            </div>
+
+                            <input id="qq1" type="text" class="" name="" tabindex="" maxlength=""
+                                   autocomplete="" placeholder="" value="{$res.qq1}">
+                        </li>
+                        <li>
+                            <div for="" class="shangjia_fabu_left_title">
+                             第二展示QQ:
+                            </div>
+
+                            <input id="qq2" type="text" class="" name="" tabindex="" maxlength=""
+                                   autocomplete="" placeholder="" value="{$res.qq2}">
+                        </li>
+                        <li>
+
+                            <div for="" class="shangjia_fabu_left_title">
+                                <span class="xinghao">*</span>微信号:
+                            </div>
+
+                            <input id="weixin" type="text" class="" name="" tabindex="" maxlength=""
+                                   autocomplete="" placeholder="" value="{$res.weixin}">
+                        </li>
+                        <li>
+                            <div for="" class="shangjia_fabu_left_title">
+                                <span class="xinghao">*</span>电话:
+                            </div>
+
+                            <input id="phone" type="text" class="" name="" tabindex="" maxlength=""
+                                   autocomplete="" placeholder="" value="{$res.mobile}">
+
+                        </li>
+
+
+                        <li>
+
+                            <div for="" class="shangjia_fabu_left_title">
+                                <span class="xinghao">*</span>地址:
+                            </div>
+
+                        <span class="aaddress_class">
+                              <select class="ProvinceSelect" name="province" id="province">
+                                <option value='0'>省份</option>
+                                {:_Options($region_p,$selectid=$res['province'],id,name,$nofield=0);}
+                            </select>
+
+                        </span>
+                            <span class="aaddress_class">
+                                <select class="CitySelect " name="city" id="city">
+
+                                <?php if(!empty($res['city'])) {
+                                           $option=_Options($region_c,$selectid=$res['city'],id,name,$nofield=0);
+                                           echo $option;
+                                        }else{
+                                            echo "<option value='0'>城市</option>";
+                                }
+                                ?>
+                            </select>
+
+                        </span>
+
+                        </li>
+                        <li>
+                            <div for="" class="shangjia_fabu_left_title">
+                                <span class="xinghao">*</span>主营产品:
+                            </div>
+
+                            <input id="product" type="text" class="" name="" tabindex="" maxlength=""
+                                   autocomplete="" placeholder="" value="{$res.product}">
+
+                        </li>
+
+                        <li>
+
+                            <div for="" class="shangjia_fabu_left_title">
+                                <span class="xinghao">*</span>店铺简介:
+                            </div>
+
+
+                            <textarea id="introduce">{$res.introduce}
+                            </textarea>
+                            <input type="hidden" value="<?php echo $_GET['uid'] ?>" id="uid">
+                            <p class="hint_p introduce_p">说明:提交基本资料修改需审核,审核时间12小时内!
+                            如遇紧急联系客服加急处理!品牌授权商家提交后需与客服联系,提交授权资质审核!
+                            </p>
+                        </li>
+
+                        <li>
+                            <div for="" class="shangjia_fabu_left_title">
+
+                            </div>
+
+                                <div class="shangjia_fabu_btn"style="width: 213px;" id="submit" >
+                                    <a >提交审核</a>
+                                </div>
+                            
+
+                        </li>
+                      <!--   <li>
+                            <div for="" class="shangjia_fabu_left_title">
+                                修改记录
+                            </div>
+
+                            <div class="shoucang_guanli xinxi_guanli">
+                                <ul>
+                                    <li>
+                                        <div class="baifen20">
+                                            <p>时间</p>
+                                        </div>
+
+
+                                        <div class="baifen20">
+                                            <p class="">结果</p>
+                                        </div>
+
+                                        <div class="baifen40">
+                                            <p>原因</p>
+                                        </div>
+
+                                        <div class="baifen20">
+                                            <p>操作</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="baifen20">
+                                            <p>{$result.sh_time}</p>
+                                        </div>
+
+
+                                        <div class="baifen20">
+                                            <p class="color_red"><?php $a=array('0'=>'审核中','1'=>'通过','2'=>'退回中'); echo $a[$result['sh']]?></p>
+                                        </div>
+
+                                        <div class="baifen40">
+                                            <p>{$result.sh_memo}</p>
+                                        </div>
+                                        
+                                        <?php if($result['sh']!=1){ ?>
+                                        <div class="baifen20">
+                                            <div class="guanli_caozuo">
+                                                <a class="bg_red " >删除</a>
+                                                <a class="bg_red " >修改</a>
+                                            </div>
+                                        </div>
+                                        <?php }else{ ?>
+                                         <div class="baifen20">
+                                            <div class="guanli_caozuo">
+                                                <a class="bg_red " >修改</a>
+                                                
+                                            </div>
+                                        </div>
+                                        <?php } ?>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<tc_include file="Public:footer" />
+</body>
+</html>
+<!--更改头像js 开始-->
+<script type="text/javascript">
+    var data = {};
+    /*    更改按钮显示隐藏开始*/
+    $(".genggaitouxiang_btn") .css({"border":"none"});
+
+    $(".touxiang").mouseover(function () {
+        $(".genggaitouxiang_btn") .css({"opacity":"1","transition":"all 0.4s"})
+    });
+    $(".touxiang").mouseout(function () {
+        $(".genggaitouxiang_btn").css({"opacity":"0","transition":"all 0.2s"})
+    });
+    /*    更改按钮显示隐藏开始借宿*/
+    //头像图片简易的验证  大小 格式
+    $('#avatarInput').on('change', function(e) {
+        var filemaxsize = 1024 * 8;//5M
+        var target = $(e.target);
+        var Size = target[0].files[0].size / 1024;
+        if(Size > filemaxsize) {
+            alert('图片过大，请重新选择!');
+            $(".avatar-wrapper").childre().remove;
+            return false;
+        }
+        if(!this.files[0].type.match(/image.*/)) {
+            alert('请选择正确的图片!')
+        } else {
+            var filename = document.querySelector("#avatar-name");
+            var texts = document.querySelector("#avatarInput").value;
+            var teststr = texts; //你这里的路径写错了
+            testend = teststr.match(/[^\\]+\.[^\(]+/i); //直接完整文件名的
+            filename.innerHTML = testend;
+        }
+
+    });
+    /*  保存图片onclicl事件开始*/
+    $(".avatar-save").on("click", function() {
+        var img_lg = document.getElementById('imageHead');
+        // 截图小的显示框内的内容
+        html2canvas(img_lg, {
+            allowTaint: true,
+            taintTest: false,
+            onrendered: function(canvas) {
+                canvas.id = "mycanvas";
+                //生成base64图片数据
+                var dataUrl = canvas.toDataURL("image/jpeg");
+                var newImg = document.createElement("img");
+                newImg.src = dataUrl;
+                imagesAjax(dataUrl)
+
+            }
+        });
+
+
+    });
+
+    function imagesAjax(src) {
+
+        data.img = src;
+        data.jid = $('#jid').val();
+        console.log(data);
+
+    }
+    /*  保存图片onclick事件结束*/
+</script>
+
+<!--更改头像js 结束-->
+<script>
+
+
+    $("#submit").click(function(){
+
+        var bname=$('#bname').val();
+        var site=$('#site').val();
+        var ownbrand=$(".ownbrand:checked").val();
+        var one=$('.one').val();
+        var two=$('.two').val();
+        var three=$('.three').val();
+        var product_url=$('#product_url').val();
+        var qq1=$('#qq1').val();
+        var qq2=$('#qq2').val();
+        var weixin=$('#weixin').val();
+        var mobile=$('#phone').val();
+        var province=$('#province').val();
+        var city=$('#city').val();
+        var product=$('#product').val();
+        var introduce=$('#introduce').val();
+        var uid=$('#uid').val();
+        $.ajax({
+            type: "POST",
+            url: "{:U('business/businessdo/doedit')}",
+            data:  {'bname':bname,'qq1':qq1,'qq2':qq2,'weixin':weixin,'mobile':mobile,'one':one,'two':two,'three':three,'province':province,'city':city,'ownbrand':ownbrand,'product_url':product_url,'product':product,'introduce':introduce,'site':site,'uid':uid},
+            async: false,
+            success: function(data) {
+
+                
+                if(data['status']=='0'){
+                    layer.alert(data['msg']);
+                }
+
+                if(data['status']=='1'){
+                    layer.alert("保存成功");
+                }
+                if(data['status']==3){
+                    layer.alert('店名已被注册');
+                }
+            },
+            error:function(){
+                layer.alert("保存失败");
+            }
+        });
+    })
+</script>
+<script type="text/javascript">
+    $(".hh").click(function(){
+        $(".ttcc").show();
+    });
+    $(".ttcc > .ttt_close").click(function(){
+        $(".ttcc").hide();
+    })
+</script>
+<script>
+            $('#bname').blur(function(){
+            /*店名是否注册过*/
+            var bname=$(this).val();
+            
+                $.ajax({
+                    //                cache: true,
+                    type: "POST",
+                    url: '{:U("business/businessdo/rename")}',
+                    data:  {'bname':bname},
+                    async: false,
+                    success: function(data) {
+                        if(data['status']==2){
+                            layer.alert('请输入店名');
+                        }
+                        if(data['status']==3){
+                            layer.alert('店名已被注册');
+                        }
+                        if(data['status']==1){
+                            $(".cuowu_tishi").show();
+                            $(".cuowu_tishi").html('<img src="__TMPL__Public/images/jinggao.png">'+'<span class="">'+'可以使用'+'</span>')
+                        }
+                    },
+                    error:function(){
+                        $(".cuowu_tishi").show();
+                        $(".cuowu_tishi").html('<img src="__TMPL__Public/images/jinggao.png">'+'<span class="">'+'查询失败'+'</span>')
+                    }
+                });
+            })
+
+            $('.ProvinceSelect').change(function(){
+            $(".CitySelect").empty();
+
+            var sheng_id = $(this).val();
+            if(sheng_id=='0'){
+                $(".CitySelect").empty();
+                $(".CitySelect").append('<option value="">城市</option>');
+                return false;
+            }
+            $.ajax({
+                type:"get",
+                url: '{:U("user/account/region")}',
+                data:  {'pid':sheng_id},
+                dataType:"json",
+                success:function(data){
+                    var length=data.length;
+
+                    for(var i=0;i<length;i++){
+                        var city_option = "<option id='origin_city_id_op"+data[i].id+"'value='"+data[i].id+"' >"+data[i].name+"</option>";
+                        $(".CitySelect").append(city_option);
+
+                    }
+                }
+            })
+
+        });
+
+        $('.one').change(function(){
+            var parentid=$(this).val();
+            if(parentid=='一级类目'){
+                $(".two").empty();
+                $(".two").append('<option value="二级类目">二级类目</option>');
+                return false;
+            }
+            $.ajax({
+                type:"post",
+                url: '{:U("business/businessdo/threecate")}',
+                data:  {'parentid':parentid},
+                dataType:"json",
+                success:function(data){
+                    var length=data.length;
+                    $(".two").empty();
+                    $(".two").append('<option value="二级类目">二级类目</option>');
+                    for(var i=0;i<length;i++){
+                        var two = "<option value="+data[i].id+">"+data[i].label+"</option>";               
+                        $(".two").append(two);
+                    }
+                }
+            })
+        });
+
+        $('.two').change(function(){
+            var parentid=$(this).val();
+            if(parentid=='二级类目'){
+                $(".three").empty();
+                $(".three").append('<option value="三级类目">三级类目</option>');
+                return false;
+            }
+            $.ajax({
+                type:"post",
+                url: '{:U("business/businessdo/threecate")}',
+                data:  {'parentid':parentid},
+                dataType:"json",
+                success:function(data){
+                    var length=data.length;
+                    $(".three").empty();
+                    $(".three").append('<option value="三级类目">三级类目</option>');
+                    for(var i=0;i<length;i++){
+                        var three = "<option value="+data[i].id+">"+data[i].label+"</option>";               
+                        $(".three").append(three);
+                    }
+                }
+            })
+        })
+</script>

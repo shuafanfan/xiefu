@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>article{$post_title}-{$site_name}</title>
+		<meta name="keywords" content="{$post_keywords}" />
+		<meta name="description" content="{$post_excerpt}">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="__TMPL__Public/css/mui.min.css"/>
+		<link rel="stylesheet" href="__TMPL__Public/css/style.css" />
+		<!--App自定义的css-->
+		<link rel="stylesheet" type="text/css" href="__TMPL__Public/css/app.css"/>
+		<style>
+			.int_title p{
+				width: 100% !important;
+			}
+			.int_title img{
+				width: 100% !important;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!--侧滑菜单容器-->
+		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable">
+			<!--菜单部分-->
+			<tc_include file="Public:slide" />
+			
+			<div class="mui-inner-wrap">
+
+				<div id="offCanvasContentScroll" class="mui-content mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<header class="mui-bar list_head orange" style="position: initial !important; margin: 0 !important;padding: 0 !important; border: none !important;" >
+							<a class="mui-action-back mui-icon mui-icon-back mui-pull-left white"></a>
+							<a id="offCanvasBtn" href="#offCanvasSide" class="mui-icon mui-action-menu mui-icon-bars mui-pull-right white"></a>
+							<h1 class="mui-title nav_title white_cl">{$post_title}</h1>
+						</header>
+					
+					<div class="int_title_box" style="padding: 0;">
+						<div class="int_top" style="background-color: #fff;">
+							<h1 style="text-align: center;color: #333;margin-top: 20px;">{$post_title}</h1>
+						</div>	
+						<div class="int_title"> {$post_content} </div>
+					</div>	
+					<p class="int_title_info">
+						<?php if(empty($shang_art['post_title'])){ ?> 
+							上一篇：没有了
+						<?php }else{ ?>
+							<a href="{:leuu('portal/article/index',array('id'=>$shang_art['tid']))}">上一篇：{$shang_art.post_title}</a>
+						<?php } ?>
+					</p>
+					<p class="int_title_info">
+						<?php if(empty($xia_art['post_title'])){ ?> 
+							下一篇：没有了
+						<?php }else{ ?>
+							<a href="{:leuu('portal/article/index',array('id'=>$xia_art['tid']))}">下一篇：{$xia_art.post_title}</a>
+						<?php } ?>
+					</p>
+						
+					<p class="int_title_info">推荐阅读</p>
+					<div class="pt_list">
+						<foreach name="art" item="vo">
+						<php>
+							$smeta=json_decode($vo['smeta'],true);/* 把smeta转化成数组 */
+						</php>
+						<li>
+							<a href="{:leuu('portal/article/index',array('id'=>$vo['tid']))}">
+								<div class="list_pic" style="width: 45px;height: 45px;">
+									<?php if(!empty($smeta['thumb'])){ ?> 
+
+									    <img src="{:sp_get_asset_upload_path($smeta['thumb'])}" alt="{$vo.post_title}">
+
+									<?php } else{ ?>
+
+									   	<img src="/themes/simplebootx/Public/himg/cj02.png" alt="{$vo.post_title}">
+									<?php } ?>
+								</div>											
+								<div class="list_rg">
+									<h1>{$vo.post_title}</h1>
+									<p>{$vo.post_excerpt|msubstr=0,20}</p>
+									<p class="list_rg_blue"></p> 
+								</div>
+							</a>
+						</li>
+						</foreach>
+					</div>
+						
+					<p class="int_title_info">&nbsp;</p>
+					<div class="bg_gra"></div>
+				
+					</div>
+					<!--底部导航-->
+					<tc_include file="Public:footer" />
+				</div>
+				
+				<!-- off-canvas backdrop -->
+				<div class="mui-off-canvas-backdrop"></div>
+			</div>
+			
+		</div>
+		<script type="text/javascript" src="__TMPL__Public/js/jquery.min.js" ></script>
+		<script>
+//			$('.ft_bg').on('tap','a',function(){alert(333333)});
+			$('.ft_bg').click(function(){alert(333333)});
+		</script>
+		<script src="__TMPL__Public/js/mui.min.js"></script>
+		<script>
+
+			 //主界面和侧滑菜单界面均支持区域滚动；
+			mui('#offCanvasSideScroll').scroll();
+			mui('#offCanvasContentScroll').scroll();
+
+		</script>
+		<script>
+			
+				
+
+			
+			(function($) {
+				$('.mui-pagination').on('tap', 'a', function() {
+					var li = this.parentNode;
+					var classList = li.classList;
+					if (!classList.contains('mui-active') && !classList.contains('mui-disabled')) {
+						var active = li.parentNode.querySelector('.mui-active');
+						if (classList.contains('mui-previous')) {//previous
+							if (active) {
+								var previous = active.previousElementSibling;
+								console.log('previous', previous);
+								if (previous && !previous.classList.contains('mui-previous')) {
+									$.trigger(previous.querySelector('a'), 'tap');
+								} else {
+									classList.add('mui-disabled');
+								}
+							}
+						} else if (classList.contains('mui-next')) {//next
+							if (active) {
+								var next = active.nextElementSibling;
+								if (next && !next.classList.contains('mui-next')) {
+									$.trigger(next.querySelector('a'), 'tap');
+								} else {
+									classList.add('mui-disabled');
+								}
+							}
+						} else {//page
+							active.classList.remove('mui-active');
+							classList.add('mui-active');
+							var page = parseInt(this.innerText);
+							var previousPageElement = li.parentNode.querySelector('.mui-previous');
+							var nextPageElement = li.parentNode.querySelector('.mui-next');
+							previousPageElement.classList.remove('mui-disabled');
+							nextPageElement.classList.remove('mui-disabled');
+							if (page <= 1) {
+								previousPageElement.classList.add('mui-disabled');
+							} else if (page >= 5) {
+								nextPageElement.classList.add('mui-disabled');
+							}
+						}
+					}
+				});
+			})(mui); 
+		</script>
+		<!--解除禁用a链接-->
+		<script>
+			mui('body').on('tap', 'a', function() {
+		    var href = this.href;
+		    console.log('href:'+href);
+		    mui.openWindow({url:href});
+		});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,43 @@
+<script type="text/javascript">
+	//全局变量
+	var GV = {
+		DIMAUB: "__ROOT__/",
+		JS_ROOT: "public/js/",
+		TOKEN: ""
+	};
+</script>
+
+<script src="__TMPL__Public/js/jquery.new.js"   type="text/javascript" charset="utf-8"></script>
+<script src="__TMPL__Public/js/jquery.SuperSlide.2.1.js"  type="text/javascript" charset="utf-8"></script>
+<script src="__TMPL__Public/js/layer.js"   type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$(function() {
+
+		$("#nLi h3 a").hover(function(){
+			$(".sub").hide();			 
+		   	var id = $(this).attr("data");
+		    $("#sub_"+id).toggle();
+		},function(){
+		    //$(".sub").hide();		   
+		});
+		
+ 
+		$(".sub").mouseover(function (){  
+            $(this).show();	
+        }).mouseout(function (){  
+            $(this).hide();	
+        });  
+        
+        $(".qq_btn").live("click",function(){
+				layer.open({
+				  type: 1,
+				  title: false,
+				  closeBtn: false,
+				  shadeClose: true, //开启遮罩关闭
+				  skin: 'layui-layer-rim', //加上边框
+				  area: ['257px', '257px'], //宽高
+				  content: '<img src="/data/upload/20170119/58805ddbde88c.jpg" width="250" height="250">'
+				});
+		});
+	});
+</script>

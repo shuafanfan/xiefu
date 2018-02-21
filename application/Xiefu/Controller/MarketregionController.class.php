@@ -1,0 +1,109 @@
+<?php
+/**
+ * Businesstype(商户区域)
+ */
+namespace Xiefu\Controller;
+use Common\Controller\XiefubaseController;
+class MarketregionController extends XiefubaseController {
+	function _initialize() {
+		parent::_initialize();
+	}
+	
+	/**
+	 *  显示菜单
+	 */
+	public function index() {
+		$model=M("Marketregion");
+    	$count=$model->count();
+    	$page = $this->page($count, 20);
+    	$lists = $model
+    	->order(" id DESC")
+    	->limit($page->firstRow . ',' . $page->listRows)
+    	->select();
+    	$this->assign('lists', $lists);
+    	$this->assign("page", $page->show('Xiefu'));
+    	
+    	$this->display();
+	}
+	
+	
+	/**
+	 *  添加
+	 */
+	public function add() {
+		$this->display();
+	}
+	
+	/**
+	 *  添加
+	 */
+	public function add_post() {
+		if (IS_POST) {
+			$data=I("post.");
+			$model=D("Marketregion");
+			if ($model->create($data)) {
+				$result=$model->add();
+				if ($result!==false) {
+					$this->success("添加成功！", U("Marketregion/index"));
+				} else {
+					$this->error("添加失败！");
+				}
+			} else {
+				$this->error($model->getError());
+			}
+		}
+	}
+	
+	function edit(){
+		$id= intval(I("get.id"));
+		$model=M("Marketregion");
+		$info=$model->where(array("id"=>$id))->find();
+		$this->assign('id',$id);
+		$this->assign('info',$info);
+		$this->display();
+	}
+	
+	function edit_post(){
+		if (IS_POST) {
+				$model=M("Marketregion");
+				if ($model->create()) {
+					$result=$model->save();
+					if ($result!==false) {
+						$this->success("保存成功！");
+					} else {
+						$this->error("保存失败！");
+					}
+				} else {
+					$this->error($model->getError());
+				}
+			}else{
+				$this->error("操作失败！");
+			}
+	}
+
+	/**
+	 * 排序
+	 */
+	public function listorders() {
+		$model=M("Marketregion");
+		$status = parent::_listorders($model);
+		if ($status) {
+			$this->success("排序更新成功！");
+		} else {
+			$this->error("排序更新失败！");
+		}
+	}
+	
+	/**
+	 *  删除
+	 */
+	public function delete() {
+		$model=M("Marketregion");
+		$id = intval(I("get.id"));;
+		if ($model->delete($id)!==false) {
+			$this->success("删除成功！");
+		} else {
+			$this->error("删除失败！");
+		}
+	}
+}

@@ -1,0 +1,22 @@
+[ 2017-09-30T12:26:34+08:00 ] 58.22.7.108 /index.php?g=Admin&m=public&a=dologin
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000025s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000096s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000168s ]
+SQL: SHOW COLUMNS FROM `ts_users` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ts_users` WHERE `user_login` = 'admin' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `ts_role_user` [ RunTime:0.0003s ]
+SQL: SELECT `role_id` FROM ts_role_user a INNER JOIN ts_role as b on a.role_id =b.id  WHERE `user_id` = '1' AND `status` = 1  [ RunTime:0.0001s ]
+SQL: UPDATE `ts_users` SET `user_login`='admin',`user_pass`='###b30e1a83a6eba0e0b1d27c5ea7adda1f',`user_nicename`='admin',`user_email`='admin@tui35.com',`user_url`='',`avatar`='/data/upload/headphotos/tx_1505112882826.jpg',`sex`='0',`birthday`='2017-08-20 00:19:55',`qq`='',`weixin`='',`mobile`='11122222222',`signature`='',`last_login_ip`='58.22.7.108',`last_login_time`='2017-09-30 12:26:34',`user_activation_key`='',`user_status`='1',`score`='0',`add_type`='0',`user_type`='1',`coin`='0',`province`='0',`city`='0',`area`=NULL,`address`=NULL,`sh_memo`='',`is_bang`='0',`update_time`='0000-00-00 00:00:00',`add_time`='0',`create_time`='2017-08-13' WHERE `id` = '1' [ RunTime:0.0004s ]
+
+[ 2017-09-30T14:05:19+08:00 ] 58.22.7.108 /index.php?g=Admin&m=public&a=dologin
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000026s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000094s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000167s ]
+SQL: SHOW COLUMNS FROM `ts_users` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ts_users` WHERE `user_login` = 'admin' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `ts_role_user` [ RunTime:0.0003s ]
+SQL: SELECT `role_id` FROM ts_role_user a INNER JOIN ts_role as b on a.role_id =b.id  WHERE `user_id` = '1' AND `status` = 1  [ RunTime:0.0001s ]
+SQL: UPDATE `ts_users` SET `user_login`='admin',`user_pass`='###b30e1a83a6eba0e0b1d27c5ea7adda1f',`user_nicename`='admin',`user_email`='admin@tui35.com',`user_url`='',`avatar`='/data/upload/headphotos/tx_1505112882826.jpg',`sex`='0',`birthday`='2017-08-20 00:19:55',`qq`='',`weixin`='',`mobile`='11122222222',`signature`='',`last_login_ip`='58.22.7.108',`last_login_time`='2017-09-30 14:05:19',`user_activation_key`='',`user_status`='1',`score`='0',`add_type`='0',`user_type`='1',`coin`='0',`province`='0',`city`='0',`area`=NULL,`address`=NULL,`sh_memo`='',`is_bang`='0',`update_time`='0000-00-00 00:00:00',`add_time`='0',`create_time`='2017-08-13' WHERE `id` = '1' [ RunTime:0.0003s ]
+

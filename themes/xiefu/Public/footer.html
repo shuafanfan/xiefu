@@ -1,0 +1,50 @@
+
+
+<!-- Footer Begin -->
+    <div class="footer_div">
+
+         <div class="footer container">
+            <div class="footer_nav">
+                <php>
+                    $nav_foot = sp_get_menu_tree(3);
+                </php>
+                <foreach name="nav_foot" item="vo">
+                     <a href="{$vo.href}">{$vo.label}</a>
+                </foreach>
+            </div>
+            <div class="container">
+                {$site_copyright}
+            </div>
+        </div>
+
+    </div>
+    <!-- 左右侧二维码 客服 Begin -->
+ <!--   <div class="erweima" id="main_erweima">
+            <img src="__TMPL__Public/images/erweima.png">
+            <p>APP下载</p>
+    </div>
+    -->
+<div class="huidingbu">
+            <div class="huidingbu_tu1">
+                <img src="__TMPL__Public/images/qq.png">
+
+            </div>
+
+            <div class="huidingbu_tu2">
+                <img src="__TMPL__Public/images/top_hui.png">
+            </div>
+    </div>
+    <!-- 左右侧二维码 客服 End -->
+<!-- Footer End  -->
+<script src="__TMPL__Public/js/jquery.min.js" type="text/javascript"></script>
+<script src="__TMPL__Public/js/base.js" type="text/javascript"></script>
+<script src="__TMPL__Public/js/layer/layer.js"></script>
+
+<!--更改头像js 开始-->
+<!--<script src="__TMPL__Public/js/jquery-1.10.2.js"></script>-->
+<script src="__TMPL__Public/js/bootstrap-3.3.4.js"></script>
+<script src="__TMPL__Public/js/cropper.js"></script>
+<script src="__TMPL__Public/js/sitelogo.js"></script>
+<script src="__TMPL__Public/js/html2canvas.min.js" type="text/javascript" charset="utf-8"></script>
+<!--更改头像js 结束-->
+

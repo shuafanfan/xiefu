@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查看联系方式</title>
+    <link rel="stylesheet" href="__TMPL__Public/css/base.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/gerenzhongxin_header_left.css">
+
+</head>
+<body>
+<div class="all">
+    <div class="shangbu">
+        <tc_include file="Public:header2" />
+    </div>
+    <div class="huowu_all">
+        <div class="container">
+        <tc_include file="Public:accountleft" />
+        <div class="huowu_you ">
+            <div class="contact_shoes"  >
+                <ul>
+                    <div class="huowu_title_list text-left">
+                            查看联系方式
+                    </div>
+                    <li>
+
+                        <div class="">
+                            <div class="contact_shoes_img">
+                                <img src="{$reportgoods.photos}">
+                            </div>
+                            <div class="huowu_zi">
+
+                                <p class="huowu_zi_h1">
+                                    {$reportgoods.title}
+                                </p>
+
+                                <p class="huowu_zi_h2">尺寸：{$reportgoods.size}</p>
+
+                                <p class="huowu_zi_h3">数量：{$reportgoods.num}</p>
+
+                                <p class="huowu_zi_h4">{$reportgoods.sh_time}</p>
+                            </div>
+                        </div>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+           <!-- 未读信息-->
+            <div class="huowu_title_list text-left bg-none">
+                <a href="">共有{$reportgoods.sum}商家有货&nbsp;></a>
+            </div>
+            <table class="merchant_contact_information" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td width="255">
+                              时间
+                            </td>
+                            <td width="360">
+                               商家信息
+                            </td>
+                            <td width="">
+                                <span class="text-r6">操作</span>
+                            </td>
+                        </tr>
+                        <volist name="have" id="vo">
+                            <tr>
+                                <td width="255">
+                                    <p>{$vo.creat_time}</p>
+                                </td>
+                                <td width="360" class="contact_businessmen">
+
+                                <p>
+                                    <?php if($vo['is_shouq']==1){ ?>
+                                    <span class="icon_v ">
+                                           <img src="__TMPL__Public/images/v.png">
+                                    </span>
+                                    <?php } ?>
+                                           {$vo.bname}       
+                                </p>
+                                <div class="detail" style="display:none"> 
+                               
+                                </div>
+                                </td>
+                                <td width="">
+
+                                    <div class="huowu_caozuo_all contact_caozuo" >
+                                        <a href="" class="huowu_caozuo">
+                                            删除
+                                        </a>
+                                        <a class="huowu_caozuo contact" data="{$vo.bid}" user="{$vo.user_type}">
+                                            查看联系方式
+                                        </a>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </volist>
+                    </table>
+    </div>
+    </div>
+</div>
+</div>
+<tc_include file="Public:footer" />
+<script >
+    $('.contact').click(function(){
+        var a=$(this);
+        a.parents('tr').find('.detail').toggle();
+        var bid=$(this).attr('data');
+        var user_type=$(this).attr('user');
+        console.log(bid);
+        $.ajax( {
+            type:"POST",
+            data:  {'bid':bid,'user_type':user_type},
+            url: "{:U('report/reportgoods/contact')}",
+            success: function( data, textStatus, jqXHR ){
+                console.log(data);
+                if(data.status==1){
+                    var html = '';
+                    html += '<p>';
+                    html += '<a href="tencent://message/?uin='+data['qq']+'&amp;Site=0594666.com&amp;Menu=yes" class="qq_contact">QQ:';
+                    html += '<img src="__TMPL__Public/images/qq.png" >';
+                    html += '</a>';
+                    html += '</p>';
+                    html += '<p>';
+                    html += '<a href="">微信号:'+data['weixin']+'</a>';
+                    html += '</p>';
+                    html += '<p>电话:'+data['mobile']+'</p>';
+                    html += '</p>';
+                    html += '<p>地址:'+data['name']+'</p>';
+                    a.parents('tr').find('.detail').empty();
+                    a.parents('tr').find('.detail').append(html);
+                }else{
+                    layer.alert('查询失败');
+                    return false;
+                }
+            }
+        });
+    })
+</script>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,66 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="{:U('Operatelog/index')}">操作日志</a></li>
+		</ul>
+		<form class="js-ajax-form" action="{:U('Operatelog/listorders')}" method="post">
+			<table class="table table-hover table-bordered table-list">
+				<thead>
+					<tr>
+						<th width="15"><label><input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x"></label></th>
+						<th width="50">ID</th>
+						<th width="80">操作命令</th>
+						<th width="80">操作模块</th>
+						<th width="80">操作者</th>
+						<th width="80">状态 </th>
+						<th width="80">描述</th>
+						<th width="80">IP地址</th>
+						<th width="80">操作时间</th>
+						<th width="80">{:L('ACTIONS')}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<foreach name="lists" item="vo">	
+					<tr>
+						<td><input type="checkbox" class="js-check" data-yid="js-check-y" data-xid="js-check-x" name="ids[]" value="{$vo.id}"></td>
+						<td>{$vo.id}</td>
+						<td>{$vo.module}</td>
+						<td>{$vo.action}</td>
+						<td>{$vo.log_admin_name}</td>
+						<td>
+							<if condition="$vo['log_status'] eq 0">
+								失败
+							<else />
+								成功
+							</if>
+						</td>
+						<td>{$vo.log_info}</td>
+						<td>{$vo.log_ip}</td>
+						<td>{$vo.log_time}</td>
+						<td>				
+							<a class="js-ajax-delete" href="{:U('Operatelog/delete',array('id'=>$vo['id']))}">{:L('DELETE')}</a>
+						</td>
+					</tr>
+					</foreach>
+				</tbody>
+			</table>
+			<div class="table-actions">
+				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('Operatelog/delete')}" data-subcheck="true">{:L('DELETE')}</button>
+			</div>
+		<div class="pagination">{$page}</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+	<script>
+		$(function() {
+
+			$("#navcid_select").change(function() {
+				$("#mainform").submit();
+			});
+
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+    <div id="myModal" class="reveal-modal">
+        <div class="login">
+            <div class="header">
+                <div class="switch" id="switch">
+                    <a class="switch_btn_focus" id="switch_qlogin" href="javascript:void(0);" tabindex="7">登录</a>
+                    <a class="switch_btn" id="switch_login" href="{:U('user/user/register')}"
+                       tabindex="8">注册</a>
+                    <div class="switch_bottom" id="switch_bottom" style="position: absolute; width: 100px; left: 0px;"></div>
+                </div>
+            </div>
+            <!--登录-->
+            <div class="web_qr_login" id="web_qr_login" style="display: block">
+                <div class="web_login" id="web_login">
+                    <div class="login-box">
+                        <div class="login_form">
+                           
+                                <input type="hidden" name="to" value="log"/>
+                                <div class="uinArea" id="uinArea">
+                                    <!--    <label class="input-tips" for="u">帐号：</label>-->
+                                    <div class="inputOuter" id="uArea">
+
+                                        <input type="text" id="mobile"  name="mobile" class="inputstyle" placeholder="手机号">
+                                    </div>
+                                </div>
+                                <div class="pwdArea" id="pwdArea">
+                                    <!--  <label class="input-tips" for="p">密码：</label>-->
+                                    <div class="inputOuter" id="pArea">
+
+                                        <input id="password" type="password" name="password"  class="inputstyle"  placeholder="密码">
+                                    </div>
+                                </div>
+
+                                <div style="margin-top:14px;">
+                                    <input type="button" value="登 录" style="width:269px;" class="button_blue denglu_btn"/>
+                                </div>
+
+                                <div class="zhaomima"> 
+                                    <a href="{:U("user/user/forgetpass")}">
+                                        找回密码
+                                    </a>
+                                </div>
+
+                            
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="disanfang_login">
+                    <h5>第三方登录</h5>
+
+                    <ul>
+                        <li>
+                            <a href="{:U('api/oauth/login?type=qq')}">
+                                <img src="__TMPL__Public/images/qq.png">
+
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{:U('api/oauth/login?type=weixin')}">
+                                <img src="__TMPL__Public/images/weixin.png">
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+            <!--登录end-->
+        </div>
+        <a class="close-reveal-modal">&#215;</a>
+    </div>
+    <div class="dingduan">
+        <div class="container">
+           <php> if(!sp_is_user_login()){ </php>
+            <p>欢迎来到鞋服网，请
+                 <a href="#" class="big-link logins" data-reveal-id="myModal" data-animation="fade">
+                    登录 |
+                </a>
+                <a href="{:U('user/user/register')}"  class="big-link">
+                    注册
+                </a>
+            </p>
+            <php> 
+                }else{  
+                $user=sp_get_current_user();            
+             </php>
+              <p>
+                <a href="{:U('portal/index/index')}" class="big-link" >
+                    鞋服首页 &nbsp
+                </a>
+                <a href="{:U('user/account/index')}"  class="big-link">
+                    您好,{$user.user_nicename}&nbsp  
+                </a>
+                <a id="doout" >  
+                    退出 &nbsp
+                </a>
+                <a href="{:U('user/message/index')}"  class="big-link">
+                    <?php $read=M('user_notice')->where(array('is_delete'=>0,'is_read'=>0,'to_uid'=>$user['id']))->count(); ?>
+                    消息管理({$read}) 
+                </a>
+            </p>
+            <php>
+                }
+            </php>
+            <php>
+                $nav_top = sp_get_menu_tree(2);
+            </php>
+            <ul>
+            <foreach name="nav_top" item="vo">
+                <php> if(!sp_is_user_login()){ </php>
+                    <li><a data-reveal-id="myModal" data-animation="fade" data="{$vo.label}" class="topnav">{$vo.label}</a></li>
+                <php>}else{</php>
+                    <li><a href="{$vo.href}">{$vo.label}</a></li>   
+                <php>}</php> 
+            </foreach>
+            </ul>
+        </div>
+    </div>
+    <div class="top">
+    <div class="container">
+        <div class="top_all">
+            <a href="{:U('portal/index/index')}">
+            <div class="logokuang">
+                <div class="logo">
+                    <img src="__TMPL__Public/images/logo.jpg">
+                </div>
+
+                <div class="logozi">
+                    <h1>鞋服网</h1>
+                    <p>xiefu.com</p>
+                </div>
+            </div>
+            </a>
+            <div class="head2_search">
+            <!--    <div class="head2_nav">
+                    <a href="{:U('user/account/index')}">个人中心</a>
+                    <a href="{:U('portal/index/index')}">首页</a>
+                </div>
+                -->
+                <div class="head2_search_div">
+
+                    <div class="head2_sousuo_zuo" >
+                        <select name="search" class="search">
+                            <option value="goods">货源</option>
+                            <option value="shop">店铺</option>
+                        </select>
+                    </div>
+                    <div class="head2_search_input">
+                        <input type="text" placeholder="关键字搜索" id="keyword">
+                    </div>
+                    <div class="sousuo_you" >
+                        <a onclick="fun()"><img src="__TMPL__Public/images/sousuo.png"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+            function fun(){
+                var search=$('.search').val();
+                var keyword=$('#keyword').val();
+                window.location.href="{:U('portal/index/search')}&search="+search+"&keyword="+keyword;
+            };
+
+            $('.denglu_btn').click(function () {
+                var mobile=$('#mobile').val();
+                var password=$('#password').val();             
+                $.ajax({
+                        type: "POST",
+                        url: '{:U("user/user/dologin")}',
+                        data:  {'mobile':mobile,'password':password},
+                        async: false,
+                        success: function(data) {
+ 
+                            if(data['msg']=='登录验证成功！'){
+                                layer.alert("登录成功",function(){
+                                    window.location.href=window.location.href;
+                                });
+                            }
+                             // window.history.back();
+                        },
+                        error:function(){
+                               
+                                layer.alert("登录失败",function(){
+                                    window.location.href='{:U("user/user/login")}';
+                                });
+                            }
+                    });
+        });
+</script>

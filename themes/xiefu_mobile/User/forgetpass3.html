@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>忘记密码2</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="__TMPL__Public/css/light7.min.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/light7-swiper.min.css">
+
+    <link rel="stylesheet" href="__TMPL__Public/css/style.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/common.css">
+
+    <link rel="stylesheet" href="__TMPL__Public///at.alicdn.com/t/font_376445_4o7ikit8xybep14i.css">
+</head>
+
+<body>
+<div class="page-group login">
+    <div class="page page-current">
+        <!-- 这里是标题栏栏 -->
+        <header class="bar bar-nav">
+            <button class="button button-link button-nav pull-left">
+                <span class="icon icon-zuo"></span>
+            </button>
+            <button class="button button-link button-nav pull-right">
+            </button>
+
+            <h1 class="title">
+                忘记密码
+            </h1>
+
+        </header>
+        <!-- 这里是标题栏end -->
+        <div class="content main">
+            <div class="content-block forget_password_top">
+                <span >1、输入手机号<big>></big></span>
+                <span>2、输入验证码<big>></big></span>
+                <span class="color-danger">3、确认密码<big>></big></span>
+            </div>
+            <div class="login-wrap">
+
+                <div class="list-block login-form">
+                    <ul style="background: white!important;">
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-media"><i class="icon icon-nobind color-danger"></i></div>
+                                    <div class="item-input">
+                                        <input type="text" placeholder="新密码" maxlength="11" name="psw" id="psw">
+                                        <input type="hidden" value="<?php echo $_GET['mobile']  ?>" id="mobile">
+                                        <input type="hidden" value="<?php echo $_GET['code']  ?>" id="code">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-media"><i class="icon icon-nobind color-danger"></i></div>
+                                    <div class="item-input">
+                                        <input type="text" placeholder="确认密码" maxlength="11" name="psw" id="psw2">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="content-block">
+                    <p>
+                        <a  class="button button-fill button-big" id="login-btn">下一步</a>
+                    </p>
+                </div>
+                <div class="content-block ">
+                    <div class="cuowu_tishi">
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!--tabs end-->
+    </div>
+    <!--content end-->
+</div>
+<script type="text/javascript" src="__TMPL__Public/js/jquery.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="__TMPL__Public/js/light7.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="__TMPL__Public/js/light7-swiper.min.js"></script>
+<script type="text/javascript" src="__TMPL__Public/js/conmon.js"></script>
+<script type="text/javascript" src="__TMPL__Public/js/gVerify.js"></script>
+<script type="text/javascript" src="__TMPL__Public/js/gVerify.js"></script>
+<script>
+   $("#login-btn").click(function () {
+       var psw=$("#psw").val();
+       var psw2=$("#psw2").val();
+      if(psw,psw2==""||psw.length<6||psw2.length<6){
+          $(".cuowu_tishi").show();
+          $(".cuowu_tishi").html(' <p class="text-center color-danger">密码格式有误</p>');
+          return false;
+      }
+     if(psw!=psw2){
+           $(".cuowu_tishi").show();
+           $(".cuowu_tishi").html(' <p class="text-center color-danger">两次密码不一样</p>')
+       };
+
+     if(psw==psw2){
+                var mobile=$('#mobile').val();
+                var password=$('#psw').val();
+                var sureword=$('#psw2').val();
+                var code=$('#code').val();
+              
+                $.ajax({
+                        //                cache: true,
+                        type: "POST",
+                        url: '{:U("user/user/editpass")}',
+                        data:  {'mobile':mobile,'password':password,'code':code},
+                        async: false,
+                        success: function(data) {
+                            $.alert('恭喜您，修改成功！',function(){
+                                    $.ajax({
+                       
+                                            type: "POST",
+                                            url: '{:U("user/user/dologin")}',
+                                            data:  {'mobile':mobile,'password':password},
+                                            async: false,
+                                            success: function(data) {
+                                                location.href ='{:U("user/account/person")}'; 
+                                            }, 
+                                        });
+                                })
+                        },
+                        error:function(){
+                               
+                        }
+                    });
+     }
+   });
+</script>
+</body>
+</html>

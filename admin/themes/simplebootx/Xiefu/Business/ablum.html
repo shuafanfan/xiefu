@@ -1,0 +1,52 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a>商家相册</a></li>
+		
+		</ul>
+		
+	
+		
+		<form method="post" class="js-ajax-form">
+			<table class="table table-hover table-bordered">
+				<thead>
+					<tr>
+						
+						<th align="center">序号</th>
+						<th width="500px">产品链接</th>
+						<th width="500px">产品名称</th>
+						<th>图片</th>
+						<th>添加时间</th>
+
+						<th align="center">{:L('ACTIONS')}</th>
+					</tr>
+				</thead>
+				<tbody>
+					
+					<foreach name="lists" item="vo">
+					<tr>
+						
+						<td align="center">{$vo.id}</td>
+						
+						<td>{$vo.title}</th>
+						<td>{$vo.link_href}</th>
+						<td><a href="javascript:image_preview_dialog('{$vo.img_path}')"  rel="lightbox"><img alt="" src="{$vo.img_path}" style="width:50px;height:50px"/></a></td>
+						<td>{$vo.add_time}</td>
+						<td align="center">
+							<a href="{:U('Business/editablum',array('id'=>$vo['id']))}"  >编辑</a>
+							
+						</td>
+					</tr>
+					</foreach>
+				</tbody>
+			</table>
+				
+			<div class="pagination">{$page}</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+
+</body>
+</html>

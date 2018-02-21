@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>{$post_title}</title>
+		<tc_include file="Public:head" />	
+		<style type="text/css">
+			.int_title p{
+				font-size: 16px;
+				width: 100% !important;
+			}
+			 
+			/*.int_title embed{ display: none;}*/
+			.BMap_mask{ width: 100%!important;}
+			.int_title_box{ width:90%; margin:10px 5%;}
+			.ry_ul_c {  width: 100%; text-align: center;}
+			.ry_ul_c p{ width:100%;  text-align: center;}
+			.ry_ul_c p img{ width:100%;  vertical-align: middle; }
+			.ry_ul_c .posttitle{ font-size: 12px;  line-height:20px; padding: 10px  0;   }
+		</style>
+	</head>
+
+	<body>
+		<!--侧滑菜单容器-->
+		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable">
+			
+		<!--菜单部分-->
+		<tc_include file="Public:slide" />
+			<div class="mui-inner-wrap">
+
+				<div id="offCanvasContentScroll" class="mui-content mui-scroll-wrapper">
+					<div class="mui-scroll">
+						
+						<!--24小时咨询热线start-->
+						<tc_include file="Public:idx_head" />
+						<!--24小时咨询热线end-->
+				
+						<div class="mui-bar list_head" style="position: initial !important;">
+							<a class="mui-action-back mui-icon mui-icon-back mui-pull-left orang"><span style="font-size: 15px;"></span></a>
+							<a id="offCanvasBtn" href="#offCanvasSide" class="mui-icon mui-action-menu mui-icon-bars mui-pull-right orang"></a>
+							<h1 class="mui-title nav_title">{$post_title}</h1>
+						</div>
+						<div class="int_title_box ">
+							
+							<br/>{$post_content}  <br/>
+							<php>
+							
+								$tag = 'cid:41;field:tid,object_id,post_title,post_excerpt,smeta;limit:0,10;order:istop desc,listorder desc;';
+								$pic = sp_sql_posts($tag); 
+			
+							</php>
+							<div class="ry_ul_c" >
+								<foreach name="pic" item="vo">
+										<php>
+											$smeta=json_decode($vo['smeta'],true);/* 把smeta转化成数组 */
+										</php>
+										<p>
+											<img src="{:sp_get_asset_upload_path($smeta['thumb'])}" alt="{$vo['post_title']}"/>										
+											<div class="posttitle">{$vo['post_title']}</div>
+										</p>
+								</foreach>
+								<div class="clear"></div>
+							</div>							
+						    <div class="clearfox"></div>
+						    
+						</div>		
+						<!--尾部声明-->
+						<tc_include file="Public:b_footer" />
+					</div>
+					
+					<!--底部导航-->
+					<tc_include file="Public:footer" />
+				</div>
+				
+				<!-- off-canvas backdrop -->
+				<div class="mui-off-canvas-backdrop"></div>
+			</div>
+			
+		</div>
+		<script type="text/javascript" src="__TMPL__Public/js/jquery.min.js" ></script>
+ 
+		<script src="__TMPL__Public/js/mui.min.js"></script>
+		<script>
+
+			 //主界面和侧滑菜单界面均支持区域滚动；
+			mui('#offCanvasSideScroll').scroll();
+			mui('#offCanvasContentScroll').scroll();
+
+		</script>
+		
+		<script>
+			(function($) {
+				$('.mui-pagination').on('tap', 'a', function() {
+					var li = this.parentNode;
+					var classList = li.classList;
+					if (!classList.contains('mui-active') && !classList.contains('mui-disabled')) {
+						var active = li.parentNode.querySelector('.mui-active');
+						if (classList.contains('mui-previous')) {//previous
+							if (active) {
+								var previous = active.previousElementSibling;
+								console.log('previous', previous);
+								if (previous && !previous.classList.contains('mui-previous')) {
+									$.trigger(previous.querySelector('a'), 'tap');
+								} else {
+									classList.add('mui-disabled');
+								}
+							}
+						} else if (classList.contains('mui-next')) {//next
+							if (active) {
+								var next = active.nextElementSibling;
+								if (next && !next.classList.contains('mui-next')) {
+									$.trigger(next.querySelector('a'), 'tap');
+								} else {
+									classList.add('mui-disabled');
+								}
+							}
+						} else {//page
+							active.classList.remove('mui-active');
+							classList.add('mui-active');
+							var page = parseInt(this.innerText);
+							var previousPageElement = li.parentNode.querySelector('.mui-previous');
+							var nextPageElement = li.parentNode.querySelector('.mui-next');
+							previousPageElement.classList.remove('mui-disabled');
+							nextPageElement.classList.remove('mui-disabled');
+							if (page <= 1) {
+								previousPageElement.classList.add('mui-disabled');
+							} else if (page >= 5) {
+								nextPageElement.classList.add('mui-disabled');
+							}
+						}
+					}
+				});
+			})(mui); 
+		</script>
+		<!--解除禁用a链接-->
+		<script>
+			mui('body').on('tap', 'a', function() {
+		    var href = this.href;
+		    console.log('href:'+href);
+		    mui.openWindow({url:href});
+		});
+		</script>
+	</body>
+
+</html>

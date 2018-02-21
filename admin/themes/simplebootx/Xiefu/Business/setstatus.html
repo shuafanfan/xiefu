@@ -1,0 +1,33 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:U('Business/index')}">商家审核</a></li>
+			<li class="active"><a href="#"><if condition="$user_type eq 0">禁用<else/>启用</if></a></li>
+		</ul>
+		<form method="post" class="form-horizontal js-ajax-form" action="{:U('Business/dosetstatus')}">
+			<div class="row-fluid">
+				<div class="span9">
+					<table class="table table-bordered">
+						<tr>
+							<th>审核备注</th>
+							<td><textarea name="sh_memo" rows="5" cols="57" style="width: 400px;"></textarea>
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+			</div>
+			<div class="form-actions">
+				<input type="hidden" name="user_type" value="{$user_type}" >
+				<input type="hidden" name="user_id" value="{$user_id}" >
+				<button type="submit" class="btn btn-primary js-ajax-submit">保存</button>
+				<a class="btn" href="{:U('Business/index')}">{:L('BACK')}</a>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

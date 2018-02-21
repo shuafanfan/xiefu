@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>报货记录</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="__TMPL__Public//favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="__TMPL__Public/css/light7.min.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/light7-swiper.min.css">
+
+    <link rel="stylesheet" href="__TMPL__Public/css/style.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/common.css">
+
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_376445_kqepy6h9mkne9udi.css">
+
+
+</head>
+
+<body>
+
+<!-- page 容器 -->
+<div class="page page-current">
+    <!-- 这里是标题栏栏 -->
+    <header class="bar bar-nav">
+        <button class="button button-link button-nav pull-left">
+            <span class="icon icon-zuo"></span>
+        </button>
+        <button class="button button-link button-nav pull-right">
+
+        </button>
+
+        <h1 class="title">
+            报货记录
+        </h1>
+
+    </header>
+    <!-- 这里是标题栏end -->
+
+    <!-- 底部工具栏 -->
+    <tc_include file="Public:bottom" />
+    <!-- 底部工具栏 end-->
+
+    <!-- 这里是页面内容区 -->
+    <div class="content ">
+        <!--   这里是 搜索面板-->
+        <div class="content-block reportgoods">
+
+            <div class="buttons-tab">
+                <a href="{:U('report/reportgoods/mobile_recent')}&type=all" class=" active button">全部</a>
+                <a href="{:U('report/reportgoods/mobile_recent')}&type=today" class=" button">今天</a>
+                <a href="{:U('report/reportgoods/mobile_recent')}&type=yesterday" class=" button">昨天</a>
+            </div>
+
+                <div class="tabs">
+                    <div id="tab1" class="tab active">
+                        <div class="list-block media-list reportgoods_list reportgood_record">
+                            <ul>
+                            <volist name="report" id="vo">
+                                <li>
+                                    <div class=" reportgoods_title">
+                                        <div class="col-75">
+                                <span class="reportgoods_title_input">
+                                    <span class="icon icon-dagou dagou"></span>
+                                </span>
+                                        <?php $a=array('1'=>'发布中','3'=>'已下架');echo $a[$vo['status']] ?>    
+                                        </div>
+                                        <div class=" col-25">
+                                            <a href="__TMPL__Public/">
+                           <span class="reportgoods_button button button-big button-fill btn_bg_none">
+                           全部删除
+                           </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <a href="__TMPL__Public/#" class=" item-content">
+                                        <div class="item-media">
+                                            <img src="{$vo.photos}" >
+                                        </div>
+                                        <div class="item-inner">
+
+                                            <div class="item-subtitle">{$vo.title}</div>
+
+                                            <div class="item-title">数量:{$vo.num}双</div>
+                                            <div class="item-title">{$vo.creat_time}</div>
+
+
+                                            <div class="item-title-row margin_top1">
+                                                <div class="item-title"><span class="icon icon-yanjing-copy-copy-copy"></span>数量:1</div>
+                                                <div class="item-after">
+                                                    <span class="caozuo_btn button button-big button-fill ">刷新报货</span>
+                                                    <span class="caozuo_btn button button-big button-fill btn_bg_none">彻底删除</span>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </a>
+                                </li>
+                               </volist>
+                                 
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </div>
+        <a href="{:U('report/reportgoods/mobile_recent')}&type=off">已下架</a>
+        </div>
+
+        <!--   这里是搜索面板 end-->
+    </div>
+</div>
+
+
+<script type="text/javascript" src="__TMPL__Public/js/jquery.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="__TMPL__Public/js/light7.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="__TMPL__Public/js/light7-swiper.min.js"></script>
+<script type="text/javascript" src="__TMPL__Public/js/conmon.js"></script>
+<script>
+   /* banner*/
+    $(".swiper-container").swiper();
+   /* banner*/
+
+/*   全部删除按钮，只显示第一个*/
+  $(".tabs  .reportgoods_button").css("display","none");
+   $("#tab1 .reportgoods_button").eq(0).css("display","block");
+   $("#tab2 .reportgoods_button").eq(0).css("display","block");
+   $("#tab3 .reportgoods_button").eq(0).css("display","block");
+
+   $(".reportgoods_title_input").click(function () {
+       $(this).children(".dagou").toggle();
+   })
+
+</script>
+</body>
+</html>

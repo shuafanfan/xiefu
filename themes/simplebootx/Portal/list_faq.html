@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>现货白银,沥青,原油开户返佣常见问题-{$site_name}</title>
+		<meta name="keywords" content="现货白银常见问题,现货沥青常见问题,现货原油常见问题,开户返佣常见问题，汇佣网常见问题" />
+		<meta name="description" content="常见问题包括：现货白银、现货沥青、现货原油、现货铜等贵金属开户常见问题。汇佣网开户流程常见问题！">
+		<tc_include file="Public:head" />
+		<link href="__TMPL__Public/css/huiyong.css" rel="stylesheet">
+
+	</head>
+
+	<body>
+
+		<tc_include file="Public:nav" />
+
+		<!--内容页开始-->
+
+		<div class="w1200 center">
+
+			<!--<div class="content" >
+
+		<img src="__TMPL__Public/himg/lis_banner.png"></div>
+
+	</div>-->
+
+			<div class="price_Information">
+
+				<div class="price_place w1200 center">
+
+					<p>本页位置：<a href="/">首页</a> &gt; {$term.name}
+
+					</p>
+
+				</div>
+
+				<div class="price_leftnav left">
+
+					<div class="top"><span>{$term.name}</span></div>
+
+				</div>
+
+				<div class="price_right left">
+
+					<div class="every_comment left">
+
+						<div class="title">
+							<h2>{$term.name}</h2></div>
+
+						<ul class="con">
+
+							<foreach name="data['posts']" item="vo">
+
+								<li>
+
+									<dl>
+
+										<dt>
+
+                            	<h3 class="left"><a href="{:leuu('portal/article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a></h3>
+
+                            	<em class="right">{:date('Y-m-d',strtotime($vo['post_modified']))}</em></dt>
+
+										<dd>
+
+											{$vo.post_excerpt}
+
+											<!--{$vo.post_excerpt|msubstr=0,30}-->
+
+											<!--<a href="{:leuu('portal/article/index',array('id'=>$vo['tid']))}" target="_blank">全文&gt;&gt;</a>-->
+
+										</dd>
+
+									</dl>
+
+								</li>
+
+							</foreach>
+
+						</ul>
+
+						<div class="clear"></div>
+
+						<ul class="page">
+
+							<ul>
+
+								<li><span class="current">{$data.page}</span></li>
+
+							</ul>
+
+						</ul>
+
+					</div>
+
+					<div class="price_rtbar right">
+
+						<div class="con_a">
+
+							<a  href="http://wpa.qq.com/msgrd?v=3&uin={:sp_getad('页面QQ号')}&site=qq&menu=yes">
+
+								<img src="__TMPL__Public/himg/lis_kefu.png" width="244" height="197" title="顾客在线服务平台">
+
+								<dl class="con_a_ser">
+
+									<dt><img src="__TMPL__Public/himg/lis_chat.png"></dt>
+
+									<dd>顾客在线服务平台</dd>
+
+								</dl>
+
+							</a>
+
+						</div>
+
+						<!--<div class="con_b">
+
+			        <div class="home_title02">
+
+			            <div class="title_left left">热门<em>分析文章</em><i class="title_icon bgcor1"></i></div>
+
+			            <div class="title_right right"> </div><div class="clear"></div>
+
+			        </div>
+
+			        <div class="clear"></div>
+
+			        <div class="con_x">
+
+			            <ul>
+
+			            	<foreach name="reg" item="vo">
+
+			            		<li><a href="{:leuu('portal/article/index',array('id'=>$vo['tid']))}" target="_blank" title="{$vo.post_title}">{$vo.post_title}</a></li>
+
+			            	</foreach>
+
+			            	
+
+			            </ul>
+
+			            
+
+			            <center>
+
+			            	<a href="{:leuu('portal/article/index',array('id'=>$reg['tid']))}">
+
+			            		<php>
+
+							    	$smeta=json_decode($reg['smeta'],true);/* 把smeta转化成数组 */
+
+							    </php>
+
+			            		<?php if(!empty($smeta['thumb'])){ ?> 
+
+							    	<img src="{:sp_get_asset_upload_path($smeta['thumb'])}" alt="" title="{$reg.post_title}" style="width: 244px;height: 96px;">
+
+							    <?php } else{ ?>
+
+							   		<img src="__TMPL__Public/himg/lis_kaihu.png" alt="" title="{$reg.post_title}" style="width: 244px;height: 96px;">
+
+							   	<?php } ?>
+
+			            	</a>
+
+			            </center>
+
+			        </div>
+
+			    </div>-->
+
+					</div>
+
+				</div>
+
+				<div class="clear"></div>
+
+			</div>
+
+		</div>
+
+		<!--内容页结束-->
+
+		<tc_include file="Public:footer" />
+
+		<!-- JavaScript -->
+
+		<tc_include file="Public:scripts" />
+
+	</body>
+
+</html>

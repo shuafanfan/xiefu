@@ -1,0 +1,110 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:U('Indexadmin/index')}">本站用户</a></li>
+			<li class="active"><a href="{:U('Indexadmin/add')}">添加</a></li>
+		</ul>
+		<form method="post" class="form-horizontal js-ajax-form" action="{:U('Indexadmin/add_post')}">
+			<div class="row-fluid">
+				<div class="span9">
+					<table class="table table-bordered">
+					
+						<tr>
+							<th>帐号</th>
+							<td>
+								<input type="text" name="user_login" style="width: 400px; placeholder="请输入帐号"/>
+								<span class="form-required">*</span>
+							</td>
+						</tr>
+						<tr>
+							<th>密码</th>
+							<td><input type="password" name="user_pass" value="" style="width: 400px">
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						<tr>
+							<th>昵称</th>
+							<td><input type="text" name="user_nicename" value="" style="width: 400px">
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						
+						<tr>
+							<th>手机</th>
+							<td><input type="text" name="mobile" value="" style="width: 400px">
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+					
+						<tr>
+							<th>邮箱</th>
+							<td><input type="text" name="user_email" value="" style="width: 400px">
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						<tr>
+							<th>生日</th>
+							<td><input class="js-date" type="text" id="input-birthday" placeholder="2013-01-04" name="birthday" value="{$birthday}">
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						
+						<tr>
+							<th width="80">性别</th>
+							<td>
+								<select name="sex">
+									<php>$sexs=array("0"=>请选择,"1"=>男,"2"=>女);</php>
+									<foreach name="sexs" item="vo">
+										<php>$sexselected=$key==$sex?"selected":"";</php>
+										<option value="{$key}"{$sexselected}>{$vo}</option>
+									</foreach>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th>用户个人网站链接</th>
+							<td><input type="text" name="user_url" value="" style="width: 400px">
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						
+						<tr>
+							<th>个性签名</th>
+							<td><textarea name="signature" rows="5" cols="57" style="width: 400px;"> </textarea>
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+				<div class="span3">
+					<table class="table table-bordered">
+						<tr>
+							<th>头像</th>
+						</tr>
+						<tr>
+							<td>
+								<div style="text-align: center;">
+									<input type="hidden" name="avatar" id="thumb" value="">
+									<a href="javascript:void(0);" onclick="flashupload('thumb_images', '附件上传','thumb',thumb_images,'1,jpg|jpeg|gif|png|bmp,1,,,1','','','');return false;">
+										<img src="__TMPL__Public/assets/images/default-thumbnail.png" id="thumb_preview" width="135" style="cursor: hand" />
+									</a>
+									<input type="button" class="btn btn-small" onclick="$('#thumb_preview').attr('src','__TMPL__Public/assets/images/default-thumbnail.png');$('#thumb').val('');return false;" value="取消图片">
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary js-ajax-submit">{:L('ADD')}</button>
+				<a class="btn" href="{:U('ad/index')}">{:L('BACK')}</a>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/content_addtop.js"></script>
+</body>
+</html>

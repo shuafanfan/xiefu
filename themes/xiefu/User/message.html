@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>信息管理</title>
+    <link rel="stylesheet" href="__TMPL__Public/css/gerenzhongxin_header_left.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/base.css">
+</head>
+<body>
+<div class="all">
+    <tc_include file="Public:header2" />
+    <div class="huowu_all">
+        <div class="container">
+     <tc_include file="Public:accountleft" />
+        <div class="huowu_you">
+            <div class="huowu_you_liebiao">
+                <div class="xian"></div>
+                <ul>
+                    <li <?php if($_GET['type']=='no'||empty($_GET['type'])) echo 'class="check"'?>>
+                        <a href="{:U('user/message/index')}&type=no">未读信息</a>
+                    </li>
+
+                    <li <?php if($_GET['type']=='yes') echo 'class="check"'?>>
+                        <a href="{:U('user/message/index')}&type=yes">已读信息</a>
+                    </li>
+
+                    <li <?php if($_GET['type']=='delete') echo 'class="check"'?>>
+                        <a href="{:U('user/message/index')}&type=delete">回收站</a>
+                    </li>
+
+                </ul>
+            </div>
+
+           <!-- 未读信息-->
+            <div class="huowu_you_shangpin" id="weidu">
+                <div class="shoucang_guanli xinxi_guanli">
+                    <ul>
+                        <li>
+                            <div class="baifen10">
+                                <p> 状态</p>
+                            </div>
+
+
+                            <div class="baifen20">
+                                <p> 
+                                	<select class="message-type-select cate" >
+                                        <option>类型</option>
+                                        <option value="0">所有信息</option>
+                                        <option value="1">系统公告</option>
+                                		<option value="2">普通消息</option>  		
+                                    </select>
+                                </p>
+
+                            </div>
+
+                            <div class="baifen50">
+                                <p> 标题</p>
+
+                            </div>
+
+                            <div class="baifen20">
+                                <p>时间</p>
+
+                            </div>
+                        </li>
+                        <volist name="message" id="vo">
+                        <li>
+                            <div class="baifen10">
+                                <div class="juxing xinxi_juxing">
+                                    <input type="checkbox" value="{$vo.id}" name="choose">
+                                    <span><?php $a=['0'=>'未读','1'=>'已读'];echo $a[$vo['is_read']];  ?></span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="baifen20">
+                                <p><?php $b=['1'=>'系统公告','2'=>'普通信息'];echo $b[$vo['send_type']];  ?></p>
+                            </div>
+
+                            <div class="baifen50 message-title" data="{$vo.id}">
+                                <p>{$vo.title}</p>
+
+                            </div>
+
+                            <div class="baifen20 message-time">
+                                <p>{$vo.create_time}</p>
+                            </div>
+
+                            <div class="baifen100 message-content">
+                              <!--   <p>尊敬的用户:</p>
+                                <p class="baifen100_p2">您好,您发布的信息号:
+                                    <span class="">15465154168484</span>
+                                    已有人回复。请点击回到我的咸鱼市场<a href="">查看</a>原因
+                                </p> -->
+                                <p>{$vo.content}</p>
+                            </div>
+                        </li>
+                        </volist>
+                    </ul>
+                    <div class="message_caozuo_all">
+                    	<div class="juxing message_checked_all"> 
+                    			<input type="checkbox" class="message_checked_all_input" value=""> 
+                    				<span>全选</span> 
+                    		</div>
+                    <div class="message_caozuo"> 
+                    		
+                    		<?php if($_GET['type']=='no'||empty($_GET['type'])){ ?>
+                    		<a data="" class="huowu_caozuo " id="allread">   
+                    			                             批量标记已读
+                            </a>
+                            <?php } ?>
+                            <?php if($_GET['type']!='delete'){ ?>
+                            <a data="" class="huowu_caozuo " id="alldel">                            
+                            	    批量删除
+                            </a> 
+                            <?php }else{ ?>
+                            <a data="" class="huowu_caozuo " id="suredel">                            
+                                    彻底删除
+                            </a> 
+                            <?php } ?>
+                    	</div>
+                    </div> 
+                </div>
+            </div>
+            <input type="hidden" class="cates" value="<?php echo $_GET['type']; ?>">
+            <!-- 未读信息end-->
+            <!-- 已读信息end-->
+          <!--   <div class="huowu_you_shangpin" id="yidu">
+                <div class="shoucang_guanli xinxi_guanli">
+                    <ul>
+                        <li>
+                            <div class="baifen10">
+                                <p> 状态</p>
+                            </div>
+
+
+                            <div class="baifen20">
+                                <p> 类型</p>
+
+                            </div>
+
+                            <div class="baifen50">
+                                <p> 标题</p>
+
+                            </div>
+
+                            <div class="baifen20">
+                                <p>时间</p>
+
+                            </div>
+                        </li>
+                        <li>
+                            <div class="baifen10">
+                                <div class="juxing xinxi_juxing">
+                                    <input type="checkbox">
+                                    <span>未读</span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="baifen20">
+                                <p>杂杂市场</p>
+                            </div>
+
+                            <div class="baifen50">
+                                <p>您发布的跳蚤市场信息被删除</p>
+
+                            </div>
+
+                            <div class="baifen20">
+                                <p>2017-05-15&nbsp;15:49:17</p>
+                            </div>
+
+                            <div class="baifen100">
+                                <p>尊敬的用户:</p>
+                                <p class="baifen100_p2">您好,您发布的信息号:
+                                    <span class="">15465154168484</span>
+                                    已有人回复。请点击回到我的咸鱼市场<a href="">查看</a>原因
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="baifen10">
+                                <div class="juxing xinxi_juxing">
+                                    <input type="checkbox">
+                                    <span>未读</span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="baifen20">
+                                <p>杂杂市场</p>
+                            </div>
+
+                            <div class="baifen50">
+                                <p>您发布的跳蚤市场信息被删除</p>
+
+                            </div>
+
+                            <div class="baifen20">
+                                <p>2017-05-15&nbsp;15:49:17</p>
+                            </div>
+
+                            <div class="baifen100">
+                                <p>尊敬的用户:</p>
+                                <p class="baifen100_p2">您好,您发布的信息号:
+                                    <span class="">15465154168484</span>
+                                    已有人回复。请点击回到我的咸鱼市场<a href="">查看</a>原因
+                                </p>
+                            </div>
+                        </li>
+
+                    </ul>
+
+
+
+                </div>
+            </div> -->
+            <!-- 已读信息end-->
+
+            <!-- 回收站-->
+          <!--   <div class="huowu_you_shangpin" id="huishouzhan">
+                <div class="shoucang_guanli xinxi_guanli">
+                    <ul>
+                        <li>
+                            <div class="baifen10">
+                                <p> 状态</p>
+                            </div>
+                            <div class="baifen20">
+                                <p> 类型</p>
+
+                            </div>
+
+                            <div class="baifen50">
+                                <p> 标题</p>
+
+                            </div>
+
+                            <div class="baifen20">
+                                <p>时间</p>
+
+                            </div>
+                        </li>
+                        <li>
+                            <div class="baifen10">
+                                <div class="juxing xinxi_juxing">
+                                    <input type="checkbox">
+                                    <span>未读</span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="baifen20">
+                                <p>杂杂市场</p>
+                            </div>
+
+                            <div class="baifen50">
+                                <p>您发布的跳蚤市场信息被删除</p>
+
+                            </div>
+
+                            <div class="baifen20">
+                                <p>2017-05-15&nbsp;15:49:17</p>
+                            </div>
+
+                            <div class="baifen100">
+                                <p>尊敬的用户:</p>
+                                <p class="baifen100_p2">您好,您发布的信息号:
+                                    <span class="">15465154168484</span>
+                                    已有人回复。请点击回到我的咸鱼市场<a href="">查看</a>原因
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div> -->
+            <!-- 回收站end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<tc_include file="Public:footer" />
+</body>
+
+<script>
+	$(function(){
+		$(".message-title").click(function(){
+			$(this).siblings(".message-content").toggle();
+            id=$(this).attr('data');
+            $.ajax({
+               
+                type: "POST",
+                url: '{:U("user/message/oneread")}',
+                data:  {'id':id},
+                async: false,
+                success: function(data) {
+                },
+                         
+            });			
+		});
+		
+		$(".message_checked_all_input").click(function(){
+			
+			if($(this).is(':checked')){
+				$(this).parent().parent().siblings().find('input').prop('checked','checked')
+			}
+			else{
+				$(this).parent().parent().siblings().find('input').removeAttr('checked')
+			}
+		})
+	})
+	
+    $('#alldel').click(function(){
+        var arr=new Array();
+            $.each($('input:checkbox:checked'),function(){
+                   
+                        arr.push($(this).val());
+            });
+            if(arr[arr.length-1]==""){
+               arr.pop(); 
+            }
+            
+            $.ajax({
+               
+                type: "POST",
+                url: '{:U("user/message/alldel")}',
+                data:  {'arr':arr},
+                async: false,
+                success: function(data) {
+                    console.log(data);
+                    if(data['status']==1){
+                        layer.alert('删除成功',function(){
+                            window.location.href=window.location.href;
+                        })
+                    }  
+                },
+                         
+            });
+
+         
+    })    
+
+    $('#suredel').click(function(){
+        var arr=new Array();
+            $.each($('input:checkbox:checked'),function(){
+                   
+                        arr.push($(this).val());
+            });
+            if(arr[arr.length-1]==""){
+               arr.pop(); 
+            }
+            
+            $.ajax({
+               
+                type: "POST",
+                url: '{:U("user/message/suredel")}',
+                data:  {'arr':arr},
+                async: false,
+                success: function(data) {
+                    console.log(data);
+                    if(data['status']==1){
+                        layer.alert('删除成功',function(){
+                            window.location.href=window.location.href;
+                        })
+                    }  
+                },
+                         
+            });
+
+         
+    })
+
+    $('#allread').click(function(){
+        var arr=new Array();
+            $.each($('input:checkbox:checked'),function(){
+                   
+                        arr.push($(this).val());
+            });
+            if(arr[arr.length-1]==""){
+               arr.pop(); 
+            }
+            
+            $.ajax({
+               
+                type: "POST",
+                url: '{:U("user/message/allread")}',
+                data:  {'arr':arr},
+                async: false,
+                success: function(data) {
+                    console.log(data);
+                    if(data['status']==1){
+                        layer.alert('标记成功',function(){
+                            window.location.href=window.location.href;
+                        })
+                    }  
+                },
+                         
+            });
+ 
+    })
+
+    $('.cate').change(function(){
+        var sort=$(this).val();
+        var type=$('.cates').val();
+        window.location.href="{:U('user/message/index')}&sort="+sort+"&type="+type;
+    })
+</script>
+
+</html>

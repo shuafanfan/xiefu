@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>鞋服网注册页</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="__TMPL__Public/css/light7.min.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/light7-swiper.min.css">
+
+    <link rel="stylesheet" href="__TMPL__Public/css/style.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/common.css">
+
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_376445_4o7ikit8xybep14i.css">
+</head>
+
+<body>
+<div class="page-group login">
+    <div class="page page-current">
+        <div class="content main">
+            <div class="login-wrap">
+
+                <div class="list-block login-form">
+                    <ul style="	background: white!important;">
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-media"><i class="icon icon-wode color-danger"></i></div>
+                                    <div class="item-input">
+                                        <input type="text" placeholder="手机号" maxlength="11" name="mobile" id="mobile">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-media"><i class="icon icon-mima1 color-danger"></i></div>
+                                    <div class="item-input">
+                                        <input type="password"  name="password" id="password" value="" placeholder="密码">
+                                    </div>
+                                    <div class="item-media" id="eyes" >
+                                        <i class="icon icon-yulan color-danger" id="eyes_show"></i>
+                                        <i class="icon icon-yanjing color-danger" id="eyes_hide"></i>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-media"><i class="icon icon-yanzhengma color-danger"></i></div>
+                                    <div class="item-input">
+                                        <input type="password"  name="code" id="code"  placeholder="验证码">
+                                    </div>
+                                    <div class="item-media">
+                                        <div class="get_yzm" id="get_yzm">
+                                            点击获取
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            <div class="input_kuang2" >
+              <input type="checkbox"  style="width:15px" id="choose" value="1" checked="true" >&nbsp我已阅读<span class="hh" >《鞋服网用户注册协议》</span>
+            
+            </div>
+                <div class="content-block">
+                    <p>
+                        <a class="button button-fill button-big" id="login-btn">注册</a>
+                    </p>
+                </div>
+                <div class="content-block ">
+                    <div class="cuowu_tishi">
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!--tabs end-->
+    </div>
+    <!--content end-->
+</div>
+<script type="text/javascript" src="__TMPL__Public/js/jquery.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="__TMPL__Public/js/light7.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="__TMPL__Public/js/light7-swiper.min.js"></script>
+<script type="text/javascript" src="__TMPL__Public/js/conmon.js"></script>
+<script type="text/javascript" src="__TMPL__Public/js/gVerify.js"></script>
+<script type="text/javascript" src="__TMPL__Public/js/gVerify.js"></script>
+<script>
+     /*   验证码倒计时*/
+    $(".get_yzm").click(function () {
+        var mobile=$('#mobile').val();
+                    //console.log(mobile);
+                    $.ajax({
+                    //                cache: true,
+                    type: "POST",
+                    url: '{:U("user/user/sendmsg")}',
+                    data:  {'mobile':mobile},
+                   
+                    success: function(data) {
+                       if(data['message']=="OK"){
+                          $.alert("发送成功");
+                       }else{
+                          $.alert("发送失败");
+                       }
+                    },
+                    error:function(){
+                        console.log("发送失败");
+                    }
+                });
+        var intDiff = parseInt(60);//倒计时总秒数量
+        var i;
+
+        function timer() {    //显示时间
+
+            $(".get_yzm").html('<a>'+intDiff+'s'+'</a>');
+            intDiff--;
+
+            if(intDiff<0){
+                $(".get_yzm").html('<a>'+'点击重新发送'+'</a>');
+                clearInterval(i);
+            }
+        }
+        /*            timer();*/
+        i=setInterval(timer, 1000);
+
+    });
+
+    $('#login-btn').click(function () {
+            // if(code==$('#yanzhengma').value&&(info!=1)&&($('#mima1').value==$('#mima2').value)){
+                var mobile=$('#mobile').val();
+                var password=$('#password').val();
+                var code=$('#code').val();
+                if(!$("#choose").is(':checked')){
+                    $(".cuowu_tishi").show();
+                    $(".cuowu_tishi").html('<img src="__TMPL__Public/images/jinggao.png">'+'<span class="">'+'请先同意注册条款'+'</span>')
+                    return false;
+                }
+
+                $.ajax({
+                        //                cache: true,
+                        type: "POST",
+                        url: '{:U("user/user/doregister")}',
+                        data:  {'mobile':mobile,'password':password,'code':code},
+                        async: false,
+                        success: function(data) {
+                            if(data['msg']=='success'){
+                                 $.alert('恭喜您，注册成功！',function(){
+                                     location.href='{:U("user/account/index")}';
+                                })
+                            }else{
+                                $.alert(data['msg']);
+                            }
+                        },
+                        error:function(){
+                                  $.alert('抱歉，注册失败！',function(){
+                                    location.href='{:U("user/user/register")}';
+                                })
+                        }
+                    });         
+        });
+</script>
+</body>
+</html>

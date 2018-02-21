@@ -1,0 +1,98 @@
+<div class="list_right">
+
+	<div class="list_gg">
+
+		<div class="list_ggtit">
+
+			服务案例
+
+		</div>
+
+		<php>
+
+			$cgal = sp_sql_posts_bycatid(8,'order:post_date desc,listorder desc;field:object_id,post_title,post_excerpt,smeta,logo,post_source;limit:0,3',array('smeta'=>array('neq','')));
+
+		</php>
+
+		<div class="list_btm">
+
+			<div class="list_pic bd">
+
+				<ul>
+
+					<foreach name="cgal" item="vt">
+
+						<php>
+
+							$smeta = json_decode($vt['smeta'],true);
+
+						</php>
+
+						<li>
+
+							<a href="{:leuu('article/index',array('id'=>$vt['object_id']))}">
+
+								<if condition="empty($smeta['thumb'])">
+
+									<img src="__TMPL__Public/img/list__07.jpg"/>
+
+								<else />
+
+									<img src="{:sp_get_asset_upload_path($smeta['thumb'])}"/>
+
+								</if>
+
+							
+
+							</a>
+
+						</li>
+
+					</foreach>
+
+					
+
+				</ul>
+
+			</div>
+
+			<div class="list_btn hd">
+
+				<ul>
+
+					<foreach name="cgal" item="vt">
+
+						<li></li>
+
+					</foreach>
+
+				</ul>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="list_gg">
+
+		<div class="list_ggtit">
+
+			联系我们
+
+		</div>
+
+		<div class="list_btm">
+
+			<div class="list_p">
+
+				{:sp_getad('contects')}
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+

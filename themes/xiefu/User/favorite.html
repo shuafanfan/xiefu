@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>收藏管理</title>
+    <link rel="stylesheet" href="__TMPL__Public/css/gerenzhongxin_header_left.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/base.css">
+
+</head>
+<body>
+<div class="all"> 
+<tc_include file="Public:header2" />
+    <div class="huowu_all">
+        <div class="container">
+         <tc_include file="Public:accountleft" />
+        <div class="huowu_you">
+            <div class="fabuqingcang">
+              <div class="zhanghuguanli_liebiao">
+                <h1>收藏管理</h1>
+                
+                <div class="favorite_category_top">
+                	<span class="category_top_left_title">分类:</span>	
+                
+                 <ul>
+                 	
+                 <?php foreach ($sort as $key => $value) { ?> 
+                 	<li>{$value.name}</li>
+                   <?php } ?>
+                 </ul> 
+
+              
+                  
+                  <div class="favorite_category_top_btn guanli_caozuo">
+                  	<a class="add_category_btn">
+                  		添加分类
+                  	</a>
+                  	<a class="deleta_category_btn">
+                  		编辑/删除
+                  	</a>
+                  </div>
+                  
+             <!--   <input type="text" id="sort" name="sort" placeholder="添加类别">
+                <input type="button" id="addsort" name="addsort" value="添加分类">
+                -->
+                 <!--   <input type="button" value="编辑" data="{$value.id}" class="edittype">
+                    <input type="button" value="删除" data="{$value.id}" class="deltype">-->
+                </div>
+              </div>
+               
+               
+               <div class="shoucang_guanli">
+                    <ul>
+                        <li>
+                            <div class="baifen10">
+                                <div class="juxing">  <input type="checkbox"></div>
+
+                            </div>
+                            <div class="baifen50">
+                                <p> 商家信息</p>
+
+                            </div>
+
+                            <div class="baifen20">
+                                <p> 收藏分类</p>
+
+                            </div>
+
+                            <div class="baifen20">
+                                <p>  操作</p>
+
+                            </div>
+                        </li>
+                        <volist name="res" id="vo">
+                        <li>
+                            <div class="baifen10">
+
+                                <div class="juxing">
+                                    <input type="checkbox">
+                                </div>
+                            </div>
+                            <?php $a=array('1'=>'信誉商家','2'=>'');?>
+                            <div class="baifen50">
+                                <div class="xiemei_maoyi">
+                                <span><?php echo $a[$vo['is_shouq']] ?>  {$vo.bname}</span>
+                                    <a  class="lianxi_fangshi_btn contact" data="{$vo.bid}">联系方式</a>
+                                   <div class="shangjia_xinxi" style="display:none">
+
+                                </div>
+                                </div>
+                            </div>
+                            <div class="baifen20">
+                                <p> {$vo.sort}</p>
+
+                                <a class="xiugai_btn cate" data="{$vo.id}">
+                                                                                            修改分类
+                                </a>
+                            </div>
+                            <div class="baifen20">
+                                <div class="guanli_caozuo">
+                                <a class="bg_red deletef" data="{$vo.bid}" >删除</a>
+                                    <a class="pull_top" data="{$vo.bid}">置顶</a>
+                                </div>
+                            </div>
+                        </li>
+                        </volist>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        </div>
+    </div>
+</div>
+
+ <tc_include file="Public:footer" />
+<script>
+	$(document).ready(function(){
+	
+    $('.contact').click(function(){
+        var a=$(this);
+        a.next().toggle();
+        var bid=$(this).attr('data');
+        $.ajax( {
+            type:"POST",
+            data:  {'bid':bid},
+            url: "{:U('user/favorite/contact')}",
+            success: function( data, textStatus, jqXHR ){
+                console.log(data);
+                if(data.status==1){
+                    var html = '';
+                    html += '<p>商家ID:'+data['bid']+'</p>';
+                    html += '<p>QQ:'+data['qq1']+'</p>';
+                    html += '<p>微信号:'+data['weixin']+'</p>';
+                    html += '<p>电话号码:'+data['mobile']+'</p>';
+                    html += '<p>地址:'+data['name']+'</p>';
+                    html += '<p>产品相册地址:'+data['product_url']+'';
+                    html += '<div class="shangjia_xinxi_erweima">';
+                    html += '<img src="'+data['code']+'"';
+                    html += '</div> ';
+                    a.next().empty();
+                    a.next().append(html);
+                }else{
+                    layer.alert('未找到商家');
+                    return false;
+                }
+            }
+        });
+    });
+    $('.deletef').click(function(){
+        var bid=$(this).attr('data');
+        $.ajax( {
+            type:"POST",
+            data:  {'bid':bid},
+            url: "{:U('user/favorite/delete')}",
+            success: function( data, textStatus, jqXHR ){
+                console.log(data);
+                if(data.status==1){
+                    layer.alert('删除成功',function(){
+                        window.location.href=window.location.href;
+                    });
+                }else{
+                    layer.alert('删除失败');
+                    return false;
+                }
+            }
+        });
+    })
+    $('.pull_top').click(function(){
+        var bid=$(this).attr('data');
+        $.ajax( {
+            type:"POST",
+            data:  {'bid':bid},
+            url: "{:U('user/favorite/top')}",
+            success: function( data, textStatus, jqXHR ){
+                console.log(data);
+                if(data.status==1){
+                    layer.alert('置顶成功',function(){
+                        window.location.href=window.location.href;
+                    });
+                }else{
+                    layer.alert('置顶失败');
+                    return false;
+                }
+            }
+        });
+    })
+    var id=0; 
+    $('.cate').click(function(){
+        id=$(this).attr('data');
+        layer.open({
+            title:'分类',
+            type: 1,
+            content: ' <div class="layui-form-item">
+            <label class="layui-form-label">选择分类</label>
+            <div class="layui-input-block">
+            <select id="cate" name="cate" lay-verify="required">
+            <option value="未分类">未分类</option>
+            <volist name="sort" id="vo">
+            <option value="<?php echo $vo['name'] ?>"><?php echo $vo['name'] ?></option>
+            </volist>
+            </select>
+            </div>
+            </div>
+            <div class="layui-form-item">
+            <div class="layui-input-block">
+            <button onclick="fun()" data="{$vo.id}">确定</button>
+            </div>
+            </div>'
+        });
+    });
+
+    function fun(){
+        var cate=$('#cate').val();
+        $.ajax( {
+            type:"POST",
+            data:  {'id':id,'cate':cate},
+            url: "{:U('user/favorite/addcate')}",
+            success: function( data, textStatus, jqXHR ){
+                console.log(data);
+                if(data.status==1){
+                    layer.alert('修改成功',function(){
+                        window.location.href=window.location.href;
+                    });
+                }else{
+                    layer.alert('修改失败');
+                    return false;
+                }
+            }
+        });
+    }
+
+  /*添加分类弹窗*/
+  $('.add_category_btn').click(function(){
+        id=$(this).attr('data');
+        layer.open({
+            title:'添加分类',
+            type: 1,
+            content: ' <div class="layui-form-item">
+            <label class="layui-form-label"></label>
+            <div class="layui-input-block">
+              <div class="sort_div">
+                 <input type="text" name="sort" id="sort" class="sort">
+              </div> 
+            </div>
+            </div>
+            <div class="layui-form-item">
+            <div class="layui-input-block">
+            <button id="addsort">确定</button>
+            </div>
+            </div>'
+        });
+    });
+ /*添加分类弹窗end*/
+
+  /*确定添加分类*/
+    $('body').on('click','#addsort',function(){
+        var sort=$('#sort').val();
+        $.ajax( {
+            type:"POST",
+            data:  {'sort':sort},
+            url: "{:U('user/favorite/addsort')}",
+            success: function( data, textStatus, jqXHR ){
+                if(data.status==1){
+                    layer.alert(data['msg'],function(){
+                        window.location.href=window.location.href;
+                    });
+                }else{
+                    layer.alert(data['msg']);
+                    return false;
+                }
+            }
+        });
+    }) 
+
+    
+ /*确定添加分类end*/
+  
+    /*编辑/删除分类弹窗*/
+  $('.deleta_category_btn').click(function(){      
+        layer.open({
+            title:'编辑/删除',
+            type: 1,
+            content: ' <div class="layui-form-item">
+            <div class="layui-input-block">
+              <div class="deleta_category_all">                   
+                 <ul>
+                    <?php foreach ($sort as $key => $value) { ?> 
+                 	<li>
+                 	    <input type="checkbox" class="deleta_category_checkbox" name="category_checkbox" value="{$value.id}" data="1">
+                 	    <input type="text" value="{$value.name}" class="category_input" name="category_input" id="category_input_{$value.id}" >
+                 	</li>
+                    <?php } ?>
+                 </ul>
+              </div> 
+            </div>
+            </div>
+            <div class="layui-form-item">
+            <div class="layui-input-block">
+            <button class="edittype">编辑</button>
+            <button class="deltype">删除</button>
+            </div>
+            </div>'
+        });
+             $(".category_input").attr("disabled",true);
+    });
+     /*编辑/删除分类弹窗end*/
+    
+    /*编辑的input框的启用禁用*/
+  
+     $('body').on('click','.deleta_category_checkbox',function(){
+     	var checkbox_data=$(this).attr("data");
+     if(checkbox_data==1){
+   	   
+   	   $(this).siblings(".category_input").removeAttr("disabled");
+   	    $(this).siblings(".category_input").focus();
+   	   $(this).siblings(".category_input").css({"border-bottom":"1px solid #d6d6d6","color":"red"})
+   	   $(this).attr("data","2");
+      }else{
+   	     $(this).siblings(".category_input").attr("disabled",true);
+   	    
+   	     $(this).siblings(".category_input").css({"border-bottom":"none","color":"#333333"})
+   	       $(this).attr("data","1");
+   }
+     })
+  /*  */
+   
+     /*编辑的input框的启用禁用*/
+    
+    /* 编辑功能*/
+  
+     $('body').on('click','.edittype',function(){          
+       /* var i =0;*/
+        /*var id=$(this).attr('data');*/
+         var checkedNum = $("input[name='category_checkbox']:checked").length; 
+            if(checkedNum == 0) { 
+            layer.alert("请至少选择一项");
+            return; 
+         } 
+       
+       var e = 0;
+         var checkedList = new Array(); 
+          
+            $("input[name='category_checkbox']:checked").each(function() { 
+                checkedList.push($(this).val()); 
+               });       
+           var inputList = new Array(); 
+          
+            $("input[name='category_checkbox']:checked").each(function() { 
+                inputList.push($(this).next(".category_input").val()); 
+               }); 
+            
+              
+            for (var i = 0; i < checkedList.length; i++) {   
+	        $.ajax( {
+	            type:"POST",
+	            data:  {'types':inputList[i],'id':checkedList[i]},
+	            url: "{:U('user/favorite/edittype')}",
+	            success: function( data, textStatus, jqXHR ){
+	                console.log(data);
+	                if(data.status==1){
+	                    
+	               
+	                }else{
+	                	e = e+1;
+
+	                }
+	            }
+	        });
+	         }
+	     
+	      if(e>0){
+	         layer.alert("编辑失败");
+	       }else{
+	       	  layer.alert("编辑成功",function(){ window.location.href=window.location.href;  });
+	       }
+	        
+    }) 
+  /* 编辑功能end*/
+    
+     /* 删除功能*/
+     
+    $('body').on('click','.deltype',function(){
+ 
+        var checkedNum = $("input[name='category_checkbox']:checked").length; 
+            if(checkedNum == 0) { 
+            layer.alert("请至少选择一项");
+            return; 
+         } 
+        
+            var checkedList = new Array(); 
+            $("input[name='category_checkbox']:checked").each(function() { 
+                checkedList.push($(this).val()); 
+               }); 
+            
+       for (var i = 0; i < checkedList.length; i++) {
+       $.ajax( {
+            type:"POST",
+            data:  {'id':checkedList[i]},           
+            url: "{:U('user/favorite/deltype')}",
+            success: function( data, textStatus, jqXHR ){
+                if(data.status==1){
+ 
+                }
+            }
+        });
+       
+       }
+
+         layer.alert("删除成功",function(){
+                        window.location.href=window.location.href;
+          });
+      
+         
+    })
+    /* 删除功能end*/
+    
+
+ })    
+     
+     
+</script>
+</body>
+</html>
+

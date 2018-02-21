@@ -1,0 +1,42 @@
+			<aside id="offCanvasSide" class="mui-off-canvas-right">
+				<div id="offCanvasSideScroll" class="mui-scroll-wrapper">
+					<div class="mui-scroll ">
+						<div class="title nav_cetit">福建闽海石化</div>
+
+							<ul class="mui-table-view mui-table-view-chevron mui-table-view-inverted">
+							<!--  侧滑菜单分类标识为5 -->
+							<php>
+								 $sidenav = sp_get_menu_tree(5);
+							</php>
+							<foreach name="sidenav" item="vo" key="k">
+								<li class="mui-table-view-cell">
+									
+									
+									<!-- 判断是否有子分类-->
+				
+									<if condition=" !empty($vo['child'])">
+										<a class="mui-navigate-right Nli" href="#" data="{$vo.id}">{$vo.label}</a>
+										<ul class="sidenav_sub" id="sub_{$vo.id}" >
+				
+											<foreach name="vo.child" item="sub">				
+												 <div class="mui-collapse-content">
+									                <a href="{$sub.href}"  target="{$sub.target}">{$sub.label}</a>
+									            </div>
+
+											</foreach>
+				
+										</ul>
+									<else/>
+										<a class="mui-navigate-right" href="{$vo.href}">{$vo.label}</a>
+									</if>
+					
+									
+						            
+								</li>
+							</foreach>
+
+						</ul>
+					</div>
+				</div>
+			</aside>
+

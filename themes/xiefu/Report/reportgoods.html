@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="__TMPL__Public/css/base.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/baohuozhongxin.css">
+</head>
+<body>
+<div class="all">
+<tc_include file="Public:header" />
+    <div class="container">
+    <div class="xingzhi" id="xingzhi">
+        <span>
+            性质:
+        </span>
+        <ul>
+            <li><a href="{:U('portal/page/report')}">全部</a></li>
+            <li><a href="{:U('portal/page/report?type=1')}">个人</a></li>
+            <li><a href="{:U('portal/page/report?type=2')}/#">商家</a></li>
+        </ul>
+
+    </div>
+
+    <div class="xingzhi" id="pinpai">
+        <span>
+            品牌:
+        </span>
+        <php>
+            $nav = sp_get_menu_tree("main");
+        </php>
+
+        <ul>
+            <foreach name="brand" item="vbrand">
+            <li><a href="{:U('portal/page/report')}&brand={$vbrand.label}">{$vbrand.label}</a></li>
+            </foreach>
+          
+
+
+            <div class="xingzhi" id="zhankaineirong">
+
+                <ul>
+                    <li><a href="__TMPL__Public/#"></a></li>
+
+                </ul>
+
+            </div>
+        </ul>
+
+        <span class="zhankai">
+            <span class="zhankai_zi"> 展开</span>
+            <div class="yousanjiao" id="sanjiao">
+
+            </div>
+
+              <div class="shangsanjiao" id="">
+
+            </div>
+        </span>
+
+    </div>
+
+    <div class="chanpin_chaxun">
+        共找到<span>{$sum}</span>条求购信息
+    </div>
+</div>
+<div class="">
+<div class="chanpin" >
+    <ul>
+    <volist name="goods" id="vgoods">
+        <li>
+            <a href="__TMPL__Public/">
+                <div class="chanpin_tu">
+                    <img src="{$vgoods.photos}">
+                </div>
+                <div class="chanpinzi">
+
+                    <h1>{$vgoods.brand} {$vgoods.title}</h1>
+                    <p>
+                        {$vgoods.user_nicename}
+                    </p>
+                     <p>
+                        尺寸：<span>{$vgoods.size}</span>
+                    </p>
+                    <p>
+                        求购数量：<span>{$vgoods.num}</span>
+                    </p>
+
+                    <a href="__TMPL__Public/" class="chanpin_btn">
+                        我有货
+                    </a>
+                </div>
+            </a>
+        </li>
+    </volist>
+    </ul>
+</div>
+    <div class="fenye">
+    <div  style="text-align:center" class="">{$Page}</div>
+    </div>
+</div>
+</div>
+
+<tc_include file="Public:footer" />
+</body>
+</html>
+
+
+

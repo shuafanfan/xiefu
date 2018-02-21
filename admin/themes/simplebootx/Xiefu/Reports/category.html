@@ -1,0 +1,320 @@
+<admintpl file="header"/>
+</head>
+<body>
+
+<div class="wrap js-check-wrap">
+		<form class="well form-search" method="post" action="{:U('Reports/category')}" >
+			选择： 
+			<select class="select_2" style="width: 150px;" name="flag" onchange="show_sub(this.options[this.options.selectedIndex].value)">
+				<option value='0'>全部</option>
+				<option value='1' <if condition="$flag eq 1">selected</if>>今日</option>
+				<option value='2' <if condition="$flag eq 2">selected</if>>昨日</option>
+				<option value='3' <if condition="$flag eq 3">selected</if>>前15天</option>
+				<option value='4' <if condition="$flag eq 4">selected</if>>前30天</option>
+				<option value='5' <if condition="$flag eq 5">selected</if>>自定义</option>
+			</select> 
+			<div id="zidiyi"  <if condition="$flag neq 5" > style="display:none" <else/> style="display:-webkit-inline-box" </if>>
+				时间：
+				<input type="text" name="start_time" class="js-date" value="{$start_time|default=''}" style="width: 80px;" autocomplete="off">-
+				<input type="text" class="js-date" name="end_time" value="{$end_time}" style="width: 80px;" autocomplete="off">
+			</div>
+			<input type="submit" class="btn btn-primary" value="搜索" />
+		</form>
+			<div class="col-sm-12">
+	            <div class="table-responsive">
+            </div>
+		  <div id="home_toptip"></div>
+		  <div style="width: 100%;height: auto;margin: 0 50px;">
+		  		<div id="indexMain" style="min-width: 310px; width: 45%; height: 400px; float: left;"></div>
+		   		<div id="Main" style="height: 400px; width: 49%;float: left;"></div>
+		   		<div id="newreport" style="height: 400px; width: 49%;float: left;"></div>
+		   		<div id="bMain" style="height: 400px; width: 49%;float: left;"></div>
+		  </div>
+</div>
+
+
+</body>
+</html>
+<script src="__PUBLIC__/echarts/js/echarts.js"></script>
+<script type="text/javascript">
+   // Step:3 conifg ECharts's path, link to echarts.js from current page.
+   // Step:3 为模块加载器配置echarts的路径，从当前页面链接到echarts.js，定义所需图表路径
+   require.config({
+       paths: {
+           echarts: '__PUBLIC__/echarts/js'
+       }
+   });
+   
+   // Step:4 require echarts and use it in the callback.
+   // Step:4 动态加载echarts然后在回调函数中开始使用，注意保持按需加载结构定义图表路径
+
+   require(
+	       [
+	           'echarts',
+	           'echarts/chart/funnel',
+	           'echarts/chart/pie',
+	  
+	       ],
+	       function (ec) {
+	           //--- 折柱 ---
+	         // 基于准备好的dom，初始化echarts实例 
+			var myChart = ec.init(document.getElementById('indexMain')); 
+			myChart.setOption({
+				title : {
+		        text: '类目商家分析',
+		        subtext: '',
+		        x:'center'
+		    },
+		    tooltip : {
+		        trigger: 'item',
+		        formatter: "{a} <br/>{b} : {c} ({d}%)"
+		    },
+		    legend: {
+		        orient : 'vertical',
+		        x : 'left',
+		        data:[
+						<volist name='label_arr' id='v'>
+							'{$v['label']}',
+						</volist>
+				        ]
+		    },
+		    toolbox: {
+		        show : true,
+		        feature : {
+		            mark : {show: true},
+		            dataView : {show: true, readOnly: false},
+		            magicType : {
+		                show: true, 
+		                type: ['pie', 'funnel'],
+		                option: {
+		                    funnel: {
+		                        x: '25%',
+		                        width: '50%',
+		                        funnelAlign: 'left',
+		                        max: 1548
+		                    }
+		                }
+		            },
+		            restore : {show: true},
+		            saveAsImage : {show: true}
+		        }
+		    },
+		    calculable : true,
+		    series : [
+		        {
+		            name:'类目商家分析',
+		            type:'pie',
+		            radius : '55%',
+		            center: ['50%', '60%'],
+		            data:[
+		                  <volist name='label_arr' id='v' key='k'>
+		                  {value:{$v.num}, name:"{$v.label}"},
+						  </volist>
+		            ]
+		        }
+		    ]
+			})
+	       }
+	   );
+   require(
+	       [
+	           'echarts',
+	           'echarts/chart/bar',
+	           'echarts/chart/line',
+	  
+	       ],
+	   function (ec) {
+	       //--- 折柱 ---
+	       var myChart = ec.init(document.getElementById('Main'));
+	       myChart.setOption({
+	           tooltip : {
+	               trigger: 'axis'
+	           },
+	           legend: {
+	        	   data:['类目商家分析']
+	           },
+	           toolbox: {
+	               show : true,
+	               feature : {
+	                   mark : {show: true},
+	                   dataView : {show: true, readOnly: false},
+	                   magicType : {show: true, type: ['line', 'bar']},
+	                   restore : {show: true},
+	                   saveAsImage : {show: true}
+	               }
+	           },
+	           calculable : true,
+	           xAxis : [
+	               {
+	                   type : 'category',
+	                   data:[	<volist name='label_arr' id='v'>
+									'{$v['label']}',
+								</volist>
+							]
+	               }
+	           ],
+	           yAxis : [
+	               {
+	                   type : 'value',
+	                   splitArea : {show : true}
+	               }
+	           ],
+	           series : [
+	               {
+	                   name:'类目商家分析',
+	                   type:'line',
+	                   data:[
+								<volist name='label_arr' id='v'>
+								'{$v['num']}',
+								</volist>
+	                         ]
+	               },
+	            
+	           ]
+	       });
+	   }
+	);
+   require(
+	       [
+	           'echarts',
+	           'echarts/chart/funnel',
+	           'echarts/chart/pie',
+	  
+	       ],
+	       function (ec) {
+	           //--- 折柱 ---
+	         // 基于准备好的dom，初始化echarts实例 
+			var myChart = ec.init(document.getElementById('newreport')); 
+			myChart.setOption({
+				title : {
+		        text: '品牌数',
+		        subtext: '',
+		        x:'center'
+		    },
+		    tooltip : {
+		        trigger: 'item',
+		        formatter: "{a} <br/>{b} : {c} ({d}%)"
+		    },
+		    legend: {
+		        orient : 'vertical',
+		        x : 'left',
+		        data:['有效品牌','删除品牌']
+		    },
+		    toolbox: {
+		        show : true,
+		        feature : {
+		            mark : {show: true},
+		            dataView : {show: true, readOnly: false},
+		            magicType : {
+		                show: true, 
+		                type: ['pie', 'funnel'],
+		                option: {
+		                    funnel: {
+		                        x: '25%',
+		                        width: '50%',
+		                        funnelAlign: 'left',
+		                        max: 1548
+		                    }
+		                }
+		            },
+		            restore : {show: true},
+		            saveAsImage : {show: true}
+		        }
+		    },
+		    calculable : true,
+		    series : [
+		        {
+		            name:'品牌数',
+		            type:'pie',
+		            radius : '55%',
+		            center: ['50%', '60%'],
+		            data:[
+		                {value:<?php echo round($add_new/$all_new,4)*100?>, name:"有效品牌"},
+		                {value:<?php echo round($delete_new/$all_new,4)*100?>, name:"删除品牌"},
+		                
+		            ]
+		        }
+		    ]
+			})
+	       }
+	   );
+
+   
+   require(
+	       [
+	           'echarts',
+	           'echarts/chart/funnel',
+	           'echarts/chart/pie',
+	  
+	       ],
+	       function (ec) {
+	           //--- 折柱 ---
+	         // 基于准备好的dom，初始化echarts实例 
+			var myChart = ec.init(document.getElementById('bMain')); 
+			myChart.setOption({
+				title : {
+		        text: '首页类目商家占比',
+		        subtext: '',
+		        x:'center'
+		    },
+		    tooltip : {
+		        trigger: 'item',
+		        formatter: "{a} <br/>{b} : {c} ({d}%)"
+		    },
+		    legend: {
+		        orient : 'vertical',
+		        x : 'left',
+		        data:['有效商家','删除商家']
+		    },
+		    toolbox: {
+		        show : true,
+		        feature : {
+		            mark : {show: true},
+		            dataView : {show: true, readOnly: false},
+		            magicType : {
+		                show: true, 
+		                type: ['pie', 'funnel'],
+		                option: {
+		                    funnel: {
+		                        x: '25%',
+		                        width: '50%',
+		                        funnelAlign: 'left',
+		                        max: 1548
+		                    }
+		                }
+		            },
+		            restore : {show: true},
+		            saveAsImage : {show: true}
+		        }
+		    },
+		    calculable : true,
+		    series : [
+		        {
+		            name:'首页类目商家占比',
+		            type:'pie',
+		            radius : '55%',
+		            center: ['50%', '60%'],
+		            data:[
+		                {value:<?php echo round($youxiao_business/$all_business,4)*100?>, name:"有效商家"},
+		                {value:<?php echo round($del_business/$all_business,4)*100?>, name:"删除商家"},
+		                
+		            ]
+		        }
+		    ]
+			})
+	       }
+	   );
+</script>
+<script src="__ROOT__/public/js/common.js"></script> 
+<script>     
+    function show_sub(v){
+        if(v==5){
+            $('#zidiyi').show();
+            $('#zidiyi').css('display','-webkit-inline-box');
+         }else{
+        	 $('#zidiyi').hide();
+         }     
+    }     
+</script> 
+</body>
+</html>

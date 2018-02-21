@@ -1,0 +1,48 @@
+<admintpl file="header" />
+</head>
+<body style="min-width: 800px;">
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="{:U('commentadmin/index')}">杂杂市场评论</a></li>
+		</ul>
+		<form class="js-ajax-form" method="post">
+			<table class="table table-hover table-bordered table-list">
+				<thead>
+					<tr>
+						<th width="15"><label><input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x"></label></th>
+						<th width="50">ID</th>
+						<th width="100">姓名</th>
+						<th width="150">邮箱</th>
+						<th>评论内容</th>
+						<th width="120">评论时间</th>
+						<th width="50">状态</th>
+						<th width="80">操作</th>
+					</tr>
+				</thead>
+				<php>$status=array("1"=>L('AUDITED'),"0"=>L('NOT_AUDITED'));</php>
+				<foreach name="comments" item="vo">
+				<tr>
+					<td><input type="checkbox" class="js-check" data-yid="js-check-y" data-xid="js-check-x" name="ids[]" value="{$vo.id}"></td>
+					<td>{$vo.id}</td>
+					<td>{:get_usres_name($vo['uid'])}</td>
+					<td>{$vo.email}</td>
+					<td>{$vo.content}</td>
+					<td>{$vo.createtime}</td>
+					<td><if condition="$vo.status eq 0">未审核<else/>已审核</if></td>
+					<td>
+						<a href="{:U('Market/comment_delete',array('id'=>$vo['id']))}" class="js-ajax-delete">{:L('DELETE')}</a>
+					</td>
+				</tr>
+				</foreach>
+			</table>
+			<div class="table-actions">
+				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('Market/check',array('check'=>1))}" data-subcheck="true">审核</button>
+				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('Market/check',array('uncheck'=>1))}" data-subcheck="true">取消审核</button>
+				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('Market/comment_delete')}" data-subcheck="true" data-msg="{:L('DELETE_CONFIRM_MESSAGE')}">删除</button>
+			</div>
+			<div class="pagination">{$Page}</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>分类</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="__TMPL__Public//favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="__TMPL__Public/css/light7.min.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/light7-swiper.min.css">
+
+    <link rel="stylesheet" href="__TMPL__Public/css/style.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/common.css">
+
+      <link rel="stylesheet" href="//at.alicdn.com/t/font_376445_4l9rsah7c63qsemi.css">
+
+
+
+</head>
+
+<body>
+
+<!-- page 容器 -->
+<div class="page page-current">
+    <!-- 这里是标题栏栏 -->
+    <header class="bar bar-nav">
+        <button class="button button-link button-nav pull-left">
+            <span class="icon icon-zuo"></span>
+        </button>
+        <button class="button button-link button-nav pull-right">
+
+            <span class="icon icon-sousuo"></span>
+        </button>
+        <!-- 这里是搜索栏 -->
+        <h1 class="title">
+            <div class="searchbar huoyuan_search ">
+                <div class="search-input ">
+                    <input type="search" id='search' placeholder='关键字搜索'>
+                </div>
+            </div>
+        </h1>
+        <!-- 这里是搜索栏end -->
+    </header>
+    <!-- 这里是标题栏end -->
+
+    <!-- 底部工具栏 -->
+    <tc_include file="Public:bottom" />
+    <!-- 底部工具栏 end-->
+
+    <!-- 这里是页面内容区 -->
+    <div class="content ">
+        <div class="classify">
+        <div class="left_list">
+            <ul>
+ <?php 
+        // 菜单栏分类
+        $first=M('category')->where('parentid=0')->select();        
+        $res=M('category')->where('parentid',NEQ,0)->field('id,parentid,label,logo')->select();
+
+        /*二级菜单*/
+        foreach ($first as $k => $v) {
+            foreach ($res as $ke => $va) {
+                if($va['parentid']==$v['id']){
+                    $first[$k]['second'][$va['id']]=$va['label'];
+                    $second[]=$va['id'];
+                }
+            }
+        }
+
+        /* 三级菜单*/
+        foreach ($second as $k2 => $v2) {
+            
+            foreach ($res as $ke2 => $va2) {
+                //echo $va2['parentid'].'<br>';
+                if($va2['parentid']==$v2){
+                    
+                    //$first[$k2]['third'][]=$va2['label'];
+                    $third[$v2][$va2['id']][]=$va2['label'];
+                    $third[$v2][$va2['id']][]=$va2['logo'];
+                }
+            }
+        }
+ ?>
+                <?php 
+                    foreach ($first as $k => $v) {                
+                ?>
+                <li>
+                    <a >{$v.label}</a>
+                    <div class="right_list">
+                    
+                  <!--  <此处循环>-->
+                    <?php 
+                        foreach ($v['second'] as $k2 => $v2) {                     
+                    ?>
+                        <div class="right_list_title">
+                           {$v2}
+                        </div>
+                        <ul>
+                            <?php
+                                foreach ($third[$k2] as $key => $value) {
+                            ?>
+                            <li>
+                                <a href="{:U('portal/index/catesearch')}&first={$v.label}&second={$v2}&third={$value[0]}&keyword={$key}">
+                                    <div class="right_list_content">
+                                        <div class="right_list_img">
+                                            <img src="{$value[1]}">
+                                        </div>
+                                        <p class="right_list_text">
+                                            {$value[0]}
+                                        </p>
+                                    </div>
+
+                                </a>
+                            </li>
+                            <?php } ?>
+                        </ul>
+                    <?php } ?>
+                  <!--  <此处循环end>-->
+
+        
+
+                    </div>
+                </li>
+                <?php } ?>
+            </ul>
+
+
+        </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="__TMPL__Public/js/jquery.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="__TMPL__Public/js/light7.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="__TMPL__Public/js/light7-swiper.min.js"></script>
+<script type="text/javascript" src="__TMPL__Public/js/conmon.js"></script>
+
+</body>
+</html>

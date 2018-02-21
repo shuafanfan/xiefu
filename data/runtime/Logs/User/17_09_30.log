@@ -1,0 +1,454 @@
+[ 2017-09-30T13:46:08+08:00 ] 121.204.120.196 /index.php?g=user&m=user&a=dologin
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000026s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000076s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000151s ]
+SQL: SHOW COLUMNS FROM `ts_users` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ts_users` WHERE `user_login` = '111111' LIMIT 1   [ RunTime:0.0003s ]
+SQL: UPDATE `ts_users` SET `last_login_time`='2017-09-30 13:46:08',`last_login_ip`='121.204.120.196' WHERE `id` = '148' [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+NOTIC: [8] Undefined index: status /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 25 行.
+
+[ 2017-09-30T13:47:12+08:00 ] 121.204.120.196 /index.php?g=user&m=favorite&a=dofavorite
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000024s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000075s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000146s ]
+SQL: SHOW COLUMNS FROM `ts_user_favorites` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_user_favorites` WHERE `bid` = 88 AND `uid` = '148' LIMIT 1   [ RunTime:0.0003s ]
+SQL: INSERT INTO `ts_user_favorites` (`bid`,`bname`,`is_shouq`,`uid`,`creat_time`,`sort`) VALUES ('88','米其林','0','148','2017-09-30 13:47:12','未分类') [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T13:47:15+08:00 ] 121.204.120.196 /index.php?g=user&m=favorite&a=dofavorite
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000025s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000077s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000150s ]
+SQL: SHOW COLUMNS FROM `ts_user_favorites` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_user_favorites` WHERE `bid` = 88 AND `uid` = '148' LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T13:47:19+08:00 ] 121.204.120.196 /index.php?g=user&m=favorite&a=dofavorite
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000052s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000117s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000272s ]
+SQL: SHOW COLUMNS FROM `ts_user_favorites` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `ts_user_favorites` WHERE `bid` = 88 AND `uid` = '148' LIMIT 1   [ RunTime:0.0001s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T13:47:28+08:00 ] 121.204.120.196 /index.php?g=user&m=favorite&a=contact
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000025s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000091s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000163s ]
+SQL: SHOW COLUMNS FROM `ts_business` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `ts_business` left join ts_region_conf on ts_business.city=ts_region_conf.id  WHERE `bid` = '88' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T13:48:12+08:00 ] 121.204.120.196 /index.php?g=user&m=favorite&a=addsort
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000040s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000077s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000166s ]
+SQL: SHOW COLUMNS FROM `ts_user_favorites_type` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_user_favorites_type` WHERE `uid` = 148 AND `name` = '123' LIMIT 1   [ RunTime:0.0003s ]
+SQL: INSERT INTO `ts_user_favorites_type` (`uid`,`name`) VALUES ('148','123') [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T13:48:19+08:00 ] 121.204.120.196 /index.php?g=user&m=favorite&a=addsort
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000026s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000093s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000171s ]
+SQL: SHOW COLUMNS FROM `ts_user_favorites_type` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_user_favorites_type` WHERE `uid` = 148 AND `name` = '123' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T13:48:23+08:00 ] 121.204.120.196 /index.php?g=user&m=favorite&a=addsort
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000025s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000077s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000150s ]
+SQL: SHOW COLUMNS FROM `ts_user_favorites_type` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_user_favorites_type` WHERE `uid` = 148 AND `name` = '年代' LIMIT 1   [ RunTime:0.0003s ]
+SQL: INSERT INTO `ts_user_favorites_type` (`uid`,`name`) VALUES ('148','年代') [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T13:48:28+08:00 ] 121.204.120.196 /index.php?g=user&m=favorite&a=addsort
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000026s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000078s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000155s ]
+SQL: SHOW COLUMNS FROM `ts_user_favorites_type` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_user_favorites_type` WHERE `uid` = 148 AND `name` = '耐克' LIMIT 1   [ RunTime:0.0002s ]
+SQL: INSERT INTO `ts_user_favorites_type` (`uid`,`name`) VALUES ('148','耐克') [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T13:48:36+08:00 ] 58.22.113.9 /index.php?g=user&m=user&a=login
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000026s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000074s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000147s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000055s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000080s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002456s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.002483s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000027s ]
+INFO: Run Common\Behavior\TmplStripSpaceBehavior [ RunTime:0.000080s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000135s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000020s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000036s ]
+
+[ 2017-09-30T13:50:52+08:00 ] 121.204.120.196 /index.php?g=user&m=message&a=alldel
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000025s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000075s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000147s ]
+SQL: SHOW COLUMNS FROM `ts_user_notice` [ RunTime:0.0005s ]
+SQL: UPDATE `ts_user_notice` SET `is_delete`='1' WHERE `id` = 8686 [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T13:50:59+08:00 ] 121.204.120.196 /index.php?g=user&m=message&a=allread
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000025s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000089s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000163s ]
+SQL: SHOW COLUMNS FROM `ts_user_notice` [ RunTime:0.0005s ]
+SQL: UPDATE `ts_user_notice` SET `is_read`='1' WHERE `id` = 8710 [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T13:51:19+08:00 ] 121.204.120.196 /index.php?g=user&m=message&a=alldel
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000024s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000074s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000144s ]
+SQL: SHOW COLUMNS FROM `ts_user_notice` [ RunTime:0.0005s ]
+SQL: UPDATE `ts_user_notice` SET `is_delete`='1' WHERE `id` = 8686 [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T13:51:20+08:00 ] 121.204.120.196 /index.php?g=user&m=message&a=alldel
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000034s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000079s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000175s ]
+SQL: SHOW COLUMNS FROM `ts_user_notice` [ RunTime:0.0005s ]
+SQL: UPDATE `ts_user_notice` SET `is_delete`='1' WHERE `id` = 8686 [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T13:51:20+08:00 ] 121.204.120.196 /index.php?g=user&m=message&a=alldel
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000090s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000176s ]
+SQL: SHOW COLUMNS FROM `ts_user_notice` [ RunTime:0.0006s ]
+SQL: UPDATE `ts_user_notice` SET `is_delete`='1' WHERE `id` = 8686 [ RunTime:0.0017s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T13:51:20+08:00 ] 121.204.120.196 /index.php?g=user&m=message&a=alldel
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000024s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000076s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000146s ]
+SQL: SHOW COLUMNS FROM `ts_user_notice` [ RunTime:0.0005s ]
+SQL: UPDATE `ts_user_notice` SET `is_delete`='1' WHERE `id` = 8686 [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T13:51:21+08:00 ] 121.204.120.196 /index.php?g=user&m=message&a=alldel
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000033s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000087s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000173s ]
+SQL: SHOW COLUMNS FROM `ts_user_notice` [ RunTime:0.0005s ]
+SQL: UPDATE `ts_user_notice` SET `is_delete`='1' WHERE `id` = 8686 [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T13:51:22+08:00 ] 121.204.120.196 /index.php?g=user&m=message&a=alldel
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000026s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000078s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000153s ]
+SQL: SHOW COLUMNS FROM `ts_user_notice` [ RunTime:0.0005s ]
+SQL: UPDATE `ts_user_notice` SET `is_delete`='1' WHERE `id` = 8686 [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T13:51:23+08:00 ] 121.204.120.196 /index.php?g=user&m=message&a=alldel
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000025s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000078s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000148s ]
+NOTIC: [8] Undefined index: arr /data/wwwroot/xiefu/application/User/Controller/MessageController.class.php 第 52 行.
+NOTIC: [2] Invalid argument supplied for foreach() /data/wwwroot/xiefu/application/User/Controller/MessageController.class.php 第 54 行.
+NOTIC: [8] Undefined variable: res /data/wwwroot/xiefu/application/User/Controller/MessageController.class.php 第 58 行.
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T13:51:26+08:00 ] 121.204.120.196 /index.php?g=user&m=message&a=alldel
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000102s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000190s ]
+SQL: SHOW COLUMNS FROM `ts_user_notice` [ RunTime:0.0005s ]
+SQL: UPDATE `ts_user_notice` SET `is_delete`='1' WHERE `id` = 8710 [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T13:57:02+08:00 ] 121.204.120.196 /index.php?g=user&m=favorite&a=addsort
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000025s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000075s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000148s ]
+SQL: SHOW COLUMNS FROM `ts_user_favorites_type` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_user_favorites_type` WHERE `uid` = 148 AND `name` = '' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T13:57:06+08:00 ] 121.204.120.196 /index.php?g=user&m=favorite&a=addsort
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000025s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000077s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000151s ]
+SQL: SHOW COLUMNS FROM `ts_user_favorites_type` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_user_favorites_type` WHERE `uid` = 148 AND `name` = '' LIMIT 1   [ RunTime:0.0001s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T14:00:00+08:00 ] 121.204.120.196 /index.php?g=user&m=favorite&a=edittype
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000030s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000106s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000191s ]
+SQL: SHOW COLUMNS FROM `ts_user_favorites_type` [ RunTime:0.0005s ]
+SQL: UPDATE `ts_user_favorites_type` SET `name`='年年' WHERE `id` = 94 [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T14:00:16+08:00 ] 121.204.120.196 /index.php?g=user&m=favorite&a=deltype
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000024s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000077s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000148s ]
+SQL: SHOW COLUMNS FROM `ts_user_favorites_type` [ RunTime:0.0005s ]
+SQL: DELETE FROM `ts_user_favorites_type` WHERE `id` = 95 [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T14:00:26+08:00 ] 121.204.120.196 /index.php?g=user&m=favorite&a=deltype
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000026s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000075s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000145s ]
+SQL: SHOW COLUMNS FROM `ts_user_favorites_type` [ RunTime:0.0005s ]
+SQL: DELETE FROM `ts_user_favorites_type` WHERE `id` = 94 [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T14:00:30+08:00 ] 121.204.120.196 /index.php?g=user&m=favorite&a=edittype
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000034s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000078s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000162s ]
+SQL: SHOW COLUMNS FROM `ts_user_favorites_type` [ RunTime:0.0005s ]
+SQL: UPDATE `ts_user_favorites_type` SET `name`='年代' WHERE `id` = 94 [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T14:00:39+08:00 ] 121.204.120.196 /index.php?g=user&m=favorite&a=addsort
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000024s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000075s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000145s ]
+SQL: SHOW COLUMNS FROM `ts_user_favorites_type` [ RunTime:0.0018s ]
+SQL: SELECT * FROM `ts_user_favorites_type` WHERE `uid` = 148 AND `name` = '年代' LIMIT 1   [ RunTime:0.0002s ]
+SQL: INSERT INTO `ts_user_favorites_type` (`uid`,`name`) VALUES ('148','年代') [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T14:00:46+08:00 ] 121.204.120.196 /index.php?g=user&m=favorite&a=addsort
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000038s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000077s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000164s ]
+SQL: SHOW COLUMNS FROM `ts_user_favorites_type` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_user_favorites_type` WHERE `uid` = 148 AND `name` = '耐克' LIMIT 1   [ RunTime:0.0002s ]
+SQL: INSERT INTO `ts_user_favorites_type` (`uid`,`name`) VALUES ('148','耐克') [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T14:00:53+08:00 ] 121.204.120.196 /index.php?g=user&m=favorite&a=addsort
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000024s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000088s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000160s ]
+SQL: SHOW COLUMNS FROM `ts_user_favorites_type` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_user_favorites_type` WHERE `uid` = 148 AND `name` = '135' LIMIT 1   [ RunTime:0.0002s ]
+SQL: INSERT INTO `ts_user_favorites_type` (`uid`,`name`) VALUES ('148','135') [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T14:03:31+08:00 ] 58.22.7.108 /index.php?g=user&m=user&a=dologin
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000025s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000074s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000145s ]
+SQL: SHOW COLUMNS FROM `ts_users` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `ts_users` WHERE `user_login` = 'admin1' LIMIT 1   [ RunTime:0.0003s ]
+SQL: UPDATE `ts_users` SET `last_login_time`='2017-09-30 14:03:31',`last_login_ip`='58.22.7.108' WHERE `id` = '114' [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+NOTIC: [8] Undefined index: status /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 25 行.
+
+[ 2017-09-30T14:04:38+08:00 ] 121.204.120.196 /index.php?g=user&m=user&a=dologin
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000025s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000085s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000160s ]
+SQL: SHOW COLUMNS FROM `ts_users` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_users` WHERE `user_login` = 'admin1' LIMIT 1   [ RunTime:0.0003s ]
+SQL: UPDATE `ts_users` SET `last_login_time`='2017-09-30 14:04:38',`last_login_ip`='121.204.120.196' WHERE `id` = '114' [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+NOTIC: [8] Undefined index: status /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 25 行.
+
+[ 2017-09-30T14:05:04+08:00 ] 121.204.120.196 /index.php?g=user&m=user&a=dologin
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000025s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000083s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000156s ]
+SQL: SHOW COLUMNS FROM `ts_users` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ts_users` WHERE `user_login` = '123456' LIMIT 1   [ RunTime:0.0007s ]
+SQL: UPDATE `ts_users` SET `last_login_time`='2017-09-30 14:05:04',`last_login_ip`='121.204.120.196' WHERE `id` = '142' [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+NOTIC: [8] Undefined index: status /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 25 行.
+
+[ 2017-09-30T14:05:58+08:00 ] 58.22.7.108 /index.php?g=user&m=user&a=dologin
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000025s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000077s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000150s ]
+SQL: SHOW COLUMNS FROM `ts_users` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ts_users` WHERE `user_login` = 'admin1' LIMIT 1   [ RunTime:0.0003s ]
+SQL: UPDATE `ts_users` SET `last_login_time`='2017-09-30 14:05:58',`last_login_ip`='58.22.7.108' WHERE `id` = '114' [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+NOTIC: [8] Undefined index: status /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 25 行.
+
+[ 2017-09-30T14:06:55+08:00 ] 121.204.120.196 /index.php?g=user&m=user&a=dologin
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000025s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000087s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000162s ]
+SQL: SHOW COLUMNS FROM `ts_users` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ts_users` WHERE `user_login` = '123' LIMIT 1   [ RunTime:0.0003s ]
+SQL: UPDATE `ts_users` SET `last_login_time`='2017-09-30 14:06:55',`last_login_ip`='121.204.120.196' WHERE `id` = '135' [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+NOTIC: [8] Undefined index: status /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 25 行.
+
+[ 2017-09-30T14:07:05+08:00 ] 121.204.120.196 /index.php?g=user&m=user&a=dologin
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000036s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000118s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000241s ]
+SQL: SHOW COLUMNS FROM `ts_users` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `ts_users` WHERE `user_login` = 'admin1' LIMIT 1   [ RunTime:0.0004s ]
+SQL: UPDATE `ts_users` SET `last_login_time`='2017-09-30 14:07:05',`last_login_ip`='121.204.120.196' WHERE `id` = '114' [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+NOTIC: [8] Undefined index: status /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 25 行.
+
+[ 2017-09-30T14:08:48+08:00 ] 121.204.120.196 /index.php?g=user&m=favorite&a=dofavorite
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000027s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000078s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000164s ]
+SQL: SHOW COLUMNS FROM `ts_user_favorites` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_user_favorites` WHERE `bid` = 92 AND `uid` = '114' LIMIT 1   [ RunTime:0.0003s ]
+SQL: INSERT INTO `ts_user_favorites` (`bid`,`bname`,`is_shouq`,`uid`,`creat_time`,`sort`) VALUES ('92','搜狗信息','0','114','2017-09-30 14:08:48','未分类') [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T14:08:52+08:00 ] 121.204.120.196 /index.php?g=user&m=favorite&a=dofavorite
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000026s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000092s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000175s ]
+SQL: SHOW COLUMNS FROM `ts_user_favorites` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_user_favorites` WHERE `bid` = 92 AND `uid` = '114' LIMIT 1   [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T14:09:00+08:00 ] 121.204.120.196 /index.php?g=user&m=favorite&a=contact
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000039s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000097s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000205s ]
+SQL: SHOW COLUMNS FROM `ts_business` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ts_business` left join ts_region_conf on ts_business.city=ts_region_conf.id  WHERE `bid` = '92' LIMIT 1   [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T14:09:23+08:00 ] 121.204.120.196 /index.php?g=user&m=favorite&a=addsort
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000030s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000087s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000173s ]
+SQL: SHOW COLUMNS FROM `ts_user_favorites_type` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_user_favorites_type` WHERE `uid` = 114 AND `name` = '1' LIMIT 1   [ RunTime:0.0002s ]
+SQL: INSERT INTO `ts_user_favorites_type` (`uid`,`name`) VALUES ('114','1') [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T14:22:33+08:00 ] 58.22.7.108 /index.php?g=user&m=user&a=dologin
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000025s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000077s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000152s ]
+SQL: SHOW COLUMNS FROM `ts_users` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ts_users` WHERE `user_login` = 'admin1' LIMIT 1   [ RunTime:0.0003s ]
+SQL: UPDATE `ts_users` SET `last_login_time`='2017-09-30 14:22:33',`last_login_ip`='58.22.7.108' WHERE `id` = '114' [ RunTime:0.0003s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+NOTIC: [8] Undefined index: status /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 25 行.
+
+[ 2017-09-30T15:12:05+08:00 ] 58.22.7.108 /index.php?g=user&m=favorite&a=contact
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000026s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000078s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000153s ]
+SQL: SHOW COLUMNS FROM `ts_business` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `ts_business` left join ts_region_conf on ts_business.city=ts_region_conf.id  WHERE `bid` = '92' LIMIT 1   [ RunTime:0.0001s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T15:12:07+08:00 ] 58.22.7.108 /index.php?g=user&m=favorite&a=contact
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000024s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000075s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000145s ]
+SQL: SHOW COLUMNS FROM `ts_business` [ RunTime:0.0005s ]
+SQL: SELECT * FROM `ts_business` left join ts_region_conf on ts_business.city=ts_region_conf.id  WHERE `bid` = '92' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T15:12:07+08:00 ] 58.22.7.108 /index.php?g=user&m=favorite&a=contact
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000025s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000077s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000159s ]
+SQL: SHOW COLUMNS FROM `ts_business` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ts_business` left join ts_region_conf on ts_business.city=ts_region_conf.id  WHERE `bid` = '88' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T15:12:10+08:00 ] 58.22.7.108 /index.php?g=user&m=favorite&a=contact
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000027s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000083s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000172s ]
+SQL: SHOW COLUMNS FROM `ts_business` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `ts_business` left join ts_region_conf on ts_business.city=ts_region_conf.id  WHERE `bid` = '88' LIMIT 1   [ RunTime:0.0002s ]
+NOTIC: [8] Undefined index: url /data/wwwroot/xiefu/application/Common/Controller/AppframeController.class.php 第 24 行.
+
+[ 2017-09-30T15:12:21+08:00 ] 58.22.7.108 /index.php?g=user&m=message&a=oneread
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000025s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000078s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000152s ]
+SQL: SHOW COLUMNS FROM `ts_user_notice` [ RunTime:0.0005s ]
+SQL: UPDATE `ts_user_notice` SET `is_read`='1' WHERE `id` = 8616 [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000033s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000057s ]
+
+[ 2017-09-30T15:12:22+08:00 ] 58.22.7.108 /index.php?g=user&m=message&a=oneread
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000025s ]
+INFO: Run Behavior\CheckLangBehavior [ RunTime:0.000075s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000147s ]
+SQL: SHOW COLUMNS FROM `ts_user_notice` [ RunTime:0.0005s ]
+SQL: UPDATE `ts_user_notice` SET `is_read`='1' WHERE `id` = 8616 [ RunTime:0.0003s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000035s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000058s ]
+

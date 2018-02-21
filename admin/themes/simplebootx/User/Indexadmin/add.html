@@ -1,0 +1,98 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:U('Indexadmin/index')}">本站用户</a></li>
+			<li class="active"><a href="{:U('Indexadmin/add')}">添加</a></li>
+		</ul>
+		<form method="post" class="form-horizontal js-ajax-form" action="{:U('Indexadmin/add_post')}">
+			<div class="row-fluid">
+				<div class="span9">
+					<table class="table table-bordered">
+					
+						<tr >
+							<th width="80px">帐号</th>
+							<td>
+								<input type="text" name="user_login" required style="width: 400px; placeholder="请输入帐号"  value="{$vo.user_login}"/>
+								<span class="form-required">*</span>
+							</td>
+						</tr>
+						<tr>
+							<th>密码</th>
+							<td><input type="password" name="user_pass" value="" style="width: 400px" >
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						<tr>
+							<th>昵称</th>
+							<td><input type="text" name="user_nicename" required style="width: 400px" value="{$vo.user_nicename}">
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						
+						<tr>
+							<th>QQ</th>
+							<td><input type="text" name="qq" id="qq" required style="width: 400px" value="{$vo.qq}">
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						<tr>
+							<th>微信</th>
+							<td><input type="text" name="weixin" id="weixin" required style="width: 400px" value="{$vo.weixin}">
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						<tr>
+							<th>邮箱</th>
+							<td><input type="text" name="user_email" id="user_email" required style="width: 400px" value="{$vo.user_email}">
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						<tr >
+							<th width="100px">绑定手机号</th>
+							<td><input type="text" id="mobile" name="mobile"  required value="{$vo.mobile}" style="width: 200px;" autocomplete="off">
+							</td>
+						</tr>
+						<tr>
+							<th width="80">用户类型</th>
+							<td>
+									<input type="radio" name="user_type" checked value="2" >会员
+									<input type="radio" name="user_type" value="3" >商家
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+				<div class="span3">
+					<table class="table table-bordered">
+						<tr>
+							<th>头像</th>
+						</tr>
+						<tr>
+							<td>
+								<div style="text-align: center;">
+									<input type="hidden" name="avatar" id="thumb" value="{$vo.avatar}">
+									<a href="javascript:void(0);" onclick="flashupload('thumb_images', '附件上传','thumb',thumb_images,'1,jpg|jpeg|gif|png|bmp,1,,,1','','','');return false;">
+										<if condition="$vo.avatar eq ''">
+											<img src="__TMPL__Public/assets/images/default-thumbnail.png" id="thumb_preview" width="135" style="cursor: hand"/>
+										<else />
+											<img src="{$vo.avatar}" id="thumb_preview" width="135" style="cursor: hand; height: 113px;"/>
+										</if>									</a>
+									<input type="button" class="btn btn-small" onclick="$('#thumb_preview').attr('src','__TMPL__Public/assets/images/default-thumbnail.png');$('#thumb').val('');return false;" value="取消图片">
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary js-ajax-submit">{:L('ADD')}</button>
+				<a class="btn" href="{:U('ad/index')}">{:L('BACK')}</a>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/content_addtop.js"></script>
+</body>
+</html>

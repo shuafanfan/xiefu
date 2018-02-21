@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<title>福建闽海石化</title>
+		<tc_include file="Public:head" />
+
+	</head>
+
+	<body>
+		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable">
+			<!--侧滑菜单部分start-->
+			<tc_include file="Public:slide" />
+			<!--侧滑菜单部分end-->
+			<div class="mui-inner-wrap">
+				<div id="offCanvasContentScroll" class="mui-content mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<!--24小时咨询热线start-->
+						<tc_include file="Public:idx_head" />
+						<!--24小时咨询热线end-->
+						<!--手机版首页导航start-->
+						<nav class="nav_bg">
+							<div class="nav_box">
+								<ul>
+									<!--4导航分类id首页导航-->
+									<php>
+										$topnav = _sp_get_menu_datas(4);
+									</php>
+									<foreach name="topnav" item="vo" key="k">
+										<li>
+											<a href="{$vo.href}">{$vo.label}</a>
+										</li>
+									</foreach>
+								</ul>
+							</div>
+						</nav>
+						<!--手机版首页导航end-->
+						<!--banner-->
+						<!--图片为640*355-->
+						<div id="slider" class="mui-slider">
+							<div class="mui-slider-group mui-slider-loop">
+									<!--添加幻灯片分类为手机版首页幻灯片标识为index_app_banner-->
+									<php>
+										$home_slides = sp_getslide('index_app_banner');
+									</php>
+									<foreach name="home_slides" item="vo">
+										<div class="mui-slider-item">
+											<a href="{$vo.slide_url}" title="{$vo.slide_name}">
+												<li>
+													<img src="{:sp_get_asset_upload_path($vo['slide_pic'])}" />
+												</li>
+											</a>
+										</div>
+									</foreach>
+							</div>
+							<p class="next"></p>
+							<p class="prev"></p>
+								
+							<div class="mui-slider-indicator">
+								<foreach name="home_slides" item="vo">
+									<div <if condition="$key eq 0">
+											class="mui-indicator"
+											<else />
+											class="mui-indicator  mui-active"
+										</if> >
+									</div>
+								</foreach>
+							</div>
+						</div>
+						<!--banner_end-->
+						<!--闽海服务-->
+						<div class="service">
+							<div class="index_tit">
+								<h3>闽海产业</h3>
+								<p>PRODUCTS</p>
+								<span></span>
+							</div>
+							<div class="mui-slider idx_ex">
+								<div class="mui-slider-group mui-slider-loop">
+									<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一个图文表格) -->
+									<div class="mui-slider-item ">
+										<ul>
+											<foreach name="products" item="vo">
+											<li>
+												<php>
+													$smeta = json_decode($vo['smeta'],true);
+												</php>
+												<a href="{:leuu('portal/product/index',array('id'=>$vo['tid']))}">
+													<img src="{:sp_get_asset_upload_path($smeta['thumb'])}" />
+													<h5>{$vo['post_title']|msubstr=0,6,'utf-8',false}</h5>
+													<!-- <p>{$vo['post_excerpt']|msubstr=0,20,'utf-8',false}</p> -->
+												</a>
+											</li>
+											</foreach>
+										</ul>
+									</div>
+									<div class="mui-slider-item ">
+										<ul>
+											<foreach name="products" item="vo">
+											<li>
+												<php>
+													$smeta = json_decode($vo['smeta'],true);
+												</php>
+												<a href="{:leuu('portal/product/index',array('id'=>$vo['tid']))}">
+													<img src="{:sp_get_asset_upload_path($smeta['thumb'])}" />
+													<h5>{$vo['post_title']|msubstr=0,6,'utf-8',false}</h5>
+													<!-- <p>{$vo['post_excerpt']|msubstr=0,20,'utf-8',false}</p> -->
+												</a>
+											</li>
+											</foreach>
+										</ul>
+									</div>
+									<div class="mui-slider-item ">
+										<ul>
+											<foreach name="products" item="vo">
+											<li>
+												<php>
+													$smeta = json_decode($vo['smeta'],true);
+												</php>
+												<a href="{:leuu('portal/product/index',array('id'=>$vo['tid']))}">
+													<img src="{:sp_get_asset_upload_path($smeta['thumb'])}" />
+													<h5>{$vo['post_title']|msubstr=0,6,'utf-8',false}</h5>
+													<!-- <p>{$vo['post_excerpt']|msubstr=0,20,'utf-8',false}</p> -->
+												</a>
+											</li>
+											</foreach>
+										</ul>
+									</div>
+									<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一个图文表格) -->
+									<div class="mui-slider-item ">
+										<ul>
+											<foreach name="products" item="vo">
+											<li>
+												<php>
+													$smeta = json_decode($vo['smeta'],true);
+												</php>
+												<a href="{:leuu('portal/product/index',array('id'=>$vo['tid']))}">
+													<img src="{:sp_get_asset_upload_path($smeta['thumb'])}" />
+													<h5>{$vo['post_title']|msubstr=0,6,'utf-8',false}</h5>
+													<!-- <p>{$vo['post_excerpt']|msubstr=0,20,'utf-8',false}</p> -->
+												</a>
+											</li>
+											</foreach>
+										</ul>
+									</div>
+								</div>
+								<div class="mui-slider-indicator" style="bottom: -3px;">
+									<div class="mui-indicator mui-active"></div>
+									<div class="mui-indicator"></div>
+								</div>
+								
+							</div>
+							
+						</div>
+						<!--闽海服务end-->
+						
+						
+						<!--热销产品和成功案例-->
+						<div class="cotent_idx">
+							<div class="hot_prd">
+								<div class="idx_tit">
+									<div class="tit_bg">
+										<p>关于我们</p>
+										<span>About Us</span>
+									</div>
+									<b></b>
+
+								</div>
+								<div class="ht_prd">
+									<div class="idx_ab">
+										<p>
+											{$page_1['post_excerpt']|msubstr=0,200,'utf-8',false}
+										</p>
+									</div>
+									<div class="shipin">
+										<!-- 关于我们==视频中心 -->
+										<img class="start" src="__TMPL__Public/images/bofang.png" />
+										<img src="__TMPL__Public/images/yk.jpg"/> 
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--切换标签-->
+						<div class="tab_idx">
+							<div id="slider" class="mui-slider" style="height: 217px">
+								<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+									<a class="mui-control-item" href="javascript:void(0)">
+										<!-- 公司资讯 -->{$term_cin.name}
+									</a>
+									<a class="mui-control-item" href="javascript:void(0)">
+										<!-- 行业新闻 -->{$term_ine.name}									
+									</a>
+									<a class="mui-control-item" href="javascript:void(0)">
+										<!-- 最新促销消息 -->{$term_lpn.name}
+									</a>
+								</div>
+								<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
+								<div class="mui-slider-group">
+									<!-- 
+									公司资讯Company information查询分类id11
+									新闻中心-公司资讯-媒体聚焦分类id4
+									新闻中心-公司资讯-人文关怀分类id10 
+									-->
+									<div id="item1mobile" class="mui-slider-item mui-control-content">
+										<div class="class_zx">
+											<div class="cla_top">
+												<div class="cls_left">
+													<php>
+														$smeta = json_decode($posts_cin[0]['smeta'],true);
+													</php>
+													<if condition="$smeta['thumb'] eq NULL">
+														<img src="__TMPL__Public/images/index__21.jpg" />
+														<else />
+														<img src="{:sp_get_asset_upload_path($smeta['thumb'])}" />
+													</if>
+												</div>
+												<div class="cls_right">
+													<h1>{$posts_cin[0]['post_title']|msubstr=0,20,'utf-8',flase}</h1>
+												<p>{$posts_cin[0]['post_excerpt']|msubstr=0,60,'utf-8',flase}</p>
+												</div>
+												<div class="clearfix"></div>
+											</div>
+											<div class="clearfix"></div>
+											<div class="cls_btm">
+												<ul>
+													<foreach name="posts_cin" item="vo">
+														<li>
+															<a href="{:leuu('portal/article/index',array('id'=>$vo['tid']))}">
+																● {$vo.post_title|msubstr=0,20,'utf-8',flase}
+															</a>
+														</li>
+													</foreach>
+												</ul>
+											</div>
+
+										</div>
+									</div>
+									<!-- 行业新闻Industry news -->
+									<div id="item2mobile" class="mui-slider-item mui-control-content">
+										<div class="class_zx">
+											<div class="cla_top">
+												<div class="cls_left">
+													<php>
+														$smeta = json_decode($posts_ine[0]['smeta'],true);
+													</php>
+													<if condition="$smeta['thumb'] eq NULL">
+														<img src="__TMPL__Public/images/index__21.jpg" />
+														<else />
+														<img src="{:sp_get_asset_upload_path($smeta['thumb'])}" />
+													</if>	
+												</div>
+												<div class="cls_right">
+													<h1>{$posts_ine[0]['post_title']}</h1>
+													<p>{$posts_ine[0]['post_excerpt']|msubstr=0,60,'utf-8',flase}</p>
+												</div>
+												<div class="clearfix"></div>
+											</div>
+											<div class="clearfix"></div>
+											<div class="cls_btm">
+												<ul>
+													<foreach name="posts_ine" item="vo">
+														<li>
+															<a href="{:leuu('portal/article/index',array('id'=>$vo['tid']))}">
+																● {$vo.post_title|msubstr=0,20,'utf-8',flase}
+															</a>
+														</li>
+													</foreach>
+												</ul>
+											</div>
+
+										</div>
+									</div>
+									<!-- 最新促销消息Latest promotional news -->
+									<div id="item3mobile" class="mui-slider-item mui-control-content">
+										<div class="class_qa">
+										<ul>
+											<foreach name="posts_lpn" item="vo">
+												<li>
+													<a href="{:leuu('portal/article/index',array('id'=>$vo['tid']))}">
+														<p class="qus">
+														● {$vo.post_title|msubstr=0,10,'utf-8',true}
+														</p>
+														<p class="asw">
+														{$vo.post_excerpt|msubstr=0,38,'utf-8',flase}
+														</p>
+													</a>
+												</li>
+											</foreach>
+										</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!----------------------切换标签----------------------->
+					<!--尾部声明-->
+					<tc_include file="Public:b_footer" />
+					<!--底部导航-->
+					<tc_include file="Public:footer" />
+					
+				</div>
+
+				<!-- off-canvas backdrop -->
+				<div class="mui-off-canvas-backdrop"></div>
+			</div>
+
+		</div>
+	
+		<script src="__TMPL__Public/js/mui.min.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			//获得slider插件对象
+				var gallery = mui('.mui-slider');
+				gallery.slider({
+				  interval:5000//自动轮播周期，若为0则不自动播放，默认为0；
+				});
+		</script>
+		<script src="__TMPL__Public/js/layer.js"   type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//弹出一个iframe层
+			
+			$(".shipin").live("click",function(){
+
+				layer.open({
+				  type: 2,
+				  title: false,
+				  area: ['780px', '500px'],
+				  shade: 0.8,
+				  closeBtn: 1,
+				  shadeClose: true,
+				  content: 'http://player.youku.com/player.php/sid/XMTQ3Mzk0MDAxMg==/v.swf'
+				});
+				
+			});
+			
+		</script>
+	</body>
+
+</html>

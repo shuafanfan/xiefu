@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>{$post_title}-{$site_name}</title>
+		<meta name="keywords" content="{$site_seo_keywords}" />
+		<meta name="description" content="{$site_seo_description}">
+		<tc_include file="Public:head" />
+		<style>
+			.side{background: #1077D6;}
+			.side a, .side i{color: #FFFFFF;}
+			.list_banner {
+				
+				<php>
+				    $id=$term_id;
+			
+					$arr   = array("news"=>array(3,11,12,13,4,10),"hr"=>array(21,22,43,23,44));
+					
+					 
+					if(in_array($id,$arr['news'])){
+						$imgurl = sp_getad('新闻Banner');
+						echo ' background: url("'.$imgurl.'") no-repeat center center;';						 
+					}
+					if(in_array($id,$arr['hr'])){
+						$imgurl = sp_getad('人力资源Banner');
+						echo ' background: url("'.$imgurl.'") no-repeat center center;';						 
+					}
+
+				</php>
+
+			}
+		</style>
+	</head>
+
+	<body>
+		
+		<tc_include file="Public:nav" />
+		
+		<div class="list_banner"></div>
+		<!--列表页-->
+		<div class="w1200 container clearfix">
+			<!--侧边栏-->
+			<div class="fl list2_left visible-lg-block">
+				<div class="dynamics_list">
+					<div class="top_dy">{$termname['name']}</div>
+					<ul class="top_dylist">
+						
+						<php>
+									$id = $term_id;
+									$arr   = array("about"=>array(1,2,3,4,5,386),"hr"=>array(21,22,43,23,44));
+									
+									if(in_array($id,$arr['hr'])){
+										
+										$tag   = "field:post_title,id;ids:6,35,36;limit:0,10; ";
+										$hr = sp_sql_pages($tag);		
+									}									
+														
+						</php>
+						<foreach name="hr" item="vo">
+									<li  >
+										<a href="{:leuu('portal/page/index',array('id'=>$vo['id']))}" >
+											<i class="iconfont FR">&#xe608;</i><p>{$vo['post_title']}</p>
+										</a>
+									</li>
+						</foreach>
+								
+						<foreach name="tns" item="vo">
+						<li <?php if($term_id==$vo['term_id']){ ?> class="side" <?php } ?>>
+							<a href="{:leuu('portal/list/index',array('id'=>$vo['term_id']))}">
+								<i class="iconfont FR">&#xe608;</i>
+								<p>{$vo.name}</p>
+							</a>
+						</li>
+						</foreach>	
+					</ul>
+				</div>
+				<!--<div class="dynamics_list">
+					<div class="rd_top">
+						
+						<em class="fl"></em>最新资讯
+					</div>
+					<ul class="rd_list">
+						<foreach name="zuixin['posts']" item="vo">
+							<li><a href="{:leuu('portal/article/index',array('id'=>$vo['tid']))}" target="_blank" title="{$vo.post_title}">&gt; {$vo.post_title|msubstr=0,16,'utf-8',false}</a></li>
+						</foreach>
+				</div>-->
+			</div>
+			<div class="fl list2_right  ">
+				<!--内容页-->
+				<div class="art_left fl">
+					<h1>{$post_title}</h1>
+					<div class="title">
+						<div class=" fl" style="width: 50%; color: #999; font-size: 14px;">
+							  <?php if(!empty($post_source)) {   echo "来源：".$post_source;}  ?>
+						</div>
+
+						<div class="tit fr"> <i class="iconfont fl">&#xe606;</i> {:date('Y-m-d',strtotime($post_modified))}</div>
+
+						<div class="clear"></div>
+
+					</div>
+
+					<div class="content">
+
+						{$post_content}
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--底部-->
+		<tc_include file="Public:footer" />
+		<tc_include file="Public:scripts" />
+		<!--底部结束-->
+ 
+	</body>
+
+</html>

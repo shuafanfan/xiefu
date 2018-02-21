@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+	<html>
+
+	<head>
+
+		<title>网站地图 - {$site_name} </title>
+
+		<meta name="keywords" content="网站地图" />
+
+		<meta name="description" content="网站地图">
+
+		<tc_include file="Public:head" />
+
+		<style>
+
+			#article_content img{height:auto !important}
+
+		</style>
+
+		<link href="__TMPL__Public/css/huiyong.css" rel="stylesheet"> 
+
+	</head>
+
+<body class="">
+
+<tc_include file="Public:nav" />
+
+
+
+
+
+
+
+<!--内容页开始-->
+
+<div class="w1200 center">
+
+    <div class="price_Information">
+
+        <div class="price_place w1200 center">
+
+            <p>本页位置：<a href="{:leuu("Portal/index/index")}">首页</a>
+
+            	 &gt; <a>网站地图</a>
+
+            </p>	
+
+        </div>
+
+        <div class="price_leftnav left">
+
+            <div class="top"><span>网站地图</span></div>
+
+            <ul class="content">
+
+            	<li><a href="{:leuu('portal/page/index',array('id'=>1))}" <?php if($_GET['id']==1){ ?> class="ahover" <?php } ?>><em>•</em>关于我们</a></li>
+
+            	<li><a href="{:leuu('portal/page/index',array('id'=>2))}" <?php if($_GET['id']==2){ ?> class="ahover" <?php } ?>><em>•</em>联系我们</a></li>
+
+            	<li><a href="{:leuu('portal/page/index',array('id'=>10))}" <?php if($_GET['id']==10){ ?> class="ahover" <?php } ?>><em>•</em>奖励政策</a></li>
+
+            	<li><a href="{:leuu('portal/page/index',array('id'=>11))}" <?php if($_GET['id']==11){ ?> class="ahover" <?php } ?>><em>•</em>立即开户</a></li>
+
+            </ul>
+
+        </div>
+
+        <div class="price_right left">
+
+            <div class="every_comment left">
+
+                <div class="title"><h2>网站地图</h2></div>
+
+                
+
+                <h3 class="left"><br>
+
+                	
+
+                	<foreach name="nav" item="navs">
+
+						<div style="width: 100%;height: auto;display: block;margin-bottom: 20px;clear: both;">
+
+							<h3 class="ha" style="display: block;"><a href="{:get_href($navs['href'])}" style="text-decoration: none;color:#FF7610;font-size: 20px;" target="{$navs.target}">{$navs.label}</a></h3>							
+
+							<if condition="!empty($navs['child'])">
+
+								<div style="width: 100%;min-height: 50px;border: solid 1px #f5f5f5;">
+
+									<ul class="ula" style="display: block;">
+
+										<foreach name="navs.child" item="subnav">
+
+											<li style="display: block;float: left;width: auto;height: auto;border: 0; padding:10px ; font-size: 14px;"><a href="{:get_href($subnav['href'])}" style="text-decoration: none;color: #000000;" target="{$subnav.target}">{$subnav.label}</a></dd>
+
+										</foreach>
+
+									</ul>
+
+								</div>
+
+							</if>
+
+							
+
+						</div>
+
+					</foreach>
+
+			
+
+                </h3>
+
+                
+
+                <div class="clear"></div>
+
+                
+
+                
+
+                
+
+            </div>
+
+            
+
+	        <div class="price_rtbar right">
+
+			    <!-- 在线客服 -->
+
+			    <tc_include file="Public:right_kefu"/>
+
+			</div>
+
+            
+
+        </div>
+
+        <div class="clear"></div>
+
+    </div>
+
+</div>
+
+
+
+<!--内容页结束-->
+
+<tc_include file="Public:footer"/>
+
+<tc_include file="Public:scripts"/>
+
+</body>
+
+</html>

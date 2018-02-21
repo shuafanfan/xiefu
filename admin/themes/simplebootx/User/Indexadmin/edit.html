@@ -1,0 +1,191 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:U('Indexadmin/index')}">本站用户</a></li>
+			<li class="active"><a href="{:U('Indexadmin/edit')}">编辑</a></li>
+		</ul>
+		<form method="post" class="form-horizontal js-ajax-form" action="{:U('Indexadmin/edit_post')}">
+			<div class="row-fluid">
+				<div class="span9">
+					<table class="table table-bordered">
+					
+						<tr >
+							<th width="80px">帐号</th>
+							<td>
+								<input type="text" name="user_login" readonly style="width: 400px" placeholder="请输入帐号" readonly value="{$vo.user_login}"/>
+								<span class="form-required">*</span>
+							</td>
+						</tr>
+						<tr>
+							<th>密码</th>
+							<td><input type="password" name="user_pass" value="" style="width: 400px" >
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						<tr>
+							<th>昵称</th>
+							<td><input type="text" name="user_nicename" required style="width: 400px" value="{$vo.user_nicename}">
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						
+						<tr>
+							<th>QQ</th>
+							<td><input type="text" name="qq" id="qq" readonly style="width: 400px" value="{$vo.qq}">
+							<span class="form-required"><a href="javascript:cel_qq()">解绑</a></span>
+							</td>
+						</tr>
+						<tr>
+							<th>微信</th>
+							<td><input type="text" name="weixin" id="weixin" readonly style="width: 400px" value="{$vo.weixin}">
+							<span class="form-required"><a href="javascript:cel_weixin()">解绑</a></span>
+							</td>
+						</tr>
+						<tr>
+							<th>邮箱</th>
+							<td><input type="text" name="user_email" id="user_email" readonly style="width: 400px" value="{$vo.user_email}">
+							<span class="form-required"><a href="javascript:cel_mail()">解绑</a></span>
+							</td>
+						</tr>
+						<tr >
+							<th width="100px">绑定手机号</th>
+							<td><input type="text" id="mobile" name="mobile"  required value="{$vo.mobile}" style="width: 200px;" autocomplete="off">
+							</td>
+						</tr>
+						<tr >
+							<th width="100px">更改手机号</th>
+							<td><input type="text" id="banmobile" name="banmobile" value="" style="width: 200px;" autocomplete="off">
+								<label for="loginname" class="input_yuo">
+				                    <a >获取验证码</a>
+				                </label>
+							</td>
+						</tr>
+						<tr>
+							<th width="100px">验证码</th>
+							<td><input type="text"  name="code" value="" style="width: 200px;" autocomplete="off">
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						<tr>
+							<th width="80">使用状态</th>
+							<td>
+									<input type="radio" name="user_status" value="0" <if condition="$vo.user_status eq 0">checked</if>>禁用
+									<input type="radio" name="user_status" value="1" <if condition="$vo.user_status eq 1">checked</if>>启用
+							</td>
+						</tr>						
+						<tr>
+							<th width="80">用户类型</th>
+							<td>
+									<input type="radio" name="user_type" value="2" <if condition="$vo.user_type eq 2">checked</if>>普通会员
+									<input type="radio" name="user_type" value="3" <if condition="$vo.user_type eq 3">checked</if>>商家用户
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+				<div class="span3">
+					<table class="table table-bordered">
+						<tr>
+							<th>头像</th>
+						</tr>
+						<tr>
+							<td>
+								<div style="text-align: center;">
+									<input type="hidden" name="avatar" id="thumb" value="{$vo.avatar}">
+									<a href="javascript:void(0);" onclick="flashupload('thumb_images', '附件上传','thumb',thumb_images,'1,jpg|jpeg|gif|png|bmp,1,,,1','','','');return false;">
+										<if condition="$vo.avatar eq ''">
+											<img src="__TMPL__Public/assets/images/default-thumbnail.png" id="thumb_preview" width="135" style="cursor: hand"/>
+										<else />
+											<img src="{$vo.avatar}" id="thumb_preview" width="135" style="cursor: hand; height: 113px;"/>
+										</if>									</a>
+									<input type="button" class="btn btn-small" onclick="$('#thumb_preview').attr('src','__TMPL__Public/assets/images/default-thumbnail.png');$('#thumb').val('');return false;" value="取消图片">
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="form-actions">
+				<input type="hidden" name="is_ban"  style="width: 400px" value="{$vo.is_ban}">
+				<input type="hidden" name="id"  style="width: 400px" value="{$vo.id}">
+				<button type="submit" class="btn btn-primary js-ajax-submit">{:L('EDIT')}</button>
+				<a class="btn" href="{:U('Indexadmin/index')}">{:L('BACK')}</a>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/content_addtop.js"></script>
+        
+        <script>
+		    $(function () {
+		        var code="";
+		        var info="";
+		        $(".input_yuo").click(function () {
+		                    var banmobile=$('#banmobile').val();
+		                    var mobile=$('#mobile').val();
+		                    var is_ban=$('#is_ban').val();
+							if(is_ban==1 && mobile==banmobile){
+								 alert('新绑定的手机号和原来绑定的手机号相同！'); 
+			                     return false; 
+							}
+		                    
+		                    if(banmobile=='') 
+		                    { 
+		                        alert('请输入手机号码！'); 
+		                        return false; 
+		                    } 
+		                    var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/; 
+		                    if(!myreg.test(banmobile)) 
+		                    { 
+		                        alert('请输入有效的手机号码！'); 
+		                        return false; 
+		                    } 
+		                    $.ajax({
+			                    //                cache: true,
+			                    type: "POST",
+			                    url: '{:U("xiefu/business/sendmsg")}',
+			                    data:  {'mobile':banmobile},
+			                   
+			                    success: function(data) {
+			                       code=data['code'];
+			                    },
+			                    error:function(){
+			                        console.log("发送失败");
+			                    }
+		                	});
+		            var intDiff = parseInt(60);//倒计时总秒数量
+		            var i;
+		            function timer() {    //显示时间
+		
+		                $(".input_yuo").html('<a>'+intDiff+'s'+'</a>');
+		                intDiff--;
+		
+		
+		                if(intDiff<0){
+		                    $(".input_yuo").html('<a>'+'点击重新发送'+'</a>');
+		                    clearInterval(i);
+		
+		                }
+		            }
+		
+		            i=setInterval(timer, 1000);
+		
+		        });
+		    });
+        </script>
+        
+        <script>
+	        function cel_mail(){
+	        	 document.getElementById("user_email").readOnly=false;
+	        }
+	        function cel_qq(){
+	       	 document.getElementById("qq").readOnly=false;
+	        }
+	        function cel_weixin(){
+	       	 document.getElementById("weixin").readOnly=false;
+	        }
+        </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>案件咨询</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="__TMPL__/Public/css/mui.min.css"/>
+		<link rel="stylesheet" href="__TMPL__/Public/css/style.css" />
+		<!--App自定义的css-->
+		<link rel="stylesheet" type="text/css" href="__TMPL__/Public/css/app.css"/>
+	</head>
+
+	<body>
+		<!--侧滑菜单容器-->
+		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable">
+			<!--菜单部分-->
+			<tc_include file="Public:slide" />
+			
+			<div class="mui-inner-wrap">
+
+				<div id="offCanvasContentScroll" class="mui-content mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<tc_include file="Public:head" />
+						
+						<div class="mui-bar list_head" style="position: initial !important;">
+							<a class="mui-action-back mui-icon mui-icon-back mui-pull-left"></a>
+							<a id="offCanvasBtn" href="#offCanvasSide" class="mui-icon mui-action-menu mui-icon-bars mui-pull-right"></a>
+							<h1 class="mui-title">案件咨询</h1>
+						</div>
+						<div class="zixun">
+							<ul>
+								<li><input type="text" id="" value="" placeholder="请输入您的姓名" /></li>
+								<li><input type="text" id="" value="" placeholder="请输入您的电话号码" /></li>
+								<li>
+									<select name="" class="sel_box">
+										<option value="">案件类型</option>
+										<option value="">案件类型</option>
+										<option value="">案件类型</option>
+									</select>
+								</li>
+								<li><textarea name="" rows="" cols="" placeholder="请输入您的描述"></textarea></li>
+								<a href="#" class="zx_tjbtn">提&nbsp;&nbsp;&nbsp;交</a>
+							</ul>
+						</div>
+						<!--尾部声明-->
+						<tc_include file="Public:b_footer" />
+						
+					</div>
+					<!--底部导航-->
+					<tc_include file="Public:footer" />
+				</div>
+				
+				<!-- off-canvas backdrop -->
+				<div class="mui-off-canvas-backdrop"></div>
+			</div>
+			
+		</div>
+		<script src="__TMPL__/Public/js/mui.min.js"></script>
+		
+	</body>
+
+</html>

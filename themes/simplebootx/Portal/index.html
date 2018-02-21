@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>{$site_seo_title}</title>
+		<meta name="keywords" content="{$site_seo_keywords}" />
+		<meta name="description" content="{$site_seo_description}">
+		<tc_include file="Public:head" />
+		
+	</head>
+	<body>
+		<!--顶部——导航-->
+		<tc_include file="Public:nav" />
+		<!--banner-->
+		<div class="banner"  >
+			<div class="banner_img"  >
+				<ul>
+					<php>
+						$home_slides = sp_getslide('index_banner');
+					</php>
+					<foreach name="home_slides" item="vo">
+						<li>
+							<a href="{$vo.slide_url}" title="{$vo.slide_name}">
+								<img src="{:sp_get_asset_upload_path($vo['slide_pic'])}"/>
+							</a>
+						</li>
+					</foreach>
+				</ul>
+			</div>
+			<p class="next"></p>
+			<p class="prev"></p>
+				
+			<div class="banner_btn hd">
+				<ul>
+					<foreach name="home_slides" item="vo">
+						<li <if condition="$key eq 0">class="on"</if> ></li>
+					</foreach>
+				</ul>
+			</div>
+		</div>
+		<!--闽海产业-->
+		<div class="wrap prodcut">
+			<div class="index_tit">
+				<h3>闽海产业</h3>
+				<p>PRODUCTS</p>
+				<span></span>
+			</div>
+			<div class="product_box clearfix">
+				<ul>
+					<foreach name="products" item="vo">
+						<php>
+							$smeta=json_decode($vo['smeta'],true);/* 把smeta转化成数组 */
+						</php>
+						<li>
+							<a href="{:leuu('Portal/product/index',array('id'=>$vo['tid']))}">
+								<div class="prd_img">
+									<if condition="$smeta['thumb'] eq NULL">
+										<img src="__TMPL__Public/img/default_no.jpg"/>
+									<else />
+										<img src="{:sp_get_asset_upload_path($smeta['thumb'])}"/>
+									</if>
+								</div>
+								<h5>{$vo['post_title']}</h5>
+								<p>{$vo['post_excerpt']|msubstr=0,200,'utf-8',false}</p>
+							</a>
+						</li>
+					</foreach>
+				</ul>
+			</div>
+			
+		</div>
+		<!--关于我们-->
+
+		<!--公司资讯-->
+
+		<div class="company_news wrap">
+			
+			<div class="about_tit clearfix">
+				<ul>
+					<li class="on"><p>{$page_1['post_title']}</p><b></b></li>
+					<li><p class="bd_none">新闻资讯</p><b></b></li>
+				</ul>
+			</div>
+			<div class="company_btm clearfix">
+				<ul id="company_ixnews">
+					<div class="company_right fr">
+						<ol>
+							<li>
+								<!-- {$page_1['post_content']} -->
+								<div class="abt_video">
+									<p>
+									<img src="__TMPL__Public/img/bofang.png">
+									</p>
+									<img src="__TMPL__Public/img/yk.jpg" style="padding-left:30px;" 
+									width="510" height="300"/>
+								</div>
+							</li>
+						</ol>
+					</div>
+					<div class="company_left fl"> 
+						<p>{$page_1['post_excerpt']}</p>
+					</div>
+				</ul>
+				<ul>
+					
+					<div class="ixnews_list">
+						<ul class="clearfix">
+							<foreach name="posts_cin" item="vo">
+							<php>
+								$smeta=json_decode($vo['smeta'],true);/* 把smeta转化成数组 */
+							</php>
+							<li>
+								<a href="{:leuu('Portal/article/index',array('id'=>$vo['tid']))}">
+									<div class="ixnw_img">
+										<if condition="$smeta['thumb'] eq NULL">
+											<img src="__TMPL__Public/img/default_no.jpg"/>
+										<else />
+											<img src="{:sp_get_asset_upload_path($smeta['thumb'])}"  />
+										</if>
+									</div>
+									<div class="ixnw_rg">
+										<h3>{$vo['post_title']}</h3>
+										<p>{$vo['post_excerpt']}</p>
+										<span><img src="__TMPL__Public/img/abouts_time.png"/>{$vo['post_modified']}</span>
+									</div>
+								</a>
+							</li>
+							</foreach>
+						</ul>
+					</div>
+				</ul>
+			</div>
+		</div>
+		<!--底部-->
+		<tc_include file="Public:footer" />
+		<tc_include file="Public:scripts" />
+		
+		<script type="text/javascript">
+			$(".company_left li").hover(function(){
+				$(this).addClass("on").siblings().removeClass("on");
+			})
+		</script>
+		<script type="text/javascript">
+			jQuery(".banner").slide({mainCell:".banner_img ul",autoPlay:true});
+			jQuery(".about_us").slide({ titCell:".about_tit li", mainCell:".about_btm",delayTime:0 });
+			jQuery(".company_news").slide({ titCell:".about_tit li", mainCell:".company_btm",delayTime:0 });
+			jQuery(".prodcut").slide({ mainCell:".product_box ul", effect:"left", delayTime:800,vis:4,scroll:4,pnLoop:false,trigger:"click",easing:"easeOutCubic" });
+			
+		</script> 
+		
+		<script type="text/javascript">
+			//弹出一个iframe层
+			
+			$(".company_right").live("click",function(){
+
+				layer.open({
+				  type: 2,
+				  title: false,
+				  area: ['780px', '500px'],
+				  shade: 0.8,
+				  closeBtn: 1,
+				  shadeClose: true,
+				  content: '{:sp_getad("宣传视频地址")}'
+				});
+				
+			});
+			
+		</script>
+		
+	</body>
+</html>

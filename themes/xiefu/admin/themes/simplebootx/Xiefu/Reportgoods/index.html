@@ -1,0 +1,107 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a>报货管理</a></li>
+		</ul>
+		<form class="well form-search" method="post" action="{:U('AdminPost/index')}">
+			分类： 
+			<select class="select_2" name="term">
+				<option value='0'>全部</option>{$taxonomys}
+			</select> &nbsp;&nbsp;
+			时间：
+			<input type="text" name="start_time" class="js-date" value="{$formget.start_time|default=''}" style="width: 80px;" autocomplete="off">-
+			<input type="text" class="js-date" name="end_time" value="{$formget.end_time}" style="width: 80px;" autocomplete="off"> &nbsp; &nbsp;
+			关键字： 
+			<input type="text" name="keyword" style="width: 200px;" value="{$formget.keyword}" placeholder="请输入关键字...">
+			<input type="submit" class="btn btn-primary" value="搜索" />
+		</form>
+		
+		<form method="post" class="js-ajax-form">
+			<table class="table table-hover table-bordered table-list">
+				<thead>
+					<tr>
+						<th width="15"><label><input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x"></label></th>
+						<th width="50px" align="center">序号</th>
+						<th width="50px">报货类型</th>
+						<th width="50px">图片</th>
+						<th width="200px">详细信息</th>
+						<th width="150px">有效期</th>
+						<th width="150px">审核状态</th>
+						<th width="150px">原因</th>
+						<th width="180px" align="center">{:L('ACTIONS')}</th>
+					</tr>
+				</thead>
+				<div id="credit"></div>
+				<tbody>
+					<volist name="lists" id="vo" key="k">
+					<tr>
+						<td><input type="checkbox" class="js-check" data-yid="js-check-y" data-xid="js-check-x" name="ids[]" value="{$vo.id}" ></td>
+						<td align="center">{$k}</td>
+						<td><if condition="$vo.type eq 1">个人报货<else/>商家报货</if></td>
+						<td id="images">
+						<if condition="$vo.photos neq ''">
+							<a id="example1-2"  href="{$vo.photos}" rel="lightbox"><img alt="" src="{$vo.photos}" style="width:50px;height:50px"/></a>
+						<else/>
+							暂无图片
+						</if>
+						</td>
+						<td>订单号：{$vo.rorder}<br/>&nbsp&nbsp{$vo.memo}&nbsp&nbsp{$vo.size}码 数量：{$vo.num}双<br/>{$vo.add_time}</td>
+						<td>{$vo.period}<br/>
+						<if condition="$vo['status'] eq 1 ">
+						
+							<if condition="$vo.left_time_format eq 0">
+								<span class="label label-sm label-warning">已到期</span>
+							<else/>
+								<span class="label label-sm label-warning">剩余{$vo.left_time_format}到期</span>
+							</if>
+						
+						</if>
+						
+						</td>
+						<td>
+							<if condition="$vo['status'] eq 0">未审核 
+							<elseif condition="$vo['status'] eq 1" />通过 {$vo.sh_time}
+							<elseif condition="$vo['status'] eq 2" />已退回 {$vo.th_time}
+							<else />审核超时
+							</if>
+						</td>
+						<td>{$vo.sh_memo}</td>
+						<td align="center">
+						 	<a class="js-ajax-delete" href="{:U('Xiefu/Reportgoods/delete',array('id'=>$vo['id']))}">{:L('DELETE')}</a>
+							<if condition="$vo.status eq 2">
+								|<a href="{:U('Xiefu/Reportgoods/setstatus',array('id'=>$vo['id'],'status'=>1))}"  data-msg="确认通过">通过</a>
+							</if>
+							<if condition="$vo.status eq 1">
+								|<a href="{:U('Xiefu/Reportgoods/setstatus',array('id'=>$vo['id'],'status'=>2))}"  data-msg="确认退回">退回</a>
+							</if>
+								
+							<if condition="$vo.status eq 0">
+								|<a href="{:U('Xiefu/Reportgoods/setstatus',array('id'=>$vo['id'],'status'=>1))}"  data-msg="确认通过">通过</a>|
+								 <a href="{:U('Xiefu/Reportgoods/setstatus',array('id'=>$vo['id'],'status'=>2))}"  data-msg="确认退回">退回</a>
+							</if>
+							<if condition="$vo.status eq 3">
+								|<a href="{:U('Xiefu/Reportgoods/setstatus',array('id'=>$vo['id'],'status'=>0))}" data-msg="确认恢复">恢复</a>
+							</if>
+							|<a href="{:U('Xiefu/Reportgoods/edit',array('id'=>$vo['id']))}" >修改有效期</a>
+						</td>
+					</tr>
+					
+					</volist>
+				</tbody>
+		
+			</table>
+			<div class="table-actions">
+				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('Reportgoods/delete')}" data-subcheck="true">{:L('DELETE')}</button>
+			</div>
+			<div class="pagination">{$page}</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+	<link rel="stylesheet" href="__PUBLIC__/css/lightbox.css" type="text/css" media="screen" />
+	<script src="__PUBLIC__/js/prototype.js" type="text/javascript"></script>
+	<script src="__PUBLIC__/js/scriptaculous.js?load=effects" type="text/javascript"></script>
+	<script src="__PUBLIC__/js/lightbox.js" type="text/javascript"></script>
+</body>
+</html>

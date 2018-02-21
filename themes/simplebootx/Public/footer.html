@@ -1,0 +1,40 @@
+<!-- Footer ================================================== -->
+{:hook('footer')}
+		<!--底部-->
+		<div class="footer">
+			<div class="wrap">
+				<div class="footer_top">
+					<div class="contact_right fr">
+						<h5>联系我们</h5>
+						<h4>24小时热线电话</h4>
+						<p>400-8787-319</p>
+						<div class="qq_btn">
+							<img src="__TMPL__Public/img/weixin.jpg"/>
+						</div>
+						 
+					</div>
+					<ul class="clearfix">
+						<!--找到底部菜单，标识为3-->
+						<php>
+							$nav_d = sp_get_menu_tree(3);
+						</php>
+						<foreach name="nav_d" item="vo">
+							<li>
+								<h3><a href="{$vo.href}">{$vo.label}</a></h3>
+								<!-- 判断是否有子孩子（分支） -->
+								<if condition="!empty($vo['child'])">
+								<foreach name="vo.child" item="sub">
+									<ol><a href="{$sub.href}"  target="{$sub.target}">{$sub.label}</a></ol>
+								</foreach>
+								</if>					
+							</li>
+						</foreach>
+					</ul>
+				</div>
+				
+			</div>
+			<div class="foot_btm">
+				<p>{$site_copyright}</p>
+			</div>
+		</div>
+ 

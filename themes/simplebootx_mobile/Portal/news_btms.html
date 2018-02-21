@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>{$post_title}-{$site_name}</title>
+		<tc_include file="Public:head" />
+	</head>
+
+	<body>
+		<!--侧滑菜单容器-->
+		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable">
+			<!--侧滑菜单部分start-->
+			<tc_include file="Public:slide" />
+			<!--侧滑菜单部分end-->
+
+			<div class="mui-inner-wrap">
+
+				<div id="offCanvasContentScroll" class="mui-content mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<!--24小时咨询热线start-->
+						<tc_include file="Public:idx_head" />
+						<!--24小时咨询热线end-->	
+							<div class="mui-bar list_head" style="position: initial !important;">
+							<a class="mui-action-back mui-icon mui-icon-back mui-pull-left"></a>
+							<a id="offCanvasBtn" href="#offCanvasSide" class="mui-icon mui-action-menu mui-icon-bars mui-pull-right"></a>
+							<h1 class="mui-title">{$termname['name']}</h1>
+						</div>
+						<div class="news_btm">
+							<div class="news_top">
+								<h1>{$post_title}</h1>
+								<p>发布时间：{:date('Y-m-d',strtotime($post_modified))}</p>
+							</div>
+							<div class="news_cet">
+								{$post_content}
+							</div>
+							
+						</div>
+						<!--尾部声明-->
+						<tc_include file="Public:b_footer" />
+					</div>
+					<!--底部导航-->
+					<tc_include file="Public:footer" />
+				</div>
+				
+				<!-- off-canvas backdrop -->
+				<div class="mui-off-canvas-backdrop"></div>
+			</div>
+			
+		</div>
+		<script src="__TMPL__/Public/js/mui.min.js"></script>
+		
+	</body>
+
+</html>

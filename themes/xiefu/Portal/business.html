@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商家详情</title>
+    <link rel="stylesheet" href="__TMPL__Public/css/base.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/gerenzhongxin_header_left.css">
+    <style type="text/css">
+    </style>
+</head>
+<body>
+<div class="all">
+<tc_include file="Public:header" />   
+        <div class="details_banner">
+            <div class="container ">
+            	<div class="details_banner_container">
+                  <div class="company_logo">
+                    <img src="__TMPL__Public/images/logo.jpg">
+                    </div>
+
+                <div class="company_text">
+
+                    <p class="company_name">{$business[0].bname}</p>
+                    <p class="company_link">{$business[0].site}</p>
+                    <?php if($business[0]['is_shouq']==1){ ?>
+                    <p class="company_state">
+                        <span>
+                            <img src="__TMPL__Public/images/v.png">
+                        </span>
+                                                                信誉商家
+                    </p>
+                    <?php } ?>                                             
+                </div>             
+               </div>
+              
+            </div>
+        </div>
+
+        <div class="container ">
+            <div class="details_container">
+                <ul>
+                    <li>
+                        <div class="details_container_title">
+                        	<a href="">
+                        		<img src="__TMPL__Public/images/iphone.png">
+                        		联系我们
+                        	</a>
+                        	
+                        	 <?php if(!sp_is_user_login()){ ?>
+                       <a  data-reveal-id="myModal" data-animation="fade" data="" class="book_mark ">
+                    
+                
+                
+                    <span>
+                        <img src="__TMPL__Public/images/shoucang.png">
+                    </span>
+                    收藏店铺
+                </a>
+                <?php }else{ ?>
+                <a id="favorite" data="{$business[0].bid}" class="book_mark " >
+                    <input type="hidden" id="is_shouq" value="{$business[0].is_shouq}">
+                    <input type="hidden" id="bname" value="{$business[0].bname}">
+                    <span>
+                        <img src="__TMPL__Public/images/logo.jpg">
+                    </span>
+                    收藏店铺
+                <?php } ?>
+                </a>
+                        </div>   
+                        <div class="details_container_right">
+                        	<p class="details_conpany_name">
+                        		{$business[0].bname}
+                        	</p>
+                            <p>
+                                                                               电话:{$business[0].mobile}
+                            </p>                                                                   
+                            <p>
+                                                                                     地址:&nbsp;{$business[0].name}&nbsp;
+                            </p>
+                            <p>                             
+                                <span class="details_qq color_blue">QQ:&nbsp;{$business[0].qq1}</span>
+                       
+                                  <span class="qq_juxing">                                 
+                                  	<span class="qq_div "> 
+                                  		<img src="/themes/xiefu/Public/images/qq.png"> 
+                                  	</span>                               
+                                      <span class="details_qq_text"><a href="tencent://message/?uin={$business[0].qq1}&amp;Site=0594666.com&amp;Menu=yes">QQ交谈</a>
+                                   </span>                                                                                          
+                            </p>
+                               <p style="margin: 7px 0;">
+                                <span class="details_qq color_blue">微信:&nbsp;{$business[0].weixin}</span>
+                       
+                                  <span class="wexin_juxing">                                 
+                                  	<span class="qq_div "> 
+                                  		<img src="/themes/xiefu/Public/images/weixin.png"> 
+                                  	</span>                               
+                                      <span class="details_weixin_text"><a>微信</a></span>
+                                  </span>                                                                                           
+                              </p>
+                            <p>
+                            	
+                                <span style="float: left;min-width: 102px;">商家ID:</span>
+                                {$business[0].bid}
+                            </p>
+                            <p>
+                                <span style="float: left;">产品相册地址:</span>
+                                <a class="color_blue" href="{$business[0].product_url}">{$business[0].product_url}</a>
+                            </p>
+                
+                            <p>
+                            	<div class="details_container_QR">
+                                <img src="{$business[0].code}">
+                                 <span>  微信二维码</span>
+                                </div>                                                               
+                            </p>
+                        </div>
+                     </li>
+                    <li>
+                    <div class="details_container_title">
+                        	<a href=""><img src="__TMPL__Public/images/position.png">店铺简介 </a>
+                        </div>   
+                       
+                        <div class="details_container_right details_about">
+                            <p>
+                                {$business[0].introduce}
+                            </p>
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+</div>
+
+<tc_include file="Public:footer" />
+</body>
+</html>
+
+<script >
+    $('#favorite').click(function(){
+
+        var bid=$(this).attr('data');
+        var bname=$('#bname').val();
+        var is_shouq=$('#is_shouq').val();
+ 
+         $.ajax( {
+                    type:"POST",
+                    data:  {'bid':bid,'bname':bname,'is_shouq':is_shouq},
+                    url: "{:U('user/favorite/dofavorite')}",
+                    success: function( data, textStatus, jqXHR ){    
+                        console.log(data);
+                        if(data.status==1){    
+                            layer.alert('收藏成功');
+                        }else{
+                            layer.alert('您已收藏');
+                            return false;
+                        }           
+                    }
+                });
+    
+    })
+</script>
+
+

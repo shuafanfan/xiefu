@@ -1,0 +1,155 @@
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    font-family: "宋体";
+}
+p{
+    color: #737373;
+}
+
+.container{
+    margin: 0px auto;
+    width: 1200px;
+}
+
+a{
+    text-decoration: none;
+
+}
+
+#main_erweima{
+   background: white!important;
+    z-index: 10000;
+}
+#main_erweima img{
+    background: white!important;
+    width: 120px;
+    height: 120px;
+    padding: 4px;
+}
+
+
+.zhongbu{
+    width: 100%;
+    float: left;
+}
+.zhece_all{
+    width: 490px;
+    height: 370px;
+    margin:50px auto;
+    background: white;
+}
+.zhece_all form{
+    width:100%;
+    height:400px;
+    margin: 20px auto 0;
+    font-size: 22px;
+}
+.zhece_all form h3{
+    margin-bottom: 14px;
+}
+.cuowu_tishi{
+     float: left;
+    background: #ffebeb;
+    color: #e4393c;
+    border: 1px solid #faccc6;
+    padding: 10px 10px 10px 13px;
+    line-height: 13px;
+    width: 377px;
+    font-size: 13px;
+    display: none;
+}
+.cuowu_tishi span{
+float: left;
+    margin: 2px 0 0 10px;
+}
+
+.cuowu_tishi img{
+    float: left;
+}
+.input_kuang{
+    height: 42px;
+    width: 400px;
+    border: 1px solid #d6d6d6;
+    margin:10px 0;
+    float: left;
+}
+.input_kuang2{
+    width: 400px;
+    float: left;
+    font-size:12px;
+}
+.input_zuo,.input_yuo{
+    color: #676767;
+    float: left;
+    width: 98px;
+    height: 42px;
+    font-size: 16px;
+    text-align: center;
+    line-height: 42px;
+}
+.input_yuo{
+   border-left: 1px solid #d6d6d6;
+    padding: 0 5px;
+    font-size: 14px;
+
+}
+.input_yuo:hover{
+    cursor: pointer;
+}
+
+.input_yuo a{
+    color: red;
+}
+
+.input_yuo a:hover{
+    color: #c9151e;
+
+}
+
+.width200{
+    width: 190px!important;
+
+}
+
+.zhece_all form input{
+
+line-height: 20px;
+height: 20px;
+border: 0;
+padding: 11px 0 10px 0px;
+width: 300px;
+float: left;
+overflow: hidden;
+font-size: 14px;
+
+}
+
+.zhece_btn{
+    float: left;
+    width:402px;
+    margin-top: 20px;
+}
+.zhece_btn a{
+    display: block;
+    padding: 12px;
+    text-align: center;
+    background: #c9151e;
+    font-size: 20px;
+    color: white;
+}
+.zhece_btn a:hover{
+    background: #c93323;
+}
+.zhece_footer{
+    width:402px;
+    font-size: 14px;
+    float: left;
+    padding: 17px 0 10px;
+    text-align: center;
+    color: #959ca8;
+}

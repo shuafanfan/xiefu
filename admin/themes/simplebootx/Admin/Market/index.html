@@ -1,0 +1,61 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a>杂杂市场管理</a></li>
+		</ul>
+		<form method="post" class="js-ajax-form">
+			<table class="table table-hover table-bordered table-list">
+				<thead>
+					<tr>
+						<th width="15"><label><input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x"></label></th>
+						<th align="center">序号</th>
+						<th>发布类型</th>
+						<th>类别</th>
+						<th>图片</th>
+						<th>详细信息</th>
+						<th>有效期</th>
+						<th>审核状态</th>
+						<th align="center">{:L('ACTIONS')}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<volist name="lists" id="vo" key="k">
+					<tr>
+						<td><input type="checkbox" class="js-check" data-yid="js-check-y" data-xid="js-check-x" name="ids[]" value="{$vo.id}"></td>
+						<td align="center">{$vo.id}</td>
+						<td><if condition="$vo.type eq 1">个人发布<else/>商家发布</if></td>
+						<td>{:get_markettype_name($vo['m_type'])}</td>
+						<td><img title="双击查看" src="{$vo.photos}" style="width:60px;height:60px;" ></td>
+						<td>信息号：{$vo.rorder}<span style="float:right; color:red">{$vo.prices}</span><br/>{$vo.memo}&nbsp&nbsp{$vo.size}码 数量：{$vo.num}双<br/>{$vo.add_time}<span style="float:right;color:blue">评论({$vo.comment})</span></td>
+						<td>{$vo.period}天</td>
+						<td>
+							<if condition="$vo['status'] eq 0">待审核 <br/>{$vo.add_time}
+							<elseif condition="$vo['status'] eq 1" />审核通过<br/> {$vo.sh_time}
+							<elseif condition="$vo['status'] eq 2" />审核失败<br/>{$vo.th_time}
+							</if>
+						</td>
+						<td align="center">
+								 <a class="js-ajax-delete" href="{:U('Reportgoods/delete',array('id'=>$vo['id']))}">{:L('DELETE')}</a>
+							<if condition="$vo.status eq 0">
+								|<a href="{:U('Market/donewstatus',array('id'=>$vo['id'],'status'=>1))}" class="js-ajax-dialog-btn"  data-msg="确认通过">通过</a>|
+								 <a href="{:U('Market/donewstatus',array('id'=>$vo['id'],'status'=>2))}" class="js-ajax-dialog-btn" data-msg="确认拒绝">拒绝</a>
+							</if>
+								|<a href="{:U('Market/detail',array('id'=>$vo['id']))}" >详情</a>
+						</td>
+					</tr>
+					</volist>
+				</tbody>
+			</table>
+			<div class="table-actions">
+				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('Market/delete')}" data-subcheck="true">{:L('DELETE')}</button>
+				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('Market/top',array('top'=>1))}" data-subcheck="true">置顶</button>
+				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('Market/top',array('untop'=>1))}" data-subcheck="true">取消置顶</button>	
+			</div>
+			<div class="pagination">{$page}</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

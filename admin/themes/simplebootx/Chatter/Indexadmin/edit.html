@@ -1,0 +1,84 @@
+<admintpl file="header" />
+</head>
+	<body>
+		<div class="wrap js-check-wrap">
+			<ul class="nav nav-tabs">
+				<li><a href="{:U('Indexadmin/index')}" target="_self">客服管理</a></li>
+				<li><a href="{:U('Indexadmin/add')}" target="_self">添加客服</a></li>
+				<li class="active"><a href="javascript:;">客服信息修改</a></li>
+			</ul>
+			<php>
+				$checked_yes = $result['status']?'checked':'';
+				$checked_no = $result['status']?'':'checked';
+			</php>
+			<form action="{:U('Indexadmin/edit_post')}" enctype="multipart/form-data" method="post">
+				<div class="row-fluid">
+				<table class="table table-bordered"  >
+					<tr>
+						<th width="250">客服名称</th>
+						<td><input type="text" id="name" required name="post[name]" value="{$result.name}" /></td>
+					</tr>
+					<tr>
+						<th>客服名称(英文)</th>
+						<td><input type="text" id="name_en" name="post[name_en]" value="{$result.name_en}" /></td>
+					</tr>
+					<tr>
+						<th>客服描述</th>
+						<td><input type="text" name="post[description]" value="{$result.description}" placeholder="描述" /></td>
+					</tr>
+					<!--<tr>
+						<th>客服描述(英文)</th>
+						<td><input type="text" name="post[description_en]" value="{$result.description_en}" placeholder="描述(英文)" /></td>
+					</tr>-->
+					<tr>
+						<th>客服账号(QQ/Email/We Chat/Phone)</th>
+						<td><input type="text" name="post[number]" value="{$result.number}" placeholder="账号" /></td>
+					</tr>
+					<tr>
+						<th>客服状态</th>
+						<td>						
+							<input type="radio" name="post[status]" value="1" {$checked_yes}/>&nbsp;&nbsp;在线&nbsp;&nbsp;
+							<input type="radio" name="post[status]" value="0" {$checked_no}/>&nbsp;&nbsp;离线&nbsp;&nbsp;
+						</td>
+					</tr>
+					<tr>
+						<th>客服链接地址</th>
+						<td><input type="text"  style="width: 400px" name="post[url]" value="{$result.url}"/></td>
+					</tr>
+					<tr>
+						<td>
+							<div style="text-align: center;">
+								<input type="hidden" name="smeta[thumb]" id="thumb" value="{$smeta.thumb|default=''}">
+								<a href="javascript:void(0);" onclick="flashupload('thumb_images', '附件上传','thumb',thumb_images,'1,jpg|jpeg|gif|png|bmp,1,,,1','','','');return false;">
+									<if condition="empty($smeta['thumb'])">
+										<img src="__TMPL__Public/assets/images/default-thumbnail.png" id="thumb_preview" width="135" style="cursor: hand"/>
+									<else />
+										<img src="{:sp_get_asset_upload_path($smeta['thumb'])}" id="thumb_preview" width="135" style="cursor: hand"/>
+									</if>
+								</a>
+								<input type="button" class="btn btn-small" onclick="$('#thumb_preview').attr('src','__TMPL__Public/assets/images/default-thumbnail.png');$('#thumb').val('');return false;" value="取消图片">
+							</div>
+						</td>
+						<td>
+							<div style="padding: 5px 0 5px 0;">&nbsp;&nbsp;<input class="ras" type="radio" name="post[imgs]" value="/public/images/iconfont-wx.png"/>&nbsp;&nbsp;<img src="__ROOT__/public/images/iconfont-wx.png" width="30" height="30" />微信</div>
+							<div>&nbsp;&nbsp;<input class="ras" type="radio" name="post[imgs]" value="/public/images/side_icon03.png"/><img src="__ROOT__/public/images/side_icon03.png" width="40" height="40" />新浪微博</div>
+							<div>&nbsp;&nbsp;<input class="ras" type="radio" name="post[imgs]" value="/public/images/side_icon04.png"/><img src="__ROOT__/public/images/side_icon04.png" width="40" height="40" />QQ</div>
+							<div>&nbsp;&nbsp;<input class="ras" type="radio" name="post[imgs]" value="/public/images/iconfont-tengxunweibo.png"/>&nbsp;&nbsp;<img src="__ROOT__/public/images/iconfont-tengxunweibo.png" width="30" height="30" />腾讯微博</div>
+						</td>
+					</tr>
+					<input type="hidden" name="post[id]" value="{$result.id}" />
+					<tr>
+						<td colspan="2" style="text-align: center;"><input class="btn btn-primary" type="submit" value="修改客服信息" /></td>
+					</tr>
+				</table>
+				</div>
+			</form>
+		</div>
+			<script type="text/javascript" src="__PUBLIC__/js/content_addtop.js"></script>
+			<script>
+				$(function(){
+					$("input.ras[value='{$result.imgs}']").attr("checked",true);
+				});
+			</script>
+	</body>
+</html>

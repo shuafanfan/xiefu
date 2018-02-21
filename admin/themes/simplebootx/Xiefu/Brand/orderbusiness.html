@@ -1,0 +1,58 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="{:U('Brand/orderbusiness')}">三级类目商家</a></li>
+		</ul>
+		<form class="js-ajax-form" action="{:U('Brand/orderlistorders')}" method="post">
+			<div class="table-actions">
+				<button type="submit" class="btn btn-primary btn-small js-ajax-submit">排序</button>
+			</div>			
+			<table class="table table-hover table-bordered table-list">
+				<thead>
+					<tr>
+						<th width="50">ID</th>
+						<th width="80">类目</th>
+					</tr>
+				</thead>
+				<tbody>
+				{$categorys}
+				</tbody>
+			</table>
+			<table class="table table-hover table-bordered table-list">
+				<thead>
+					<tr>
+						<th  width="50">排序</th>
+						<th>ID</th>
+						<th>商家名称</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<foreach name="lists" item="vo">	
+					<tr>
+						<td><input name='listorders[{$vo.bid}]' type='text' size='3' value='{$vo.listorders}' class='input input-order'></td>
+						<td>{$vo.bid}</td>
+						<td>{$vo.name}</td>
+					</tr>
+					</foreach>
+				</tbody>
+			</table>
+			<div class="table-actions">
+				<button type="submit" class="btn btn-primary btn-small js-ajax-submit">{:L('SORT')}</button>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+	<script>
+		$(function() {
+
+			$("#navcid_select").change(function() {
+				$("#mainform").submit();
+			});
+
+		});
+	</script>
+</body>
+</html>

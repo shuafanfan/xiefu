@@ -1,0 +1,93 @@
+<admintpl file="header" />
+</head>
+<body style="min-width: 800px;height:200px">
+	<div class="wrap">
+		<form method="post" class="form-horizontal js-ajax-form" action="{:U('message/post_sendmessage')}">
+			<div class="row-fluid">
+				<div class="span9">
+					<table class="table table-bordered">
+						<tr>
+							<th>标题</th>
+							<td><input type="text" name="title"  value="{$info.title}" style="width: 400px" >
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						<tr>
+							<th>发送时间</th>
+							<td><input class="js-datetime" type="text" id="input-birthday"  name="createtime" value="{$info.createtime}">
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+					
+						<tr>
+							<th>内容</th>
+							<td><textarea name="content" rows="5" cols="57" style="width: 400px;">{$info.content}</textarea>
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						<tr>
+							<th>接受类型</th>
+							<td>
+								<select id="sel" name="juese" onchange="A(this)">
+									<option value="1" <if condition="$info['juese'] eq 1">selected</if>>接收角色</option>
+									<option value="2" <if condition="$info['juese'] eq 2">selected</if>>单独用户</option>
+									<option value="3" <if condition="$info['juese'] eq 3">selected</if>>单独商家</option>
+								</select>
+							</td>
+						</tr>
+						
+						<tr id="user_type" <if condition="$info['juese'] neq 1">style="display:none"</if>>
+							<th>接收角色</th>
+							<td>
+								<input  type="checkbox" id="input-birthday"  name="user_type[]" <if condition="in_array('-1',$arr)">checked</if> value="-1">普通用户
+								<notempty name="btype">
+									<foreach name="btype" item="fo">
+										<input  type="checkbox" id="input-birthday" value="{$fo.id}" name="user_type[]" <if condition="in_array($fo['id'],$arr)">checked</if>>{$fo.name} 
+									</foreach>
+								</notempty>
+							</td>
+						</tr>
+						
+						
+						<tr id="user_id" <if condition="$info['juese'] neq 2">style="display:none"</if>>
+							<th>单独用户</th>
+							<td><input type="text" name="user_id"  placeholder="ID（可添加多个）用分号（；）隔开" value="{$info.user_id}" style="width: 400px" >
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						
+						
+						<tr id="business_id" <if condition="$info['juese'] neq 3">style="display:none"</if>>
+							<th>单独商家</th>
+							<td><input type="text" name="business_id" placeholder="ID（可添加多个）用分号（；）隔开" value="{$info.business_id}" style="width: 400px" >
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						
+					</table>
+				</div>
+				
+			</div>
+			<div class="form-actions">
+				<input type="hidden"   name="id" value="{$info.id}">
+				<button type="submit" class="btn btn-primary js-ajax-submit">保存</button>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+	<script>
+            function A(obj)
+            {
+
+                if(obj.value==1){
+					$('#user_type').show();$('#user_id').hide();$('#business_id').hide();
+                }else if(obj.value==2){
+                	$('#user_type').hide();$('#user_id').show();$('#business_id').hide();
+                }else{
+                	$('#user_type').hide();$('#user_id').hide();$('#business_id').show();
+                }
+            }
+    </script>
+	
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>报货列表</title>
+    <link rel="stylesheet" href="__TMPL__Public/css/base.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/gerenzhongxin_header_left.css">
+</head>
+<body>
+<div class="all">
+<div class="shangbu">
+<tc_include file="Public:header2" />
+</div>
+    <div class="huowu_all">
+        <div class="container">
+       <tc_include file="Public:accountleft" />
+        <div class="huowu_you">
+            <div class="huowu_you_liebiao">
+                <div class="xian"></div>
+
+                <ul>
+                    <li id="all" <?php if($_GET['type']=='all'||empty($_GET['type'])) echo 'class="check"'?>>
+                        <a href="{:U('report/reportgoods/reportlist')}&type=all">全部</a>
+                    </li>
+
+                    <li id="on" <?php if($_GET['type']=='on') echo 'class="check"'?>>
+                        <a href="{:U('report/reportgoods/reportlist')}&type=on">个人发布中的报货</a>
+                    </li>
+                    <li id="business" <?php if($_GET['type']=='business') echo 'class="check"'?>>
+                        <a href="{:U('report/reportgoods/reportlist')}&type=business">商家发布中的报货</a>
+                    </li>
+                    <li id="back" <?php if($_GET['type']=='back') echo 'class="check"'?>>
+                        <a href="{:U('report/reportgoods/reportlist')}&type=back">被退回的报货</a>
+                    </li>
+
+                    <li id="off" <?php if($_GET['type']=='off') echo 'class="check"'?>>
+                        <a href="{:U('report/reportgoods/reportlist')}&type=off">已下架的报货</a>
+                    </li>
+
+                </ul>
+
+                <span class="fabuxianzhi">
+                   <a href="{:U('report/reportgoods/newreport')}">发布找货</a>
+                </span>
+
+              <!--  <span class="shoujibaohuo">
+                 <a href="__TMPL__Public/">
+                  <img src="__TMPL__Public/images/erweima.png">手机报货</a>
+                 </span>-->
+            </div>
+
+            <div class="huowu_you_shangpin" id="huowu_you_shangpin_all" style="display: block">
+                <ul>
+                    <div class="huowu_title_list">
+
+                      <!--  <div class="baifen10">
+                            <div class="juxing">
+                                <input type="checkbox">
+                            </div>
+
+                        </div>-->
+
+                        <div class="baifen50">
+                            商家信息
+                        </div>
+
+                        <div class="baifen20">
+                            状态
+                        </div>
+
+                        <div class="baifen20">
+                            操作
+                        </div>
+
+                    </div>
+
+                    <volist name="reportgoods" id="vo">
+                    <li>
+                       <!-- <div class="huowu_checkbox">
+                            <div class="juxing">
+                                <input type="checkbox">
+                            </div>
+                        </div>-->
+
+                        <div class="huowu_tuwen">
+                        <div class="huowu_tu">
+                            <img src="{$vo.photos}">
+                        </div>
+                        <div class="huowu_zi">
+
+                            <p class="huowu_zi_h1">{$vo.title}</p>
+
+                            <!-- <p class="huowu_zi_h2">{$vo.memo}</p> -->
+
+                            <p class="huowu_zi_h3"></p>
+
+                            <p class="huowu_zi_h4">{$vo.add_time}</p>
+                        </div>
+                        </div>
+
+                        <div class="huowu_size">
+                            <p class="huowu_size_p">{$vo.size}</p>
+                        </div>
+
+                        <div class="huowu_zhuangtai">
+                            <div class="huowu_zhuangtai_juzhong">
+                                <p >
+                                <h1><?php $a=array('0'=>'审核中','1'=>'发布中','2'=>'退回中','3'=>'已下架'); echo $a[$vo['status']]?></h1>
+                                </p>
+
+                                <p>
+                                <h2>{$vo.sh_memo}</h2>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="huowu_caozuo_all">
+                            <?php if($vo['status']==1){ ?>
+                            <a  data="{$vo.id}" class="huowu_caozuo off" >
+                                下架
+                            </a>
+                            <?php } ?>
+                            <?php if($vo['status']==2||$vo['status']==0){ ?>
+                            <a href="{:U('report/reportgoods/edit')}&id={$vo.id}" class="huowu_caozuo">
+                                修改
+                            </a>
+                            <?php } ?>
+                            <?php if($vo['status']==3){ ?>
+                            <a  data="{$vo.id}" class="huowu_caozuo on" >
+                                恢复
+                            </a>
+                            <?php } ?>
+
+                            <a data="{$vo.id}" class="huowu_caozuo list_delete" id="">
+                                彻底删除
+                            </a>
+
+                            <div class="youhuo">
+                                <?php if($vo['sum']==0){ ?>
+                                    <a>
+                                <?php }else{ ?>
+                                <a href="{:U('report/reportgoods/detail')}&id={$vo.id}">
+                                <?php } ?>
+                                    共{$vo.sum}个商家有货>
+                                </a>
+
+                            </div>
+                        </div>
+
+                    </li>
+                    </volist>
+
+                </ul>
+
+            </div>
+
+            <div class="huowu_you_shangpin" id="huowu_you_shangpin_fabuzhong" >
+            </div>
+        
+            <div class="huowu_you_shangpin" id="huowu_you_shangpin_beituihui">
+            </div>
+
+            <div class="huowu_you_shangpin" id="huowu_you_shangpin_yixiajia">
+            </div>
+
+            <div class="huowu_you_shangpin" id="huowu_you_shangpin_shangjiabaohuo">
+            </div>
+            <div class="" id="fenye">
+                <div class="fenye">
+                    <div  style="text-align:center" class="meneame">{$Page}</div>
+
+                </div>
+
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- <iframe src="__TMPL__Public/footer.html" scrolling="no" width="100%" height="115" frameborder="no" style="float: left;margin-top: 30px;background: #f5f5f5;"></iframe> -->
+<tc_include file="Public:footer" />
+<script >
+	$(".dingduan ul li a:eq(0)").css("color","#c9151e");
+	
+    
+    $(function () {
+        $('.reportlist').trigger("click");
+        $('.list_delete').click(function(){
+            id=$(this).attr('data');
+            layer.confirm('确定删除吗？', {
+                btn: ['是','否'] //按钮
+            }, function(){
+
+                $.ajax({
+                    type:"get",
+                    url: "{:U('report/reportgoods/delete')}",
+                    data:  {'id':id},
+                    dataType:"json",
+                    success:function(data){
+                        console.log(data);
+                        if(data['status']==1){
+                            layer.alert('删除成功');
+                            window.location.reload();
+                        }else{
+                            layer.alert('删除失败');
+                            window.location.reload();
+                        }
+                    }
+                })
+
+            });
+
+        });
+        $('.off').click(function(){
+            id=$(this).attr('data');
+            layer.confirm('确定下架吗？', {
+                btn: ['是','否'] //按钮
+            }, function(){
+
+                $.ajax({
+                    type:"get",
+                    url: "{:U('report/reportgoods/off')}",
+                    data:  {'id':id},
+                    dataType:"json",
+                    success:function(data){
+                        console.log(data);
+                        if(data['status']==1){
+                            layer.alert('下架成功');
+                            window.location.reload();
+                        }else{
+                            layer.alert('下架失败');
+                            window.location.reload();
+                        }
+                    }
+                })
+
+            });
+        });
+        $('.on').click(function(){
+            id=$(this).attr('data');
+            layer.confirm('确定恢复吗？', {
+                btn: ['是','否'] //按钮
+            }, function(){
+
+
+                $.ajax({
+                    type:"get",
+                    url: "{:U('report/reportgoods/on')}",
+                    data:  {'id':id},
+                    dataType:"json",
+                    success:function(data){
+                        console.log(data);
+                        if(data['status']==1){
+                            layer.alert('恢复成功,等待审核');
+                            window.location.reload();
+                        }else{
+                            layer.alert('恢复失败');
+                            window.location.reload();
+                        }
+                    }
+                })
+
+            });
+
+        });
+    })
+
+</script>
+</body>
+</html>
+
+
+
+

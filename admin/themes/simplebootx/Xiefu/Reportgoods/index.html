@@ -1,0 +1,174 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a>报货管理</a></li>
+		</ul>
+	<form class="well form-search" method="post" action="{:U('Reportgoods/index')}">
+			ID： 
+			<input type="text" name="border" style="width: 200px;" value="{$border}" placeholder="商家ID">
+			报货类型： 
+			<select class="select_2" style="width: 150px;" name="type">
+				<option value='0'>全部</option>
+				<option value='1' <if condition="$type eq 1">selected</if>>个人报货</option>
+				<option value='2' <if condition="$type eq 2">selected</if>>商家报货</option>
+			</select> 
+			审核状态： 
+			<select class="select_2" style="width: 150px;" name="status">
+				<option value='0'>全部</option>
+				<option value='1' <if condition="$status eq 1">selected</if>>通过</option>
+				<option value='2' <if condition="$status eq 2">selected</if>>退回</option>
+				<option value='3' <if condition="$status eq 3">selected</if>>超时</option>
+			</select> 
+			报货时间：
+			<input type="text" name="start_time" class="js-date" value="{$start_time|default=''}" style="width: 80px;" autocomplete="off">-
+			<input type="text" class="js-date" name="end_time" value="{$end_time}" style="width: 80px;" autocomplete="off">&nbsp;
+			<br/>
+			审核时间：
+			<input type="text" name="start" class="js-date" value="{$start|default=''}" style="width: 80px;" autocomplete="off">-
+			<input type="text" class="js-date" name="end" value="{$end}" style="width: 80px;" autocomplete="off">&nbsp;
+			
+			排序条件：<select class="select_2" id="order" style="width: 150px;" name="order">
+					<option value='0'>默认</option>
+					<option value='1' <if condition="$order eq 1">selected</if>>审核时间</option>
+					<option value='2' <if condition="$order eq 2">selected</if>>添加时间</option>
+				  </select>
+			排序方式：<select class="select_2" id="flag" style="width: 150px;" name="flag">
+					<option value='0'>选择</option>
+					<option value='1' <if condition="$flag eq 1">selected</if>>升序</option>
+					<option value='2' <if condition="$flag eq 2">selected</if>>降序</option>
+				  </select>
+			
+				  <input type="submit" class="btn btn-primary" value="搜索" />
+		</form>
+			
+		<div style="float:left">
+			报货有效期：
+			<!-- <input type="text" name="period" id="period" required class="js-date" value="{$formget.period|default=''}" style="width: 180px;" autocomplete="off"> -->
+			<select style="width: 180px;" name="period" id="period">
+				<option value="-1">过期</option>
+				<option value="1">一天</option>
+				<option value="7">七天</option>
+				<option value="30">三十天</option>
+			</select>
+			<button class="btn btn-primary" value="确定" onclick="selectAll()" >确定</button>
+		</div>
+		
+		<form method="post" class="js-ajax-form">
+			<table class="table table-hover table-bordered table-list">
+				<thead>
+					<tr>
+						<th width="15"><label><input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x"></label></th>
+						<th width="50px" align="center">序号</th>
+						<th width="100px">报货类型</th>
+						<th width="50px">图片</th>
+						<th width="200px">详细信息</th>
+						<th width="150px">有效期</th>
+						<th width="150px">审核状态</th>
+						<th width="150px">创建时间</th>
+						<th width="150px">原因</th>
+						<th width="180px" align="center">{:L('ACTIONS')}</th>
+					</tr>
+				</thead>
+				<div id="credit"></div>
+				<tbody>
+					<volist name="lists" id="vo" key="k">
+					<tr>
+						<td><input type="checkbox" class="js-check" data-yid="js-check-y" data-xid="js-check-x" name="ids[]" value="{$vo.id}" ></td>
+						<td align="center">{$vo.id}</td>
+						<td><if condition="$vo.type eq 1">个人报货<else/>商家报货</if></td>
+						<td id="images">
+						<if condition="$vo.photos neq ''">
+							<a href="javascript:image_preview_dialog('{$vo.photos}')"   rel="lightbox"><img alt="" src="{$vo.photos}" style="width:50px;height:50px"/></a>
+						<else/>
+							暂无图片
+						</if>
+						</td>
+						<td>订单号：{$vo.rorder}<br/>&nbsp&nbsp{$vo.memo}&nbsp&nbsp{$vo.size}码 数量：{$vo.num}双<br/>{$vo.add_time}</td>
+						<td>{$vo.period}<br/>
+						<if condition="$vo['status'] eq 1 ">
+						
+							<if condition="$vo.left_time_format eq -1">
+								<span class="label label-sm label-warning">已到期</span>
+							<else/>
+								<span class="label label-sm label-warning">剩余{$vo.left_time_format}到期</span>
+							</if>
+						
+						</if>
+						
+						</td>
+						<td>
+							<if condition="$vo['status'] eq 0">未审核 
+							<elseif condition="$vo['status'] eq 1" />通过 {$vo.sh_time}
+							<elseif condition="$vo['status'] eq 2" />拒绝 {$vo.th_time}
+							<elseif condition="$vo['status'] eq 3" />审核超时
+							</if>
+						</td>
+						<td>{$vo.add_time}</td>
+						<td>{$vo.sh_memo}</td>
+						<td align="center">
+						 	<a class="js-ajax-delete" href="{:U('Xiefu/Reportgoods/delete',array('id'=>$vo['id']))}">{:L('DELETE')}</a>
+							<if condition="$vo.status eq 2">
+								|<a href="{:U('Xiefu/Reportgoods/setstatus',array('id'=>$vo['id'],'status'=>1))}"  data-msg="确认通过">通过</a>
+							</if>
+							<if condition="$vo.status eq 1">
+								|<a href="{:U('Xiefu/Reportgoods/setstatus',array('id'=>$vo['id'],'status'=>2))}"  data-msg="确认退回">拒绝</a>
+							</if>
+								
+							<if condition="$vo.status eq 0">
+								|<a href="{:U('Xiefu/Reportgoods/setstatus',array('id'=>$vo['id'],'status'=>1))}"  data-msg="确认通过">通过</a>|
+								 <a href="{:U('Xiefu/Reportgoods/setstatus',array('id'=>$vo['id'],'status'=>2))}"  data-msg="确认退回">拒绝</a>
+							</if>
+							<if condition="$vo.status eq 3">
+								|<a href="{:U('Xiefu/Reportgoods/setstatus',array('id'=>$vo['id'],'status'=>0))}" data-msg="确认恢复">恢复</a>
+							</if>
+							<if condition="$vo['status'] eq 1 ">|<a href="{:U('Xiefu/Reportgoods/edit',array('id'=>$vo['id']))}" >修改有效期</a></if>
+						</td>
+					</tr>
+					
+					</volist>
+				</tbody>
+		
+			</table>
+			<div class="table-actions">
+				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('Reportgoods/delete')}" data-subcheck="true">{:L('DELETE')}</button>
+			</div>
+			<div class="pagination">{$page}</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+	<script type="text/javascript">
+		function selectAll(){
+			 // 获取所有的复选框  
+			  var chk_value =[]; 
+			  $('input[name="ids[]"]:checked').each(function(){ 
+			  	chk_value.push($(this).val()); 
+			  }); 
+		      if(chk_value.length==0){
+				alert('未勾选');return false;
+			  }
+			  var period=$('#period').val();
+			  if(period==''){
+				  alert('未选中有效时间');return false;
+			  }
+		      var url="{:U('Reportgoods/update')}";
+		      if(confirm("确认设置有效时间？"))
+                  $.ajax({
+                      url:url,
+                      data:{'ids':chk_value,'period':period},
+                      dataType:"json",
+                      success:function(result){
+		                  if (result.status == 1) {
+		                      window.location.reload();
+		                  }else{
+		                     alert(result.info);return false;
+		                  }
+		              }
+          		});		
+		    	return false;
+
+		}
+	</script>
+</body>
+</html>

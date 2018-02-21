@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>页面详情</title>
+    <link rel="stylesheet" href="__TMPL__Public/css/base.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/gerenzhongxin_header_left.css">
+</head>
+<body>
+<div class="all">
+<tc_include file="Public:header" />
+
+<div class="container">
+    <div class="xingzhi" id="xingzhi">
+       <!--  <span >
+            地区:
+        </span>
+        <ul>
+            <li><a href="__TMPL__Public/#">全部</a></li>
+            <li><a href="__TMPL__Public/#">莆田</a></li>
+            <li><a href="__TMPL__Public/#">广州</a></li>
+            <li><a href="__TMPL__Public/#">晋江</a></li>
+            <li><a href="__TMPL__Public/#">石狮</a></li>
+            <li><a href="__TMPL__Public/#">深圳</a></li>
+        </ul> -->
+    </div>
+    <div class="xingzhi" id="">
+        <span>
+            <a href="{:U('portal/page/zazamarket')}&sort=">全部:</a>
+        </span>
+        <ul>
+            <foreach name="markettype" item="vo">
+            <li><a href="{:U('portal/page/zazamarket')}&sort={$vo.id}">{$vo.name}</a></li>
+            </foreach>
+        </ul>
+    <span class="zhankai" style="right: 115px;">
+            <span class="zhankai_zi"> 展开</span>
+            <div class="yousanjiao" id="sanjiao">
+            </div>
+              <div class="shangsanjiao" id="">
+            </div>
+        </span>
+        
+    </div>
+<!--     <div class="chanpin_chaxun">
+        2017-320-05
+    </div> -->
+
+     <div class="zaza_page_daetails">
+         <div class="zaza_page_daetails_top">
+             <div class="zaza_daetails_tuwen">
+                        <div class="zaza_daetails_img" >
+                            <img src="{$market[0].photos}">
+                        </div>
+                        <div class="zaza_daetails_text">
+                            <p class="zaza_daetails_shose_title">
+                                {$market[0].user_nicename}
+                            </p>
+
+                            <p>
+                                <span class="zaza_daetails_price">
+                                    ￥{$market[0].price}
+                                </span>
+                            </p>
+                            <div class="qq_weixin_juxing">
+                            <a href="tencent://message/?uin={$market[0].qq}&amp;Site=0594666.com&amp;Menu=yes">
+                                <div class="qq_juxing">
+                                    <div class="qq_div">
+                                        <img src="__TMPL__Public/images/qq.png">
+                                    </div>
+                                    QQ交谈
+                                </div>
+                                </a>
+                                <div class="wexin_juxing">
+                                    <div class="qq_div">
+                                        <img src="__TMPL__Public/images/weixin.png">
+                                    </div>
+                                    微信
+                                </div>
+
+                            </div>
+
+                            <p >
+                                <span class="col_gray">电话:</span>{$market[0].mobile}
+                            </p>
+                            <?php if($market[0]['type']==2){ ?>
+                            <p>
+                                <span class="col_gray">商家ID:</span>{$market[0].bid}
+                            </p>
+                            <?php } ?>
+                            <p>
+                                <span class="col_gray">地址:</span>{$market[0].city}
+                            </p>
+                        </div>
+              </div>
+            <?php if($market[0]['type']==2){ ?>
+             <div class="businesses_header">
+             <div class="businesses_header_img">
+                 <img src="{$market[0].blogo}">
+             </div>
+             
+             <div class="">
+                 <div class="businesses_header_text">{$market[0].bname}</div>
+                 <?php if($market[0]['is_shouq']==1){ ?>
+                 <div class="businesses_header_icon">
+                     <img src="__TMPL__Public/images/v.png">
+                 </div>
+                 <?php } ?>
+             </div>
+             
+            </div>
+            <?php }else{ ?>
+            <div class="businesses_header">
+             <div class="businesses_header_img">
+                 <img src="{$market[0].avatar}">
+             </div>
+             
+             <div class="">
+                 <div class="businesses_header_text">{$market[0].user_nicename}</div>
+             </div>
+             
+            </div>
+            <?php } ?>
+         </div>
+         <div class="zaza_page_daetails_product">
+             <div class="daetails_product_hint">
+                <span class="iconfont icon-laba">
+
+                 </span>
+                 <span class="color_red">
+                     重要提醒:请不要接受可疑文件或点击不明链接,交易中推荐只用
+                     QQ聊天工具，若产生投诉举报或申请赔付,您提交的聊天记录将成为有利证据
+                 </span>
+             </div>
+            <div class="daetails_product_img_all">
+             <ul>
+                 <li>
+                     <img src="__TMPL__Public/images/banner1.png">
+                 </li>
+                 <li>
+                     <img src="__TMPL__Public/images/banner1.png">
+                 </li>
+             </ul>
+            </div>
+             <div class="daetails_product_hint">
+                 <span class="iconfont icon-laba">
+
+                 </span>
+                 <span class="color_red hint_text">
+                     重要提醒:与本网站个人或未认证商家交易若出现交易纠纷,本网站不负责赔付!</span>
+             </div>
+         </div>
+
+         <div class="zaza_page_daetails_appraise">
+             <div class="daetails_appraise_title">
+                 全部评价({$count})
+             </div>
+
+             <ul>
+             
+                 <volist name="comment" id="vo" key="k">
+                 <li>
+                     <div class="daetails_appraise_header">
+                         <div class="appraise_header_img">
+                             <img src="{$vo.avatar}">
+                         </div>
+                         <p class="appraise_header_text">
+                             {$vo.nickname}
+                         </p>
+                     </div>
+
+                     <div class="daetails_appraise_text">
+                         {$vo.comment}
+                     </div>
+
+                     <div class="daetails_appraise_time">
+                         <a href="">举报</a>
+                         &nbsp;|&nbsp;{$k}楼&nbsp;发表于{$vo.createtime}
+                     </div>
+
+                 </li>
+                 </volist>
+             </ul>
+             <div class="fenye">
+
+             </div>
+
+         </div>
+
+         <div class="comment_appraise">
+             <div class="daetails_appraise_header">
+                 <div class="appraise_header_img">
+                     <img src="{$user.avatar}">
+                 </div>
+                 <p class="appraise_header_text">
+                     {$user.user_nicename} 
+                 </p>
+             </div>
+             <div class="comment_appraise_content">
+
+                 <textarea id="comment">
+
+                 </textarea>
+
+               <!--  先判断用户是否登录，可判断用户的ID或姓名是否存在
+               $("#appraise_textarea").attr("disabled","disabled");禁止输入
+
+                 $("#appraise_textarea").removeAttr("disabled");允许输入
+                 -->
+                 <php> if(!sp_is_user_login()){ </php>
+                 <div class="comment_appraise_content_hint">
+                     您需要登陆后才可以评论&nbsp;
+                     <a href="#" class="big-link logins" data-reveal-id="myModal" data-animation="fade">登录</a>
+                     <span class="color_blue">|</span>
+                     <a href="{:U('user/user/register')}">注册</a>
+                 </div>
+                 <php>}</php>
+             </div>
+
+             <div class="comment_appraise_bottom">
+                 <div class="comment_appraise_bottom_handle">
+                     <span> <input type="radio" name="1" class="small_radio">评论跳转最后一页</span>
+                     <input type="hidden" id="nickname" value="{$user.user_nicename}">
+                     <input type="hidden" id="avatar" value="{$user.avatar}">
+                     <input type="hidden" id="market_id" value="{$_GET['id']}">
+                     <a  class="comment_appraise_btn">发表评论</a>
+                 </div>
+
+             </div>
+         </div>
+      </div>
+    </div>
+ </div>
+</div>
+<tc_include file="Public:footer" />
+<script >
+    $(function () {
+        /*     radio再次点击取消选中*/
+        $('.small_radio').click(function(){
+            var $radio = $(this);
+            if ($radio.data('waschecked') == true){
+                $radio.prop('checked', false);
+                $radio.data('waschecked', false);    }
+            else {
+                $radio.prop('checked', true);
+                $radio.data('waschecked', true);    }  });
+        /*     radio再次点击取消选中end*/
+        /* nav滑块*/
+        $(".xq_bag").append('<div class="xq_move" style="height: 3px; left:650px; width: 140px; bottom: 0px; background: red;"></div>' );
+        $.fn.xq_navbar = function( _option ){
+            var defaults = {
+                "bgcolor"	: "#38927a",		//导航条颜色
+                "type"		: "line",	//定义导航类型    下划线 underline 上划线overline 双划线line 块级背景block
+                "liwidth"	: "avg",		//设置导航项的宽度类型 auto：自动  ， avg：评分， 30：指定具体宽度
+                /*		"hcolor"	: ["blue","rgb(10,100,100)","red","pink","green","rgba(23,234,22,1)","rgb(230,230,230)"]//指定每一个导航项的颜色。不指定或指定不够默认 #ccc；统一颜色可直接传入颜色值
+
+                 */           "hcolor"	:"red"
+            };
+            var _self	=	$(this);
+            var xq_li	=	_self.find(".xq_navli");
+            this.navbar	=	_self.find(".xq_navbar");
+            this.num	=	_self.find(".xq_navli").length;
+            this.width	=	this.navbar.width();
+            this.height	=	this.navbar.height();
+            $.extend( defaults , _option ? _option : {} );
+            this.init	=	function(){
+                this.navbar.css({"background":defaults.bgcolor,"line-height":this.height+"px"});
+                switch(defaults.liwidth){
+                    case "auto":
+                        xq_li.css({"padding":"0px 10px"});
+                        break;
+                    case "avg":
+                        xq_li.css({"width":this.width/this.num+"px"});
+                        break;
+                    default:
+                        xq_li.css({"width":defaults.liwidth+"px"});
+                        break;
+                }
+                this.bindmouseover(defaults.type);
+            };
+            this.bindmouseover=function(type){
+                switch(type){
+                    case "block":
+                        this.block();
+                        break;
+                    case "beat":
+                        this.beat();
+                        break;
+                    default :
+                        this.line();
+                        break;
+                }
+            };
+
+            this.line=function(){
+                var move=$("<div/>",{"class":"xq_move"}).css({ "height":"3px","left":"140px","width":"140px"}).appendTo(_self);
+                switch(defaults.type){
+                    case "underline":
+                        move.css({"bottom":"0px"});
+                        break;
+                    case "overline":
+                        move.css({"bottom":"0px"});
+                        break;
+                    case "line":
+                        move.css({"bottom":"0px"});
+                        $("<div/>",{"class":"xq_move"}).css({ "bottom":"0px","height":"5px","left":"140px","width":"140px"}).appendTo(_self);
+                        break;
+                }
+                var width;
+                var movelist=_self.find(".xq_move");
+                xq_li.on('mouseover',function(){
+                    width=$(this).width();
+                    if( defaults.liwidth == "auto" ){
+                        width	+=	20;
+                    }
+                    var left	=	$(this).offset().left-_self.offset().left;
+                    var index	=	$(this).index();
+                    var color	=	$.isArray(defaults.hcolor) ? (defaults.hcolor[index] ? defaults.hcolor[index] : "#ccc") : $.trim(defaults.hcolor);
+                    $(this).css({"color":color});
+                    movelist.css({ "background" : color , "left" : left , "width" : width+"px"});
+                });
+                this.navbar.on('mouseout',function(){
+                    xq_li.css({"color":"#fff"});
+                    movelist.css({"left":"-140px","width":"140px"});
+                });
+            };
+
+            this.init();
+        };
+        $("#bar4").xq_navbar({"type":"overline","liwidth":"140","bgcolor":"#000"});
+        /* nav滑块end*/
+    })
+</script>
+<script>
+    $('.comment_appraise_btn').click(function(){
+        var comment=$('#comment').val();
+        var nickname=$('#nickname').val();
+        var avatar=$('#avatar').val();
+        var market_id=$('#market_id').val();
+        $.ajax( {
+            type:"POST",
+            data:  {'comment':comment,'nickname':nickname,'avatar':avatar,'market_id':market_id},
+            url: "{:U('zaza/zazamarket/comment')}",
+            success: function( data, textStatus, jqXHR ){
+                console.log(data);
+                if(data.status==1){
+                    layer.alert('评论成功',function(){
+                        window.location.href=window.location.href;
+                    });
+                }else{
+                    layer.alert('评论失败');
+                    return false;
+                }
+            }
+        });
+    })
+</script>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,304 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:U('business/index')}">商家用户</a></li>
+			<li class="active"><a href="{:U('business/add')}">添加</a></li>
+		</ul>
+		<form method="post" id ="installTaohe" class="form-horizontal js-ajax-forms" action="{:U('Business/add_post')}">
+			<div class="row-fluid">
+				<div class="span9">
+					<table class="table table-bordered">
+					
+						<tr>
+							<th>帐号</th>
+							<td>
+								<input type="text" name="user_login" style="width: 400px; placeholder="请输入帐号"/>
+								<span class="form-required">*</span>
+							</td>
+						</tr>
+						<tr>
+							<th>密码</th>
+							<td><input type="password" name="user_pass" value="123456" style="width: 400px">
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						<tr>
+							<th>昵称</th>
+							<td><input type="text" name="user_nicename" value="商家用户" style="width: 400px" >
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						
+						<tr>
+							<th>手机</th>
+							<td><input type="text" name="mobile" value="" style="width: 400px">
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+					
+						<tr>
+							<th>邮箱</th>
+							<td><input type="text" name="user_email" value="" style="width: 400px">
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						<tr>
+							<th>qq1</th>
+							<td><input type="text" name="qq1" value="" style="width: 400px">
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						<tr>
+							<th>qq2</th>
+							<td><input type="text" name="qq2" value="" style="width: 400px">
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						<tr>
+							<th>微信号</th>
+							<td><input type="text" name="wechart" value="" style="width: 400px">
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+					
+					
+						<tr>
+							<th>店铺网址</th>
+							<td><input type="text" name="user_url" value="" style="width: 400px">
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						<tr>
+							<th>相册地址</th>
+							<td><input type="text" name="product_url" value="" style="width: 400px">
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						<tr>
+							<th>区域</th>
+							<td>
+								 <div class="col-xs-6 col-md-4 marB10">
+						           <select class="form-control" id="province" name="province">
+						                <option value="0">选择省</option>
+							                <volist name="provinceList" id="fo">
+												<option value="{$fo.id}"<if condition="$info.province eq $fo['id']">selected="selected"</if>>
+													{$fo.name}
+												</option>
+											</volist>
+						            </select>
+						         	<select class="form-control" id="city" name="city">
+						                <option value="0">选择市</option>
+							                <volist name="result" id="fo">
+												<option value="{$fo.id}"<if condition="$info.city eq $fo['id']">selected="selected"</if>>
+													{$fo.name}
+												</option>
+											</volist>
+						            </select>
+						            <select class="form-control" id="area" name="area">
+						                <option value="0">选择区/县</option>
+							                 <volist name="result" id="fo">
+												<option value="{$fo.id}"<if condition="$info.area eq $fo['id']">selected="selected"</if>>
+													{$fo.name}
+												</option>
+											</volist>
+						            </select>
+						        </div>
+							</td>
+						</tr>	
+						
+						<tr>
+							<th>地址</th>
+							<td><input type="text" name="address" value="" style="width: 400px">
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						<tr>
+							<th>主营产品</th>
+							<td><input type="text" name="descript" value="" style="width: 400px">
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						<tr>
+							<th width="80">自主品牌</th>
+							<td>
+								<select name="brand" id="brand">
+										<option value="0">请选择</option>
+										<option value="1">是</option>
+										<option value="2">否</option>
+								</select>
+								<input type="text" name="category_id" value="" id="category_id" style="width: 400px">
+								<a class='btnGrayS vm bigbtn' onclick="addGoods('category_id',0)" class="a_choose">选择类目</a>
+							</td>
+							
+						</tr>
+						
+						<tr>
+							<th>商家类型</th>
+							<td>
+								<select name="btype_id">
+									<option value="0">请选择</option>
+									<foreach name="list" item="vo">
+											<option value="{$vo.id}">{$vo.name}</option>
+									</foreach>
+								</select>
+								
+							</td>
+						</tr>
+						<tr>
+							<th>有效期</th>
+							<td><input class="js-date" type="text" id="input-birthday" placeholder="2013-01-04" name="period" value="{$period}">
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						
+						<tr>
+							<th>店铺简介</th>
+							<td><textarea name="signature" rows="5" cols="57" style="width: 400px;"> </textarea>
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+					
+					</table>
+				</div>
+				
+				<div class="span3">
+					<table class="table table-bordered">
+						<tr>
+							<th>LOGO</th>
+						</tr>
+						<tr>
+							<td>
+								<div style="text-align: center;">
+									<input type="hidden" name="blogo" id="thumbs" value="">
+									<a href="javascript:void(0);" onclick="flashupload('thumb_images', '附件上传','thumbs',thumb_images,'1,jpg|jpeg|gif|png|bmp,1,,,1','','','');return false;">
+										<img src="__TMPL__Public/assets/images/default-thumbnail.png" id="thumbs_preview" width="135" style="cursor: hand" />
+									</a>
+									<input type="button" class="btn btn-small" onclick="$('#thumbs_preview').attr('src','__TMPL__Public/assets/images/default-thumbnail.png');$('#thumbs').val('');return false;" value="取消图片">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>二维码</th>
+						</tr>
+						<tr>
+							<td>
+								<div style="text-align: center;">
+									<input type="hidden" name="code" id="thumb" value="">
+									<a href="javascript:void(0);" onclick="flashupload('thumb_images', '附件上传','thumb',thumb_images,'1,jpg|jpeg|gif|png|bmp,1,,,1','','','');return false;">
+										<img src="__TMPL__Public/assets/images/default-thumbnail.png" id="thumb_preview" width="135" style="cursor: hand" />
+									</a>
+									<input type="button" class="btn btn-small" onclick="$('#thumb_preview').attr('src','__TMPL__Public/assets/images/default-thumbnail.png');$('#thumb').val('');return false;" value="取消图片">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>广告</th>
+						</tr>
+						<tr>
+							<td>
+								<div style="text-align: center;">
+									<div id="photos" ></div>
+									<a href="javascript:;"style="margin:50px;float:left;"onclick="javascript:flashupload('change_images','图片上传','photos',change_images,'10,gif|jpg|jpeg|png|bmp,0','','&max_count=0','')"class="btn">
+											图片上传
+									</a>
+								</div>
+							</td>
+						</tr>
+				
+					</table>
+				</div>
+			</div>
+			<div class="form-actions">
+				<input type="hidden" name="user_type" value="3" style="width: 400px">
+				<button type="submit" class="btn btn-primary js-ajax-submit">{:L('ADD')}</button>
+				<a class="btn" href="{:U('business/index')}">{:L('BACK')}</a>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+	<script src="__PUBLIC__/js/artDialog/jquery.artDialog.js?skin=default"></script>
+	<script src="__PUBLIC__/js/artDialog/plugins/iframeTools.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/content_addtop.js"></script>
+</body>
+</html>
+<script type="text/javascript">
+$(function(){
+	$('#province').change(function(){
+		if($(this).val() != 0){
+			var provinceData ={
+				'provinceId':$('#province').val(),
+			};
+			$.ajax({
+				url:"{:U('Region/ajaxGetCity')}",
+				type:'post',
+				data:provinceData,
+				dataType:'json',
+				success:function(data){
+					var str = '<option value="0">选择市</option>';
+					var data = eval(data);
+					$.each(data,function(i,n){
+						if(data[i].id!=undefined){
+							str += '<option value='+data[i].id+'>'+data[i].name+'</option>';
+							document.getElementById("city").innerHTML =str;
+						}
+						$("#area").val(0);
+					});
+				},
+				error: function () { 
+					alert('请重新选择！');			
+				} 
+			});
+		}else{
+			$("#city").val(0);
+			$("#area").val(0);
+		}
+	});
+
+	$('#city').change(function(){
+		if($(this).val() != 0){
+			var cityData ={
+				'cityId':$('#city').val(),
+			};
+			$.ajax({
+				url:"{:U('Region/ajaxGetArea')}",
+				type:'post',
+				data:cityData,
+				dataType:'json',
+				success:function(data){
+					var str = '<option value="0">选择区/县</option>';
+					var data = eval(data);
+					$.each(data,function(i,n){
+						if(data[i].id!=undefined){
+							str += '<option value='+data[i].id+'>'+data[i].name+'</option>';
+							document.getElementById("area").innerHTML =str;
+						}
+					});
+				},
+				error: function () { 
+					alert('请重新选择！');			
+				} 
+			});
+		}else{
+			$("#area").val(0);
+		}
+	});
+
+
+	
+	
+});
+</script>
+<script type="text/javascript">
+	function addGoods(domid,keyword){
+
+		var brand=$("#brand option:selected").val();
+		if(brand==0){
+			alert('请选择品牌类型');return false;
+		}
+		art.dialog.data('domid', domid);
+		art.dialog.open('?g=admin&m=business&a=category&brand='+brand,{lock:true,title:'选择类目',width:900,height:500,yesText:'关闭',background: '#000',opacity: 0.45});
+	}
+
+</script>

@@ -1,0 +1,144 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:U('Market/index')}">杂杂市场管理</a></li>
+			<li class="active"><a href="javascript:;">杂杂市场详情</a></li>
+		</ul>
+		<form method="post" class="form-horizontal js-ajax-form" >
+			<div class="row-fluid">
+				<div class="span9">
+					<table class="table table-bordered">
+						<tr>
+							<th>报货图片</th>
+							<td>
+									<div>
+											<if condition="$lists.photos eq ''">
+												<img src="__TMPL__Public/assets/images/default-thumbnail.png" id="thumb_preview" width="135" style="cursor: hand" />
+											<else/>
+												<img src="{$lists.photos}"  id="thumb_preview" width="135" style="cursor: hand;"/>
+											</if>
+									</div>
+							</td>
+						</tr>
+						<tr>
+							<th  style=" width: 60px;">名称</th>
+							<td>
+								{$lists.name}
+							</td>
+						</tr>
+						<tr>
+							<th style=" width: 60px;">价格</th>
+							<td>
+								{$lists.prices}
+							</td>
+						</tr>
+						<tr>
+							<th style=" width: 60px;">QQ1</th>
+							<td>
+								{$lists.qq1}
+							</td>
+						</tr>
+						<tr>
+							<th style=" width: 60px;">QQ2</th>
+							<td>
+								{$lists.qq2}
+							</td>
+						</tr>
+						<tr>
+							<th style=" width: 60px;">微信号</th>
+							<td>
+								{$lists.weixin}
+							</td>
+						</tr>
+					
+						<tr>
+							<th style=" width: 60px;">电话</th>
+							<td>
+								{$lists.mobile}
+							</td>
+						</tr>
+						<tr>
+							<th style=" width: 60px;">地址</th>
+							<td>
+								{$lists.address}
+							</td>
+						</tr>
+						<if condition="$lists['user_type'] eq 3">
+							<tr>
+								<th style=" width: 60px;">商家ID</th>
+								<td>
+									{$lists.border}
+								</td>
+							</tr>
+						</if>
+					
+					</table>
+				</div>
+				
+				<div class="span3">
+					<table class="table table-bordered">
+				
+					<if condition="$lists.user_type eq 2">
+						<tr>
+							<th>头像</th>
+						</tr>
+						<tr>
+							<td>
+								<div style="text-align: center;">
+										<if condition="$info.avatar eq ''">
+											<img src="__TMPL__Public/assets/images/default-thumbnail.png" id="thumb_preview" width="135" style="cursor: hand" />
+										<else/>
+											<img src="{$lists.avatar}"  id="thumb_preview" width="135" style="cursor: hand;"/>
+										</if>
+								</div>
+							</td>
+						</tr>
+						
+					<else/>
+						<tr>
+							<th>{$lists.user_login} LOGO</th>
+						</tr>
+						<tr>
+							<td>
+								<div >
+								 <div class="pop_nav">
+								   <ul class="js-tabs-nav unstyled" id="photos">
+												<li id="{$key}">
+													<img src="{$lists.blogo}"  id="thumb_preview" width="135" ondblclick="image_priview(this.value);" style="cursor: hand;"/>
+												</li>
+							          </ul>
+							        </div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>发布时间</th>
+						</tr>
+						<tr>
+							<td>
+								{$lists.add_time}
+							</td>
+						</tr>
+						<tr>
+							<th>评论</th>
+						</tr>
+						<tr>
+							<td><label style="width: 88px"><a href="javascript:open_iframe_dialog('{:U('Xiefu/market/marketcomment',array('user_id'=>$lists['user_id']))}','评论列表')">查看评论</a></label>
+							</td>
+						</tr>
+						
+					</if>
+					</table>
+				</div>
+			</div>
+			<div class="form-actions">
+				<a class="btn" href="{:U('Market/index')}">{:L('BACK')}</a>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/content_addtop.js"></script>
+</body>
+</html>

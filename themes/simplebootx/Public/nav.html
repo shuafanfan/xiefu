@@ -1,0 +1,50 @@
+{:hook('body_start')}
+
+<!--顶部——导航-->
+<div class="top" id="nav">
+	<div class="wrap">
+		<!--<div class="sousuo fr">
+			<input type="text" name="" id="" value="" />
+			<button type="seach">&nbsp;</button>
+		</div>-->
+		<a href="/" class="logo"><img src="__TMPL__Public/img/minhai_03.png" /></a>
+		<php>
+			$nav = sp_get_menu_tree("main");
+
+		</php>
+		<ul>
+			
+			<!--name:表示数据源;item:表示循环变量; -->
+
+			<foreach name="nav" item="heads">
+
+				<li class="nLi" id="nLi">
+
+					<h3><a href="{$heads.href}" data="{$heads.id}" target="{$heads.target}">{$heads.label}</a></h3>
+
+					<!-- 判断是否有子孩子（分支） -->
+
+					<if condition=" !empty($heads['child'])">
+
+						<ul class="sub" id="sub_{$heads.id}" >
+
+							<foreach name="heads.child" item="sub">
+
+								<li class="nLi" style="height: 36px !important;">
+									<a href="{$sub.href}"  target="{$sub.target}">{$sub.label}</a>
+								</li>
+
+							</foreach>
+
+						</ul>
+					<else/>
+					
+					</if>
+
+				</li>
+
+			</foreach>
+			
+		</ul>
+	</div>
+</div>

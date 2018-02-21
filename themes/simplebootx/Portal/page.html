@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>{$post_title}-{$site_name}</title>
+		<meta name="keywords" content="{$site_seo_keywords}" />
+		<meta name="description" content="{$site_seo_description}">
+		<tc_include file="Public:head" />
+		<style>
+			.list_right-btm p,.list_right-btm p img{
+				margin: 10px 0 10px 0;
+				height: auto !important;
+			}
+			.side{
+				background: #1077D6;
+			}
+			.page_content { margin:30px 0 0 0 ; font-size: 16px; color:#333; line-height:210%; width:780px;}
+			.page_content img{ max-width: 100%;}
+			.side a{
+				color: #FFFFFF;
+			}
+			.list_right-top h4{
+				font-size: 21px;
+				padding-bottom: 12px;
+				color: black;
+			}
+			.art_left h1{ font-size: 24px;}
+			.list_banner {
+				
+				<php>
+				    $id=$_GET['id'];
+					$arr   = array("about"=>array(1,2,3,4,5,386),"hr"=>array(6,35,36));
+					$l_title="关于闽海";
+					if(in_array($id,$arr['about'])){
+						
+						$imgurl = sp_getad('关于闽海Banner图');
+						echo ' background: url("'.$imgurl.'") no-repeat center center;';						 
+					}
+					if(in_array($id,$arr['hr'])){
+						$l_title="人力资源";										
+						$imgurl = sp_getad('人力资源Banner');
+						echo ' background: url("'.$imgurl.'") no-repeat center center;';
+					}
+					
+				</php>
+			   
+			    
+			}
+		</style>
+	</head>
+
+	<body>
+		<tc_include file="Public:nav" />
+		
+		<div class="list_banner"></div>
+		
+		<!--列表页-->
+		<div class="w1200 container clearfix">
+			<!--侧边栏-->
+			<div class="fl list2_left visible-lg-block">
+				<div class="dynamics_list">
+					<div class="top_dy">{$l_title}</div>
+
+					<ul class="top_dylist">
+						<foreach name="posts" item="vo">
+							<li <?php if($_GET['id']==$vo['id']) { ?> class="side" <?php } ?>>
+								<a href="{:leuu('portal/page/index',array('id'=>$vo['id']))}" >
+									<i class="iconfont FR">&#xe608;</i><p>{$vo['post_title']}</p>
+								</a>
+							</li>
+						</foreach>
+						
+						<php>
+							$arr   = array("about"=>array(1,2,3,4,5,386),"hr"=>array(6,35,36));
+							if(in_array($id,$arr['hr'])){
+								$hr = D("Common/Terms") ->where("parent =21") ->order("listorder asc")-> select();
+							}							
+						</php>
+						<foreach name="hr" item="vo">
+							<li <?php if($_GET['id']==$vo['term_id']){ ?> class="side" <?php } ?>>
+								<a href="{:leuu('portal/list/index',array('id'=>$vo['term_id']))}">
+									<i class="iconfont FR">&#xe608;</i><p>{$vo.name}</p>
+								</a>
+							</li>
+						</foreach>
+						
+						<php>
+							if(in_array($id,$arr['hr'])){
+						</php>
+							<li <?php if($_GET['id']==36) { ?> class="side" <?php } ?>>
+								<a href="{:leuu('portal/page/index',array('id'=>36))}" >
+									<i class="iconfont FR">&#xe608;</i><p>联系我们</p>
+								</a>
+							</li>
+						<php>
+							}
+						</php>
+						
+					</ul>
+					
+					
+					
+				</div>
+
+			</div>
+			<div class="fl list2_right  ">
+				<!--内容页-->
+				<div class="art_left fl">
+					<h1>{$post_title}</h1>
+					<div class="title">
+						<div class="tit fr"></div>
+						<div class="clear"></div>
+					</div>
+
+					<div class="  page_content" >
+						{$post_content} 
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<tc_include file="Public:footer" />
+		<tc_include file="Public:scripts" />
+		<!--底部结束-->
+
+	</body>
+
+</html>

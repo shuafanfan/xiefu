@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>客户咨询</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="__TMPL__/Public/css/mui.min.css"/>
+		<link rel="stylesheet" href="__TMPL__/Public/css/style.css" />
+		<!--App自定义的css-->
+		<link rel="stylesheet" type="text/css" href="__TMPL__/Public/css/app.css"/>
+	</head>
+
+	<body>
+		<!--侧滑菜单容器-->
+		<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable">
+			<!--菜单部分-->
+			<tc_include file="Public:slide" />
+			
+			<div class="mui-inner-wrap">
+
+				<div id="offCanvasContentScroll" class="mui-content mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<tc_include file="Public:head" />
+						
+						<div class="mui-bar list_head" style="position: initial !important;">
+							<a class="mui-action-back mui-icon mui-icon-back mui-pull-left"></a>
+							<a id="offCanvasBtn" href="#offCanvasSide" class="mui-icon mui-action-menu mui-icon-bars mui-pull-right"></a>
+							<h1 class="mui-title">客户咨询</h1>
+						</div>
+						<div class="zixun">
+							<ul>
+								<li><input type="text" id="name_a" value="" placeholder="请输入您的姓名" maxlength="20" /></li>
+								<li><input type="text" id="tel" value="" placeholder="请输入您的电话号码" maxlength="12" /></li>
+								<li>
+									<php>
+										$aj_zx = M('terms') ->where(array("parent"=>6)) ->field("term_id,name") ->select();
+									</php>
+									<select name="" id="sel" class="sel_box">
+									<option value="">客户咨询</option>
+									<foreach name="aj_zx" item="vo">
+										<option value="{$vo.term_id}">{$vo.name}</option>
+									</foreach>
+								</select>
+								</li>
+								<li><textarea name="" rows="" cols="" placeholder="请输入您的描述" id="content_zx" maxlength="500"></textarea></li>
+								<button href="" class="zx_tjbtn" id="submit" style="line-height: 0px;">提&nbsp;&nbsp;&nbsp;交</button>
+							</ul>
+						</div>
+							<!--尾部声明-->
+						<tc_include file="Public:b_footer" />
+					</div>
+				
+					<!--底部导航-->
+					<tc_include file="Public:footer" />
+				</div>
+				
+				<!-- off-canvas backdrop -->
+				<div class="mui-off-canvas-backdrop"></div>
+			</div>
+			
+		</div>
+		<script src="__TMPL__/Public/js/mui.min.js"></script>
+		<script src="__TMPL__/Public/layer_mobile/layer.js"></script>
+		<script src="__TMPL__/Public/js/jquery1.42.min.js"></script>
+		<script type="text/javascript">
+			$("#submit").click(function(){
+				/*判断姓名不能为空*/
+				var name_a = $("#name_a").val();
+				if(!name_a){
+					layer.open({
+					    content: '请填写姓名',
+					    btn: '我知道了'
+					});
+					$("#name_a").focus();
+					return false;
+				}
+				/*判断手机格式*/
+				var mobile = $("#tel").val();
+				if(!mobile){
+					layer.open({
+					    content: '手机号码不能为空！',
+					    btn: '我知道了'
+					});
+					$("#tel").focus();
+					return false;
+				}
+				var preg = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/;	/*简单的方法*/
+				if(!preg.test(mobile)){
+					layer.open({
+					    content: '手机号码格式不正确！',
+					    btn: '我知道了'
+					});
+					$("#tel").focus();
+					return false;
+				}
+				/*选择分类*/
+				var sel = $("#sel").val();
+				if(!sel){
+					layer.open({
+					    content: '请选择分类',
+					    btn: '我知道了'
+					});
+					$("#sel").focus();
+					return false;
+				}
+				/*资讯内容不能为空*/
+				var content_zx = $("#content_zx").val();
+				if(!content_zx){
+					layer.open({
+					    content: '描述内容不能为空',
+					    btn: '我知道了'
+					});
+					$("#content_zx").focus();
+					return false;
+				}
+				
+				$.ajax({
+						type:"post",
+						url: "{:leuu('portal/index/guestbook')}",
+						data:{name:name_a,mobile:mobile,content_zx:content_zx,fenlei:sel},
+						dataType:"json",
+						success:function(result){
+							if(result.stat==1){
+								layer.open({
+								    content: '提交成功，我们会尽快处理，之后会与您联系',
+								    btn: '我知道了'
+								});
+								 window.location.reload();
+							}else if(result.stat==2){
+								layer.open({
+								    content: '您已提交过该问题，请勿重复提交！',
+								    btn: '我知道了'
+								});
+							}else{
+								layer.open({
+								    content: '提交失败，请重新填写！',
+								    btn: '我知道了'
+								});
+							}
+						},
+						error:function(){
+				     		layer.open({
+								    content: '系统异常，请稍后重试！',
+								    btn: '我知道了'
+							});
+				     	}
+					});
+			});
+		</script>
+		
+	</body>
+
+</html>

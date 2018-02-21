@@ -1,0 +1,32 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:U('Ownbrand/index')}">自主品牌有效期设置</a></li>
+		</ul>
+		<form method="post" class="form-horizontal js-ajax-form" action="{:U('Ownbrand/dosetperiod')}">
+			<div class="row-fluid">
+				<div class="span9">
+					<table class="table table-bordered">
+					
+						<tr>
+							<th width="100px">广告投放时间</th>
+							<td><input type="text"  name="gg_day" value="{$info.gg_day}"  autocomplete="off">
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+			</div>
+			<div class="form-actions">
+				<input type="hidden" name="id" value="{$id}" >
+				<button type="submit" class="btn btn-primary js-ajax-submit">保存</button>
+				<a class="btn" href="{:U('Ownbrand/index')}">{:L('BACK')}</a>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

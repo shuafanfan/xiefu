@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="__TMPL__Public/css/header.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/base.css">
+</head>
+<body>
+<div class="all">
+<tc_include file="Public:header" />
+<div class="zhongbu" style="margin-bottom:100px">
+    <div class="zhece_all">
+        <form method="post" name="register" action="{:U('user/user/doregister')}" autoComplete="off" id="register" class="js-ajax-form">
+            <h3>请先完善资料</h3>
+
+<div style="height: 44px">
+            <div class="cuowu_tishi">
+                <img src="__TMPL__Public/images/jinggao.png"><span> 请输入用户名和密码</span>
+            </div>
+</div>
+            <div class="input_kuang">
+                <label for="loginname" class="input_zuo">
+                    用户昵称
+                </label>
+
+                <input id="nicename" type="text" class="" name="text" tabindex="1" maxlength="10"
+                       autocomplete="off" placeholder="请输入昵称" value="{$user.user_nicename}">
+
+            </div>
+            <div class="input_kuang">
+                <label for="loginname" class="input_zuo">
+                   手机号
+                </label>
+
+                <input id="phone" type="text" class="width200" maxlength="11" name="mobile" tabindex="1"
+                       autocomplete="off" placeholder="不能为空" value="">
+
+                <label for="loginname" class="input_yuo">
+                    <a >获取验证码</a>
+                </label>
+
+            </div>
+
+            <div class="input_kuang">
+                <label for="loginname" class="input_zuo">
+                   验证码
+                </label>
+
+                <input id="yanzhengma" type="text" class="" name="code" tabindex="1" maxlength="6"
+                       autocomplete="off" placeholder="">
+
+            </div>
+
+            <div class="input_kuang">
+                <label for="loginname" class="input_zuo">
+                    创建密码
+                </label>
+
+                <input id="mima1" type="password" class="" name="password" tabindex="1"
+                       autocomplete="off" placeholder="不能少于6位">
+
+            </div>
+
+
+            <div class="input_kuang">
+                <label for="loginname" class="input_zuo">
+                    重复密码
+                </label>
+
+                <input id="mima2" type="password" class="" name="surepass" tabindex="1"
+                       autocomplete="off" placeholder="重复密码">
+
+            </div>
+            <div class="input_kuang2" >
+              <input type="checkbox"  style="width:15px" id="choose" value="1" checked="true" >&nbsp我已阅读<span id="yes">《鞋服网用户注册协议》</span>
+            </div>
+            <div class="zhece_btn js-ajax-submit" >
+                <a>保存</a>
+            </div>
+        </form>
+
+        <div class="zhece_footer">
+            <p>如有疑问请致电官方那个客服 0591-1234xxxx</p>
+        </div>
+    </div>
+
+</div>
+</div>
+<div style="display:none" id="agreement">
+    <tc_include file="Public:agreement" />
+</div>
+<tc_include file="Public:footer" />
+<script>
+    $(function () {
+        var code="";
+        var info="";
+        $(".input_yuo").click(function () {
+            var mobile=$('#phone').val();
+            //console.log(mobile);
+            $.ajax({
+                //                cache: true,
+                type: "POST",
+                url: '{:U("user/user/sendmsg")}',
+                data:  {'mobile':mobile},
+
+                success: function(data) {
+                    //console.log(data);
+                    code=data['code'];
+                    //console.log(code);
+                },
+                error:function(){
+                    console.log("发送失败");
+                }
+            });
+            var intDiff = parseInt(60);//倒计时总秒数量
+            var i;
+
+            function timer() {    //显示时间
+
+                $(".input_yuo").html('<a>'+intDiff+'s'+'</a>');
+                intDiff--;
+
+
+                if(intDiff<0){
+                    $(".input_yuo").html('<a>'+'点击重新发送'+'</a>');
+                    clearInterval(i);
+
+                }
+            }
+            /*            timer();*/
+            i=setInterval(timer, 1000);
+
+        });
+        //文本框失去焦点后
+        $('form :input').blur(function(){
+            //手机号是否注册过
+            var mobile=$('#phone').val();
+            if( $(this).is('#phone') ){
+                $.ajax({
+                    //                cache: true,
+                    type: "POST",
+                    url: '{:U("user/user/mobile")}',
+                    data:  {'mobile':mobile},
+                    async: false,
+                    success: function(data) {
+                        info=data['info'];
+                        //console.log(info);
+                    },
+                    error:function(){
+                        $(".cuowu_tishi").show();
+                        $(".cuowu_tishi").html('<img src="__TMPL__Public/images/jinggao.png">'+'<span class="">'+'发送失败'+'</span>')
+                    }
+                });
+                if(info=='1'){
+                    $(".cuowu_tishi").show();
+                    $(".cuowu_tishi").html('<img src="__TMPL__Public/images/jinggao.png">'+'<span class="">'+'手机号已被注册！'+'</span>')
+                }else{
+                    if( this.value=="" || this.value.length < 11||isNaN(this.value)){
+
+                        $(".cuowu_tishi").show();
+                        $(".cuowu_tishi").html('<img src="__TMPL__Public/images/jinggao.png">'+'<span class="">'+'手机号码不正确'+'</span>')
+
+                    }else{
+
+                        $(".cuowu_tishi").show();
+                        $(".cuowu_tishi").html('<img src="__TMPL__Public/images/ok.png">'+'<span class="">'+'可以使用'+'</span>')
+
+                    }
+                }
+            }
+            if( $(this).is('#yanzhengma') ){
+
+                if( this.value=="" || this.value.length < 6||isNaN(this.value)){
+                    $(".cuowu_tishi").show();
+                    $(".cuowu_tishi").html('<img src="__TMPL__Public/images/jinggao.png">'+'<span class="">'+'请输入正确的验证码'+'</span>')
+
+                }else{
+
+                }
+            }
+
+
+            if( $(this).is('#mima1') ){
+                if( this.value=="" ||isNaN(this.value)){
+                    $(".cuowu_tishi").show();
+                    $(".cuowu_tishi").html('<img src="__TMPL__Public/images/jinggao.png">'+'<span class="">'+'密码格式错误'+'</span>')
+
+                }else{
+                    $(".cuowu_tishi").show();
+                    $(".cuowu_tishi").html('<img src="__TMPL__Public/images/jinggao.png">'+'<span class="">'+'可以使用'+'</span>')
+                }
+            }
+
+            if( $(this).is('#mima2') ){
+                var mima1 = $("input[id='mima1']").val();
+
+                if( this.value=="" ||isNaN(this.value)){
+                    $(".cuowu_tishi").show();
+                    $(".cuowu_tishi").html('<img src="__TMPL__Public/images/jinggao.png">'+'<span class="">'+'密码格式错误'+'</span>')
+
+                }
+                else if( this.value!=mima1){
+                    $(".cuowu_tishi").show();
+                    $(".cuowu_tishi").html('<img src="__TMPL__Public/images/jinggao.png">'+'<span class="">'+'两次密码不一样'+'</span>')
+
+                }
+
+                else{
+                    $(".cuowu_tishi").hide();
+                }
+            }
+
+        }).keyup(function(){
+            /*$(this).triggerHandler("blur");*/
+        }).focus(function(){
+            /*  $(this).triggerHandler("blur");*/
+        });//end blur
+
+        $('.zhece_btn').click(function () {
+            // if(code==$('#yanzhengma').value&&(info!=1)&&($('#mima1').value==$('#mima2').value)){
+            var mobile=$('#phone').val();
+            var password=$('#mima1').val();
+            var sureword=$('#mima2').val();
+            var code=$('#yanzhengma').val();
+            var nicename=$('#nicename').val();
+            if(!$("#choose").is(':checked')){
+                $(".cuowu_tishi").show();
+                $(".cuowu_tishi").html('<img src="__TMPL__Public/images/jinggao.png">'+'<span class="">'+'请先同意注册条款'+'</span>')
+                return false;
+            }
+            if(password==sureword){
+                $.ajax({
+                    //                cache: true,
+                    type: "POST",
+                    url: '{:U("user/user/doaddinfo")}',
+                    data:  {'mobile':mobile,'password':password,'code':code,'nicename':nicename},
+                    async: false,
+                    success: function(data) {
+                        //console.log(data);
+
+                        if(data['code']==1){
+                            layer.alert('恭喜您，保存成功！',function(){
+                                window.location.href='{:U("user/account/index")}';
+                            })
+
+                        }else{
+                            layer.alert(data['msg']);
+                        }
+                    },
+                    error:function(){
+                        layer.alert('抱歉，保存失败！',function(){
+                            window.location.href=window.location.href;
+                        })
+
+                    }
+                });
+            }else{
+                $(".cuowu_tishi").show();
+                $(".cuowu_tishi").html('<img src="__TMPL__Public/images/jinggao.png">'+'<span class="">'+'两次密码不一样'+'</span>')
+            }
+
+
+
+        });
+
+    })
+</script>
+<!--导航条滑块-->
+<script type="text/javascript">
+    $(function(){
+        $("#bar4").xq_navbar({"type":"overline","liwidth":"120","bgcolor":"#000"});
+        $("#yes").click(function(){
+            $('#agreement').show();
+        })
+
+    });
+</script>
+<!--滑块-->
+</body>
+</html>
+
+

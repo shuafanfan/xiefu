@@ -1,0 +1,34 @@
+
+    <nav class="bar bar-tab">
+        <a class="tab-item active" href="/index.php?g=&m=index&a=index">
+            <span class="icon icon-fangzi_house"></span>
+            <span class="tab-label">首页</span>
+        </a>
+        <a class="tab-item" href="/index.php?g=portal&m=page&a=zazamarket">
+            <span class="icon icon-fenlei-copy"></span>
+            <span class="tab-label">杂杂市场</span>
+        </a>
+        <a class="tab-item" href="/index.php?g=portal&m=page&a=report">
+            <span class="icon icon-dianpu"></span>
+            <span class="tab-label">报货频道</span>
+        </a>
+        <a class="tab-item" href="/index.php?g=portal&m=page&a=newstyle">
+            <span class="icon icon-20xinkuan"></span>
+            <span class="tab-label">最新款</span>
+        </a>
+        <php> if(sp_is_user_login()){ </php>
+        <a class="tab-item" href="/index.php?g=user&m=account&a=person">
+            <span class="icon icon-wode"></span>
+            <span class="tab-label">我的</span>
+        </a>
+        <php> 
+            }else{          
+        </php>
+        <a class="tab-item" href="/index.php?g=user&m=user&a=login">
+            <span class="icon icon-wode"></span>
+            <span class="tab-label">我的</span>
+        </a>
+        <php> 
+            }         
+        </php>
+    </nav>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+		<title>【{$keyword}】相关的文章聚合 - {$site_name} </title>
+
+		<meta name="keywords" content="{$keyword}，{$keyword}资讯，{$keyword}数据，{$keyword}平台" />
+
+		<meta name="description" content="关于 ‘{$keyword}’ 站内搜索有{$result['count']}条记录，{$keyword}相关的文章聚合。">
+
+		<tc_include file="Public:head" />
+
+		<style>
+
+			#article_content img{height:auto !important}
+
+		</style>
+
+		<link href="__TMPL__Public/css/huiyong.css" rel="stylesheet"> 
+
+	</head>
+
+<body class="">
+
+<tc_include file="Public:nav" />
+
+ 
+
+<!--内容页开始-->
+
+<div class="w1200 center">
+
+    <div class="price_Information">
+
+        <div class="price_place w1200 center">
+
+            <p>本页位置：<a href="/">首页</a>
+
+            	 &gt; <a>搜索 '{$keyword}' 的文章聚合</a>
+
+            </p>	
+
+        </div>
+
+        <div class="price_leftnav left">
+
+            <div class="top"><span>在线搜索</span></div>
+
+        </div>
+
+        <div class="price_right left">
+
+            <div class="every_comment left">
+
+                <div class="title"><h2>搜索 '{$keyword}' 的文章聚合</h2></div>
+
+                <ul class="con">
+
+
+
+                	<volist name="result['posts']" id="vo">
+
+					<php>
+
+						$smeta=json_decode($vo['smeta'], true);
+
+					</php>
+
+					
+
+					<li>
+
+                        <dl>
+
+                            <dt>
+
+                            	<h3 class="left"><a href="{:leuu('portal/article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a></h3>
+
+                            	<em class="right">{:date('Y-m-d',strtotime($vo['post_modified']))}</em></dt>
+
+                            <dd>
+
+                            	{$vo.post_excerpt}
+
+                            </dd>
+
+                        </dl>
+
+                    </li>
+
+					</volist>
+
+					
+
+					
+
+                </ul>
+
+                <div class="clear"></div>
+
+                <ul class="page">
+                    <ul>   
+                    	<li><span class="current">{$result['page']}</span></li>
+                    </ul>                
+                </ul>
+
+                               
+
+                <div class="clear"></div>
+
+
+
+            </div>
+
+            
+
+            <div class="price_rtbar right">
+
+            	<!-- 在线客服 -->
+
+			    <tc_include file="Public:right_kefu"/>
+
+			    
+
+			</div>
+
+	        
+
+        </div>
+
+        
+
+        
+
+        
+
+        <div class="clear"></div>
+
+    </div>
+
+</div>
+
+
+
+<!--内容页结束-->
+
+<tc_include file="Public:footer"/>
+
+<tc_include file="Public:scripts"/>
+
+</body>
+
+</html>

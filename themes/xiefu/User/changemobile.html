@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="__TMPL__Public/css/zhuce.css">
+    <link rel="stylesheet" href="__TMPL__Public/css/header.css">
+      <link rel="stylesheet" href="__TMPL__Public/css/base.css">
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="all">
+
+ <div class="shangbu">
+<tc_include file="Public:header" />
+<div class="zhongbu" style="margin-bottom:100px">
+    <div class="zhece_all">
+
+        <form method="post" name="register" action="{:U('user/user/doregister')}" autoComplete="off" id="register" class="js-ajax-form">
+            <h3>更换手机号码</h3>
+
+<div style="height: 44px">
+            <div class="cuowu_tishi">
+                <img src="__TMPL__Public/images/jinggao.png"><span> 请输入用户名和密码</span>
+            </div>
+</div>
+            <div class="input_kuang">
+                <label for="loginname" class="input_zuo">
+                   原手机号
+                </label>
+
+                <input id="mobile" type="text" class="width200" maxlength="11" name="mobile" tabindex="1"
+                       autocomplete="off" placeholder="不能为空" value="">
+
+                <label for="loginname" class="input_yuo">
+                    <a >获取验证码</a>
+                </label>
+
+            </div>
+
+            <div class="input_kuang">
+                <label for="loginname" class="input_zuo">
+                   验证码
+                </label>
+
+                <input id="yanzhengma" type="text" class="" name="code" tabindex="1" maxlength="6"
+                       autocomplete="off" placeholder="">
+
+            </div>
+
+            <div class="input_kuang">
+                <label for="loginname" class="input_zuo">
+                    新手机号
+                </label>
+
+                <input id="newmobile" type="text" class="" maxlength="11" name="newmobile" tabindex="1"
+                       autocomplete="off" placeholder="不能为空">
+
+            </div>
+
+
+
+            <div class="zhece_btn js-ajax-submit" >
+                <a>保存</a>
+                 
+            </div>
+
+
+
+        </form>
+
+
+        <div class="zhece_footer">
+            <p>如有疑问请致电官方那个客服 0591-1234xxxx</p>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+</div>
+
+<!-- <iframe src="__TMPL__Public/footer.html" scrolling="no" width="100%" height="115" frameborder="no"
+        style="float: left;margin-top: 30px;background: #f5f5f5;position: absolute;bottom: 0px"></iframe> -->
+<tc_include file="Public:footer" />
+</body>
+</html>
+
+
+<script src="__TMPL__Public/js/jquery-3.1.1.min.js"></script>
+
+<script>
+    $(function () {
+        var code="";
+        var info="";
+        $(".input_yuo").click(function () {
+                    var mobile=$('#mobile').val();
+                    //console.log(mobile);
+                    $.ajax({
+                    //                cache: true,
+                    type: "POST",
+                    url: '{:U("user/user/sendmsg")}',
+                    data:  {'mobile':mobile},
+                   
+                    success: function(data) {
+                       //console.log(data);
+                       code=data['code'];
+                       //console.log(code);
+                    },
+                    error:function(){
+                        console.log("发送失败");
+                    }
+                });
+            var intDiff = parseInt(60);//倒计时总秒数量
+            var i;
+
+            function timer() {    //显示时间
+
+                $(".input_yuo").html('<a>'+intDiff+'s'+'</a>');
+                intDiff--;
+
+
+                if(intDiff<0){
+                    $(".input_yuo").html('<a>'+'点击重新发送'+'</a>');
+                    clearInterval(i);
+
+                }
+            }
+
+/*            timer();*/
+            i=setInterval(timer, 1000);
+
+
+        });
+
+
+
+        //文本框失去焦点后
+        $('form :input').blur(function(){
+        
+            //手机号是否注册过
+            var mobile=$('#mobile').val();
+            
+            if( $(this).is('#mobile') ){
+                $.ajax({
+                    //                cache: true,
+                    type: "POST",
+                    url: '{:U("user/account/oldmobile")}',
+                    data:  {'mobile':mobile},
+                    async: false,
+                    success: function(data) {
+                        if(data['status']==1){
+                            $(".cuowu_tishi").show(100).delay(1500).hide(100);
+                            $(".cuowu_tishi").html('<img src="__TMPL__Public/images/jinggao.png">'+'<span class="">'+'号码正确'+'</span>')
+                        }else{
+                            $(".cuowu_tishi").show(100).delay(1500).hide(100);
+                            $(".cuowu_tishi").html('<img src="__TMPL__Public/images/jinggao.png">'+'<span class="">'+'号码错误'+'</span>')
+                        }
+                    },
+                    error:function(){
+                        $(".cuowu_tishi").show();
+                        $(".cuowu_tishi").html('<img src="__TMPL__Public/images/jinggao.png">'+'<span class="">'+'发送失败'+'</span>')
+                    }
+                });
+                
+            }
+
+
+            if( $(this).is('#yanzhengma') ){
+
+                if( this.value=="" || this.value.length < 6||isNaN(this.value)||this.value!=code){
+                    $(".cuowu_tishi").show();
+                    $(".cuowu_tishi").html('<img src="__TMPL__Public/images/jinggao.png">'+'<span class="">'+'请输入正确的验证码'+'</span>')
+
+                }else{
+
+                }
+            }
+
+
+            if( $(this).is('#newmobile') ){
+                if( this.value=="" ||isNaN(this.value||this.value.length < 6)){
+                    $(".cuowu_tishi").show();
+                    $(".cuowu_tishi").html('<img src="__TMPL__Public/images/jinggao.png">'+'<span class="">'+'号码格式错误'+'</span>')
+
+                }else{
+                    $(".cuowu_tishi").show();
+                    $(".cuowu_tishi").html('<img src="__TMPL__Public/images/jinggao.png">'+'<span class="">'+'可以使用'+'</span>')
+                }
+            }
+
+        
+
+        }).keyup(function(){
+            /*$(this).triggerHandler("blur");*/
+        }).focus(function(){
+          /*  $(this).triggerHandler("blur");*/
+        });//end blur
+
+
+
+
+        $(".fenye ul li a").mouseover(function () {
+
+            $(this).children(".fenye_zuosanjiao").hide();
+            $(this).children(".fenye_zuosanjiao2").show();
+
+            $(this).children(".fenye_yousanjiao").hide();
+            $(this).children(".fenye_yousanjiao2").show()
+        });
+        $(".fenye ul li a").mouseout(function () {
+
+            $(this).children(".fenye_zuosanjiao").show();
+            $(this).children(".fenye_zuosanjiao2").hide();
+
+            $(this).children(".fenye_yousanjiao").show();
+            $(this).children(".fenye_yousanjiao2").hide()
+        });
+
+        $('.zhece_btn').click(function () {
+             
+                var mobile=$('#mobile').val();
+                var newmobile=$('#newmobile').val();
+                var code=$('#yanzhengma').val();
+                $.ajax({
+                        //                cache: true,
+                        type: "POST",
+                        url: '{:U("user/account/dochangemobile")}',
+                        data:  {'mobile':mobile,'newmobile':newmobile,'code':code},
+                        async: false,
+                        success: function(data) {
+                             
+                            if(data['msg']=='success'){
+                                layer.alert('恭喜您，修改成功！',function(){
+                                    window.location.href='{:U("user/account/index")}';
+                                })
+                                
+                            }else{
+                                $(".cuowu_tishi").show();
+                                $(".cuowu_tishi").html('<img src="__TMPL__Public/images/jinggao.png">'+'<span class="">'+'修改失败！'+'</span>')
+                            }
+                        },
+                        error:function(){
+                                
+                        }
+                    });
+                
+        });
+    
+    })
+</script>
+
+<!--导航条滑块-->
+<script src="__TMPL__Public/js/jquery.min.js" type="text/javascript"></script>
+<script src="__TMPL__Public/js/xq_navbar.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function(){
+
+        $("#bar4").xq_navbar({"type":"overline","liwidth":"120","bgcolor":"#000"});
+    });
+</script>
+<!--滑块-->

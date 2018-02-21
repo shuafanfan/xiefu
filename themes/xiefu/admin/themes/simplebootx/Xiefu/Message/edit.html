@@ -1,0 +1,41 @@
+<admintpl file="header" />
+</head>
+<body style="min-width: 800px;height:200px">
+	<div class="wrap">
+		<form method="post" class="form-horizontal js-ajax-form" action="{:U('message/post_sendmail')}">
+			<div class="row-fluid">
+				<div class="span9">
+					<table class="table table-bordered">
+						<tr>
+							<th>标题</th>
+							<td><input type="text" name="title"  value="{$info.title}" style="width: 400px" >
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+						<tr>
+							<th>发送时间</th>
+							<td><input class="js-datetime" type="text" id="input-birthday"  name="createtime" value="{$info.createtime}">
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+					
+						<tr>
+							<th>内容</th>
+							<td><textarea name="content" rows="5" cols="57" style="width: 400px;">{$info.content}</textarea>
+							<span class="form-required">*</span>
+							</td>
+						</tr>
+					
+					</table>
+				</div>
+				
+			</div>
+			<div class="form-actions">
+				<input  type="hidden"   name="id" value="{$info.id}">
+				<button type="submit" class="btn btn-primary js-ajax-submit">保存</button>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>
